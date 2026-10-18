@@ -218,7 +218,7 @@
       ],
       "name": "Rich text",
       "settings": {
-        "full_width": true,
+        "full_width": false,
         "content_width": "small",
         "text_position": "center",
         "background": "",
