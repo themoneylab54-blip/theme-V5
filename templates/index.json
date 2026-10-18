@@ -103,6 +103,7 @@
         "logo_7MafyH": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/1_3.webp",
             "logo_width": 120,
             "link": ""
           }
@@ -110,6 +111,7 @@
         "logo_YBDYX9": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/3.webp",
             "logo_width": 120,
             "link": ""
           }
@@ -117,6 +119,7 @@
         "logo_cqfDPa": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/2.webp",
             "logo_width": 120,
             "link": ""
           }
