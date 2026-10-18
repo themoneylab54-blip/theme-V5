@@ -500,6 +500,7 @@
         "image_ctPymU": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/payment.webp",
             "alignment": "center",
             "max_width": 500
           }
