@@ -424,7 +424,7 @@
           "type": "icon_benefit",
           "settings": {
             "icon": "picto-love",
-            "text": "<p>Taille <strong>plus fine</strong>, jambes <strong>légères</strong></p>",
+            "text": "<p>Rediscover your <strong>drive.</strong></p>",
             "icon_size": 28,
             "icon_gap": 8,
             "text_size": "text-sm",
@@ -437,7 +437,7 @@
           "type": "icon_benefit",
           "settings": {
             "icon": "picto-love",
-            "text": "<p>Améliore la <strong>circulation</strong> de votre lymphe</p>",
+            "text": "<p>Feel like <strong>yourself </strong>again.</p>",
             "icon_size": 28,
             "icon_gap": 8,
             "text_size": "text-sm",
@@ -450,7 +450,7 @@
           "type": "icon_benefit",
           "settings": {
             "icon": "picto-love",
-            "text": "<p>Visage <strong>redéfini</strong> et <strong>dégonflé</strong></p>",
+            "text": "<p>Make more room for <strong>closeness.</strong></p>",
             "icon_size": 28,
             "icon_gap": 8,
             "text_size": "text-sm",
@@ -463,7 +463,7 @@
           "type": "icon_benefit",
           "settings": {
             "icon": "picto-love",
-            "text": "<p>Renforce votre <strong>confort digestif</strong></p>",
+            "text": "<p>Simple drops. No capsules to swallow</p>",
             "icon_size": 28,
             "icon_gap": 8,
             "text_size": "text-sm",
