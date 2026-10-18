@@ -524,8 +524,8 @@
           "settings": {
             "icon": "none",
             "icon_width": 20,
-            "title": "Comment prendre les gouttes Sovéline ?",
-            "content": "<p><strong>Comment prendre les gouttes Sovéline ?</strong></p><p>Suivez le mode d'emploi et la dose indiqués sur l'étiquette du flacon. Ne dépassez pas la dose journalière recommandée.</p><p>Les gouttes ont un <strong>goût miel</strong>.</p><p><strong>Précautions.</strong> Si vous allaitez, si vous êtes enceinte ou si vous suivez un traitement, demandez l'avis de votre médecin, de votre sage-femme ou de votre pharmacien avant la première prise. Un complément alimentaire ne remplace pas une alimentation variée et équilibrée, ni un mode de vie sain. Tenir hors de portée des jeunes enfants.</p>",
+            "title": "Why Take Altai?",
+            "content": "<p>1 Dropper full in the morning with breakfast or coffee. The ingredients build up in your system over days and weeks, so timing doesn't need to be precise. Just take it daily and let your body do the rest. You don't need to time it before sex the way you would with a prescription pill.</p><h3></h3>",
             "page": ""
           }
         },
@@ -534,8 +534,8 @@
           "settings": {
             "icon": "none",
             "icon_width": 20,
-            "title": "Les 4 plantes",
-            "content": "<p><strong>Gaillet gratteron</strong> (<em>Galium aparine</em>)</p><p><strong>Trèfle rouge</strong> (<em>Trifolium pratense</em>)</p><p><strong>Stillingie</strong> (<em>Stillingia sylvatica</em>)</p><p><strong>Frêne piquant</strong> (<em>Zanthoxylum americanum</em>)</p><p>Quatre plantes traditionnelles, dans un flacon au goût miel. Composition complète et dosage : voir l'étiquette du flacon.</p>",
+            "title": "Benefits",
+            "content": "<p><strong>Can Help Testosterone:</strong> Which improves drive and performance naturally.</p><p><strong>Supports Performance:</strong> Helps in all areas of life (including bedroom)</p><p><strong>Sharpen Focus:</strong> Can reduce brain fog</p>",
             "page": ""
           }
         },
@@ -544,8 +544,18 @@
           "settings": {
             "icon": "none",
             "icon_width": 20,
-            "title": "Livraison & suivi",
-            "content": "<p>Chaque commande part avec un <strong>numéro de suivi</strong>. Vous suivez votre colis à tout moment.</p><p>Une question sur votre commande ? Écrivez-nous avec le formulaire de contact en bas de page.</p>",
+            "title": "How Do I Know These Are Made With Premium Ingredients?",
+            "content": "<p>Every batch is third-party lab tested for purity and potency. Made in a GMP-certified facility in the USA. No artificial fillers, no proprietary blends hiding weak doses. Every ingredient is listed at its actual amount so you know exactly what you're putting in your body.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_MtBwRJ": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "30-Day Money Back Guarantee",
+            "content": "<p>We offer fast, reliable shipping—most orders arrive within 5–7 business days, depending on your location.</p><p>All purchases are backed by our 30-day satisfaction guarantee.</p><p>Need help? Our support team is here for any questions about your order.</p>",
             "page": ""
           }
         }
@@ -565,7 +575,8 @@
         "image_38Tqm8",
         "collapsible_text_LzPRXy",
         "collapsible_text_yKpzL4",
-        "collapsible_text_rhzRHw"
+        "collapsible_text_rhzRHw",
+        "collapsible_text_MtBwRJ"
       ],
       "name": "Featured product",
       "settings": {
