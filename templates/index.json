@@ -918,8 +918,8 @@
       "settings": {
         "full_width": true,
         "subheading": "",
-        "title": "Une question avant de commander ?",
-        "content": "<p>Écrivez-nous avec le formulaire ci-dessous. Nous vous répondons par e-mail.</p>",
+        "title": "Have a question before placing your order?",
+        "content": "<p>Please contact us using the form below. We will reply by email.</p>",
         "text_position": "start",
         "contact_form_size": "large",
         "background": "",
