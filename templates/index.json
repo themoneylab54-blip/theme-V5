@@ -600,47 +600,51 @@
     "images_with_text_scrolling_kLcKFj": {
       "type": "images-with-text-scrolling",
       "blocks": {
-        "item_QMfz8z": {
+        "item_wUVh84": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/4_4_50279a26-24f6-40cf-876a-2f10e25f1d69.webp",
             "icon": "none",
             "icon_width": 48,
-            "title": "Gaillet gratteron",
-            "content": "<p>Une plante aux feuilles fines qui entre dans la composition de Sovéline. L’un des quatre ingrédients de votre rituel quotidien.</p>"
+            "title": "",
+            "content": "<p>Aussi appelée « racine de la reine », elle figure dans les traditions botaniques nord-américaines. Elle apporte sa singularité à notre association végétale.</p>"
           }
         },
         "item_W3fcy4": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/2_3a739168-2250-4995-91f0-197bf869c651.webp",
             "icon": "none",
             "icon_width": 48,
-            "title": "Trèfle rouge",
+            "title": "",
             "content": "<p>Cette fleur rosée contient des composés végétaux appelés isoflavones. Elle complète notre formule, sans promesse de rééquilibrage hormonal après grossesse.</p>"
           }
         },
-        "item_wUVh84": {
+        "item_QMfz8z": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/1_3_bebfdca7-80fe-47d8-a61c-fdc0d66b04d4.webp",
             "icon": "none",
             "icon_width": 48,
-            "title": "Stillingie",
-            "content": "<p>Aussi appelée « racine de la reine », elle figure dans les traditions botaniques nord-américaines. Elle apporte sa singularité à notre association végétale.</p>"
+            "title": "",
+            "content": "<p>Une plante aux feuilles fines qui entre dans la composition de Sovéline. L’un des quatre ingrédients de votre rituel quotidien.</p>"
           }
         },
         "item_tbC9xw": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/3_b1f49c03-848d-4769-b7c9-b1e3412591b5.webp",
             "icon": "none",
             "icon_width": 48,
-            "title": "Frêne piquant",
+            "title": "",
             "content": "<p>Reconnaissable à ses rameaux épineux, il complète le complexe Sovéline. Quatre plantes réunies dans un seul format gouttes.</p>"
           }
         }
       },
       "block_order": [
-        "item_QMfz8z",
-        "item_W3fcy4",
         "item_wUVh84",
+        "item_W3fcy4",
+        "item_QMfz8z",
         "item_tbC9xw"
       ],
       "name": "Images and text scrolling",
