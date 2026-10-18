@@ -39,21 +39,21 @@
           "type": "timer",
           "settings": {
             "minutes": 5,
-            "text": "Votre panier est réservé pendant [temps]",
+            "text": "Your cart is reserved for [time]",
             "background": "#fff8e1",
             "text_color": "#111111",
             "emoji": "⏳",
             "border_color": "#f6cc50",
             "radius": 12,
             "full_width": true,
-            "shipping_text": "🎉 Félicitations, vous avez débloqué la livraison gratuite !",
+            "shipping_text": "🎉 Congrats, you've unlocked free shipping!",
             "shipping_bar_color": "#f6cc50"
           }
         },
         "payment_icons_Nnn7pK": {
           "type": "payment_icons",
           "settings": {
-            "title": "Paiement 100% sécurisé"
+            "title": "100% secure checkout"
           }
         }
       },
@@ -66,7 +66,7 @@
         "show_shipping_text": false,
         "show_view_cart_button": true,
         "show_checkout_button": true,
-        "recommendations_title": "Vous aimerez aussi",
+        "recommendations_title": "You may also like",
         "products": [],
         "product_card_background": "#ffffff",
         "product_card_text_color": ""

@@ -71,10 +71,10 @@
                   <p class="text-sm text-center">
                     {%- if goals_total < goal1_cents -%}
                       {%- assign remaining = goal1_cents | minus: goals_total | round | money -%}
-                      {{- block.settings.goal1_text_unreached | replace: '[montant]', remaining -}}
+                      {{- block.settings.goal1_text_unreached | replace: '[montant]', remaining | replace: '[amount]', remaining -}}
                     {%- elsif block.settings.goal2_enabled and goal2_cents > goal1_cents and goals_total < goal2_cents -%}
                       {%- assign remaining = goal2_cents | minus: goals_total | round | money -%}
-                      {{- block.settings.goal2_text_unreached | replace: '[montant]', remaining -}}
+                      {{- block.settings.goal2_text_unreached | replace: '[montant]', remaining | replace: '[amount]', remaining -}}
                     {%- else -%}
                       {{- block.settings.text_all_reached -}}
                     {%- endif -%}
@@ -154,7 +154,7 @@
                 <div class="sov-timer-band{% if timer_full %} sov-timer-band--full{% endif %}" {{ block.shopify_attributes }}>
                   <cart-reserve-timer minutes="{{ block.settings.minutes }}" timer-id="{{ block.id }}" class="h-stack gap-2 justify-center text-sm" style="align-items: center; background: {{ timer_background }}; border: 1px solid {{ timer_border }}; {% if block.settings.text_color.alpha != 0 and block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %} padding: var(--spacing-3) var(--spacing-4); border-radius: {% if timer_full %}0{% else %}{{ block.settings.radius | default: 12 }}px{% endif %};">
                     {%- if block.settings.emoji != blank -%}<span aria-hidden="true">{{ block.settings.emoji | escape }}</span>{%- endif -%}
-                    <span data-timer-text data-template="{{ block.settings.text | escape }}">{{ block.settings.text | replace: '[temps]', initial_time | escape }}</span>
+                    <span data-timer-text data-template="{{ block.settings.text | escape }}">{{ block.settings.text | replace: '[temps]', initial_time | replace: '[time]', initial_time | escape }}</span>
                   </cart-reserve-timer>
 
                   {%- if block.settings.shipping_text != blank -%}
@@ -306,11 +306,11 @@
         {%- if block.type == 'discount_code' -%}
           <cart-discount-form {{ block.shopify_attributes }}>
             <form class="h-stack gap-2">
-              <input type="text" class="input grow" style="min-width: 0; padding-block: var(--spacing-2-5); padding-inline: var(--spacing-4); border: 1px solid rgb(var(--text-color) / .15); border-radius: var(--rounded-input, var(--rounded-sm)); background: transparent;" name="discount" placeholder="{{ block.settings.placeholder | default: 'Code promo' | escape }}" autocomplete="off" aria-label="{{ block.settings.placeholder | default: 'Code promo' | escape }}">
-              {%- assign apply_label = block.settings.button_text | default: 'Appliquer' -%}
+              <input type="text" class="input grow" style="min-width: 0; padding-block: var(--spacing-2-5); padding-inline: var(--spacing-4); border: 1px solid rgb(var(--text-color) / .15); border-radius: var(--rounded-input, var(--rounded-sm)); background: transparent;" name="discount" placeholder="{{ block.settings.placeholder | default: 'Discount code' | escape }}" autocomplete="off" aria-label="{{ block.settings.placeholder | default: 'Discount code' | escape }}">
+              {%- assign apply_label = block.settings.button_text | default: 'Apply' -%}
               {%- render 'button', type: 'submit', content: apply_label, size: 'lg', secondary: true -%}
             </form>
-            <p class="text-sm" data-discount-message hidden style="margin-block-start: var(--spacing-2);" data-success-text="{{ block.settings.success_text | default: 'Code appliqué !' | escape }}" data-error-text="{{ block.settings.error_text | default: 'Ce code n’est pas valide.' | escape }}"></p>
+            <p class="text-sm" data-discount-message hidden style="margin-block-start: var(--spacing-2);" data-success-text="{{ block.settings.success_text | default: 'Code applied!' | escape }}" data-error-text="{{ block.settings.error_text | default: 'This code is not valid.' | escape }}"></p>
           </cart-discount-form>
         {%- endif -%}
       {%- endfor -%}
@@ -405,7 +405,8 @@
           const remaining = Math.max(0, expiry - Date.now());
           const mins = Math.floor(remaining / 60000);
           const secs = Math.floor((remaining % 60000) / 1000);
-          textElement.textContent = template.replace('[temps]', mins + ':' + String(secs).padStart(2, '0'));
+          const time = mins + ':' + String(secs).padStart(2, '0');
+          textElement.textContent = template.replace('[temps]', time).replace('[time]', time);
 
           if (remaining <= 0) {
             clearInterval(this._interval);
@@ -487,8 +488,8 @@
           "type": "text",
           "id": "goal1_text_unreached",
           "label": "Palier 1 — texte avant d'atteindre",
-          "info": "[montant] est remplacé par le montant restant.",
-          "default": "Plus que [montant] pour la livraison offerte 🚚"
+          "info": "[amount] (ou [montant]) est remplacé par le montant restant.",
+          "default": "You're [amount] away from free shipping 🚚"
         },
         {
           "type": "text",
@@ -512,7 +513,7 @@
           "type": "text",
           "id": "goal2_text_unreached",
           "label": "Palier 2 — texte avant d'atteindre",
-          "default": "Plus que [montant] pour votre cadeau 🎁"
+          "default": "You're [amount] away from your free gift 🎁"
         },
         {
           "type": "text",
@@ -524,7 +525,7 @@
           "type": "text",
           "id": "text_all_reached",
           "label": "Texte quand tout est atteint",
-          "default": "Félicitations, vous avez tout débloqué ! 🎉"
+          "default": "Congrats, you've unlocked everything! 🎉"
         }
       ]
     },
@@ -620,7 +621,7 @@
           "type": "text",
           "id": "text",
           "label": "Texte",
-          "default": "Noté 4,8/5 par plus de 2 000 client(e)s"
+          "default": "Rated 4.8/5 by 2,000+ customers"
         },
         {
           "type": "color",
@@ -667,8 +668,8 @@
           "type": "text",
           "id": "text",
           "label": "Texte",
-          "info": "[temps] est remplacé par le compte à rebours.",
-          "default": "Votre panier est réservé pendant [temps]"
+          "info": "[time] (ou [temps]) est remplacé par le compte à rebours.",
+          "default": "Your cart is reserved for [time]"
         },
         {
           "type": "color",
@@ -716,7 +717,7 @@
           "id": "shipping_text",
           "label": "Texte sous le timer",
           "info": "Videz le champ pour masquer la barre.",
-          "default": "🎉 Félicitations, vous avez débloqué la livraison gratuite !"
+          "default": "🎉 Congrats, you've unlocked free shipping!"
         },
         {
           "type": "color",
@@ -735,25 +736,25 @@
           "type": "text",
           "id": "placeholder",
           "label": "Texte du champ",
-          "default": "Code promo"
+          "default": "Discount code"
         },
         {
           "type": "text",
           "id": "button_text",
           "label": "Texte du bouton",
-          "default": "Appliquer"
+          "default": "Apply"
         },
         {
           "type": "text",
           "id": "success_text",
           "label": "Message de succès",
-          "default": "Code appliqué !"
+          "default": "Code applied!"
         },
         {
           "type": "text",
           "id": "error_text",
           "label": "Message d'erreur",
-          "default": "Ce code n'est pas valide."
+          "default": "This code is not valid."
         }
       ]
     },
@@ -798,13 +799,13 @@
           "type": "text",
           "id": "title",
           "label": "Titre",
-          "default": "30 jours satisfait ou remboursé"
+          "default": "90-day money-back guarantee"
         },
         {
           "type": "text",
           "id": "text",
           "label": "Texte",
-          "default": "Retours gratuits, sans justification."
+          "default": "Not satisfied? Request a refund, subject to the guarantee terms."
         },
         {
           "type": "select",
@@ -867,7 +868,7 @@
           "type": "text",
           "id": "title",
           "label": "Titre",
-          "default": "Paiement 100% sécurisé"
+          "default": "100% secure checkout"
         }
       ]
     }
