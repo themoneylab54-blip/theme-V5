@@ -660,7 +660,7 @@
         "table_row_GMGxN9": {
           "type": "table_row",
           "settings": {
-            "row_heading": "Rien à sacrifier : vous gardez vos repas",
+            "row_heading": "No capsules to swallow: easy drops under the tongue",
             "first_column_icon": "check",
             "second_column_icon": "cross",
             "third_column_icon": "none",
@@ -670,7 +670,7 @@
         "table_row_dTJ4Bq": {
           "type": "table_row",
           "settings": {
-            "row_heading": "Sans rendez-vous, sans séance payante",
+            "row_heading": "One dropper a day, no timing needed",
             "first_column_icon": "check",
             "second_column_icon": "cross",
             "third_column_icon": "none",
@@ -680,7 +680,7 @@
         "table_row_Uegq7M": {
           "type": "table_row",
           "settings": {
-            "row_heading": "Rien à enfiler, même en pleine chaleur",
+            "row_heading": "8 key ingredients in one formula",
             "first_column_icon": "check",
             "second_column_icon": "cross",
             "third_column_icon": "none",
@@ -690,7 +690,7 @@
         "table_row_rY7hJb": {
           "type": "table_row",
           "settings": {
-            "row_heading": "Un geste de 10 secondes, chaque matin",
+            "row_heading": "Full ingredient list, nothing hidden",
             "first_column_icon": "check",
             "second_column_icon": "cross",
             "third_column_icon": "none",
@@ -700,7 +700,7 @@
         "table_row_hMnym8": {
           "type": "table_row",
           "settings": {
-            "row_heading": "Moins de 1 € par jour en cure de 3 mois",
+            "row_heading": "Third-party lab tested, made in the USA",
             "first_column_icon": "check",
             "second_column_icon": "cross",
             "third_column_icon": "none",
@@ -710,7 +710,7 @@
         "table_row_dYbxRV": {
           "type": "table_row",
           "settings": {
-            "row_heading": "30 jours satisfaite ou remboursée",
+            "row_heading": "90-day money-back guarantee",
             "first_column_icon": "check",
             "second_column_icon": "cross",
             "third_column_icon": "none",
@@ -730,15 +730,15 @@
       "settings": {
         "full_width": true,
         "subheading": "",
-        "title": "<p>Sovéline vs <em>ce que vous avez déjà essayé</em></p>",
-        "content": "<p>Marche, sel réduit, séances, bas, tisanes : vous avez déjà beaucoup donné.</p>",
+        "title": "<p>ALTAÏ vs <em>the others</em></p>",
+        "content": "<p>Capsules, gummies, powders: here’s how ALTAÏ compares.</p>",
         "button_text": "",
         "button_url": "",
         "button_background": "",
         "button_text_color": "",
         "bullet_color": "#111111",
-        "first_heading": "Sovéline",
-        "second_heading": "Régimes, séances, bas",
+        "first_heading": "ALTAÏ",
+        "second_heading": "Typical pills",
         "third_heading": "",
         "four_heading": "",
         "table_radius": 20,
