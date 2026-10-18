@@ -1,0 +1,938 @@
+<cart-drawer {% if request.design_mode %}handle-section-events{% endif %} class="cart-drawer drawer drawer--lg" id="cart-drawer">
+  {%- if cart.item_count == 0 -%}
+    <button is="close-button" aria-label="{{ 'general.accessibility.close' | t | escape }}">
+      {%- render 'icon' with 'close' -%}
+    </button>
+
+    <div class="empty-state align-self-center">
+      <div class="empty-state__icon-wrapper">
+        {%- render 'icon' with 'cart', width: 32, height: 32, stroke_width: 1 -%}
+        <span class="count-bubble count-bubble--lg">0</span>
+      </div>
+
+      <div class="prose">
+        <p class="h5">{{ 'cart.general.empty' | t }}</p>
+
+        {%- assign button_content = 'cart.general.continue_shopping' | t -%}
+        {%- render 'button', href: settings.cart_empty_button_link, size: 'xl', content: button_content -%}
+      </div>
+    </div>
+  {%- else -%}
+    <div class="cart-drawer__inner">
+      <div class="cart-drawer__top">
+        <div class="h-stack items-center justify-between">
+          <div class="h-stack grow gap-2 sm:gap-2.5">
+            <p class="h5">{{- 'cart.general.title' | t -}}</p>
+            <cart-count class="count-bubble count-bubble--md">{{ cart.item_count }}</cart-count>
+          </div>
+
+          <button type="button" is="close-button" class="drawer__close-icon">
+            <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
+            {%- render 'icon' with 'close' -%}
+          </button>
+        </div>
+
+        {%- if settings.cart_show_free_shipping_threshold -%}
+          {%- render 'free-shipping-bar' -%}
+        {%- endif -%}
+
+        {%- assign top_block_types = 'progress_goals,social_proof,timer' | split: ',' -%}
+        {%- for block in section.blocks -%}
+          {%- unless top_block_types contains block.type -%}{%- continue -%}{%- endunless -%}
+
+          {%- case block.type -%}
+            {%- when 'progress_goals' -%}
+              {%- liquid
+                assign goals_total = 0
+
+                for line_item in cart.items
+                  if line_item.requires_shipping
+                    assign goals_total = goals_total | plus: line_item.final_line_price
+                  endif
+                endfor
+
+                for discount_application in cart.cart_level_discount_applications
+                  assign goals_total = goals_total | minus: discount_application.total_allocated_amount
+                endfor
+
+                assign goal1_cents = block.settings.goal1_amount | times: 100.0
+                assign goal2_cents = block.settings.goal2_amount | times: 100.0
+                assign track_max = goal1_cents
+
+                if block.settings.goal2_enabled and goal2_cents > goal1_cents
+                  assign track_max = goal2_cents
+                endif
+
+                assign progress = goals_total | divided_by: track_max | at_most: 1.0
+              -%}
+
+              {%- if cart.requires_shipping and goal1_cents > 0 -%}
+                <div class="v-stack gap-2 cart-drawer__progress-goals" {{ block.shopify_attributes }}>
+                  <p class="text-sm text-center">
+                    {%- if goals_total < goal1_cents -%}
+                      {%- assign remaining = goal1_cents | minus: goals_total | round | money -%}
+                      {{- block.settings.goal1_text_unreached | replace: '[montant]', remaining -}}
+                    {%- elsif block.settings.goal2_enabled and goal2_cents > goal1_cents and goals_total < goal2_cents -%}
+                      {%- assign remaining = goal2_cents | minus: goals_total | round | money -%}
+                      {{- block.settings.goal2_text_unreached | replace: '[montant]', remaining -}}
+                    {%- else -%}
+                      {{- block.settings.text_all_reached -}}
+                    {%- endif -%}
+                  </p>
+
+                  <div style="position: relative; padding-block-end: 4px;">
+                    <progress-bar class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progress | times: 100 | round }}" style="--progress: {{ progress }}"></progress-bar>
+
+                    {%- if block.settings.goal2_enabled and goal2_cents > goal1_cents -%}
+                      {%- assign goal1_position = goal1_cents | divided_by: track_max | times: 100 | round -%}
+                      <span aria-hidden="true" style="position: absolute; top: 50%; left: {{ goal1_position }}%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: var(--rounded-full); background: rgb(var(--background)); box-shadow: 0 0 0 1px rgb(var(--text-color) / .15); font-size: 13px; line-height: 1;">{{ block.settings.goal1_emoji | default: '🚚' }}</span>
+                      <span aria-hidden="true" style="position: absolute; top: 50%; left: 100%; transform: translate(-100%, -50%); display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: var(--rounded-full); background: rgb(var(--background)); box-shadow: 0 0 0 1px rgb(var(--text-color) / .15); font-size: 13px; line-height: 1;">{{ block.settings.goal2_emoji | default: '🎁' }}</span>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+
+            {%- when 'social_proof' -%}
+              {%- if block.settings.text != blank -%}
+                {%- liquid
+                  assign sp_background = 'rgb(var(--text-color) / .04)'
+                  if block.settings.background.alpha != 0 and block.settings.background != blank
+                    assign sp_background = block.settings.background
+                  endif
+
+                  assign sp_border = 'rgb(var(--text-color) / .08)'
+                  if block.settings.border_color.alpha != 0 and block.settings.border_color != blank
+                    assign sp_border = block.settings.border_color
+                  endif
+                -%}
+
+                <div class="{% if block.settings.layout == 'stacked' %}v-stack gap-1 justify-items-center text-center{% else %}h-stack gap-2 justify-center{% endif %} text-sm" style="align-items: center; background: {{ sp_background }}; border: 1px solid {{ sp_border }}; {% if block.settings.text_color.alpha != 0 and block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %} padding: var(--spacing-3) var(--spacing-4); border-radius: {{ block.settings.radius | default: 12 }}px;" {{ block.shopify_attributes }}>
+                  {%- if block.settings.style == 'stars' -%}
+                    {%- assign sp_rating = block.settings.rating | default: 5 | round -%}
+                    <div class="rating">
+                      <div class="rating__stars" role="img" aria-label="{{ block.settings.text | escape }}" style="--star-color: {{ block.settings.stars_color.rgb | default: '13 165 88' }};">
+                        {%- for i in (1..5) -%}
+                          {%- if i <= sp_rating -%}
+                            {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--full' -%}
+                          {%- else -%}
+                            {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--empty' -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  {%- elsif block.settings.icon != 'none' -%}
+                    {%- render 'icon' with block.settings.icon, width: 18, height: 18 -%}
+                  {%- endif -%}
+                  <span>{{ block.settings.text | escape }}</span>
+                </div>
+              {%- endif -%}
+
+            {%- when 'timer' -%}
+              {%- if block.settings.text != blank -%}
+                {%- liquid
+                  assign timer_background = 'rgb(var(--text-color) / .04)'
+                  if block.settings.background.alpha != 0 and block.settings.background != blank
+                    assign timer_background = block.settings.background
+                  endif
+
+                  assign timer_border = 'rgb(var(--text-color) / .08)'
+                  if block.settings.border_color.alpha != 0 and block.settings.border_color != blank
+                    assign timer_border = block.settings.border_color
+                  endif
+
+                  capture initial_time
+                    echo block.settings.minutes | append: ':00'
+                  endcapture
+                -%}
+
+                {%- liquid
+                  assign timer_full = false
+                  if block.settings.full_width != false
+                    assign timer_full = true
+                  endif
+                -%}
+                <div class="sov-timer-band{% if timer_full %} sov-timer-band--full{% endif %}" {{ block.shopify_attributes }}>
+                  <cart-reserve-timer minutes="{{ block.settings.minutes }}" timer-id="{{ block.id }}" class="h-stack gap-2 justify-center text-sm" style="align-items: center; background: {{ timer_background }}; border: 1px solid {{ timer_border }}; {% if block.settings.text_color.alpha != 0 and block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %} padding: var(--spacing-3) var(--spacing-4); border-radius: {% if timer_full %}0{% else %}{{ block.settings.radius | default: 12 }}px{% endif %};">
+                    {%- if block.settings.emoji != blank -%}<span aria-hidden="true">{{ block.settings.emoji | escape }}</span>{%- endif -%}
+                    <span data-timer-text data-template="{{ block.settings.text | escape }}">{{ block.settings.text | replace: '[temps]', initial_time | escape }}</span>
+                  </cart-reserve-timer>
+
+                  {%- if block.settings.shipping_text != blank -%}
+                    <div class="sov-ship-bar" style="--ship-color: {{ block.settings.shipping_bar_color | default: '#00B67A' }};">
+                      <p class="sov-ship-bar__text">{{ block.settings.shipping_text | escape }}</p>
+                      <span class="sov-ship-bar__track" aria-hidden="true"><span class="sov-ship-bar__fill"></span></span>
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                <style>
+                  .sov-timer-band { display: grid; }
+                  .sov-timer-band--full { margin-inline: calc(-1 * var(--container-outer-width)); }
+                  .sov-timer-band--full cart-reserve-timer { border-inline: 0 !important; }
+                  .sov-ship-bar { display: grid; gap: .4rem; padding: .65rem var(--spacing-4) .8rem; background: #FFFFFF; border-bottom: 1px solid rgb(var(--text-color) / .08); text-align: center; }
+                  .sov-ship-bar__text { font-size: .8125rem; font-weight: 700; line-height: 1.3; }
+                  .sov-ship-bar__track { display: block; height: 8px; border-radius: 999px; background: rgb(var(--text-color) / .08); overflow: hidden; }
+                  .sov-ship-bar__fill { display: block; width: 100%; height: 100%; border-radius: inherit; background: var(--ship-color); }
+                </style>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="v-stack gap-6 sm:gap-8">
+        <div class="cart-drawer__line-items">
+          {%- for line_item in cart.items -%}
+            {%- render 'line-item', line_item: line_item, show_desktop_quantity: true -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.products.count > 0 -%}
+          <div class="cart-drawer__recommendations">
+            <div class="v-stack gap-2.5 sm:gap-4">
+              {%- capture carousel_id -%}cart-drawer-recommendations{%- endcapture -%}
+
+              {%- liquid
+                assign horizontal_products_blends = true
+                assign product_card_background = section.settings.product_card_background | default: product.settings.product_card_background
+
+                if product_card_background != 'rgba(0,0,0,0)' and product_card_background != blank and product_card_background != settings.dialog_background
+                  assign horizontal_products_blends = false
+                endif
+
+                assign rendered_recommendations = 0
+
+                capture recommendations
+                  for recommended_product in section.settings.products
+                    assign item_count_in_cart = cart | line_items_for: recommended_product
+
+                    if item_count_in_cart.size == 0
+                      render 'horizontal-product', product: recommended_product, show_add_to_cart: true, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color
+                      assign rendered_recommendations = rendered_recommendations | plus: 1
+                    endif
+                  endfor
+                endcapture
+              -%}
+
+              {%- if rendered_recommendations > 0 -%}
+                <div class="h-stack justify-between gap-4">
+                  {%- if section.settings.recommendations_title != blank -%}
+                    <p>{{ section.settings.recommendations_title | escape }}</p>
+                  {%- endif -%}
+
+                  {%- if rendered_recommendations > 1 -%}
+                    <div class="h-stack gap-2 hidden sm:flex">
+                      <button is="prev-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.previous' | t | escape }}" disabled>{%- render 'icon' with 'chevron-left-small', direction_aware: true -%}</button>
+                      <button is="next-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.next' | t | escape }}">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</button>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {%- if recommendations != blank -%}
+                <scroll-carousel selector=".horizontal-product" id="{{ carousel_id }}" class="horizontal-product-list-carousel {% unless horizontal_products_blends %}separate{% endunless %} scroll-area bleed">
+                  <div class="horizontal-product-list {% if horizontal_products_blends %}divide-x{% else %}separate{% endif %}">
+                    {{- recommendations -}}
+                  </div>
+                </scroll-carousel>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="v-stack gap-4 sm:gap-6" slot="footer">
+      <div class="v-stack gap-1">
+        {% for discount_application in cart.cart_level_discount_applications %}
+          <div class="h-stack gap-4 justify-between">
+            <div class="badge">
+              {%- render 'icon' with 'discount' -%} {{- discount_application.title -}}
+            </div>
+
+            <span class="text-subdued">-{{ discount_application.total_allocated_amount | money }}</span>
+          </div>
+        {% endfor %}
+
+        <div class="h-stack gap-4 justify-between">
+          <span class="h5">{{ 'cart.general.total' | t }}</span>
+          <span class="h5">{{- cart.total_price | money_with_currency -}}</span>
+        </div>
+
+        {%- if section.settings.show_shipping_text -%}
+          {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+            <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}</p>
+          {%- elsif cart.taxes_included -%}
+            <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}</p>
+          {%- elsif shop.shipping_policy.body != blank -%}
+            <p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}</p>
+          {%- else -%}
+            <p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_cart_note -%}
+          <button type="button" class="justify-self-start" aria-controls="cart-drawer-note">
+            <span class="link text-sm text-subdued">
+              {%- if cart.note == blank -%}
+                {{- 'cart.general.add_order_note' | t -}}
+              {%- else -%}
+                {{- 'cart.general.edit_order_note' | t -}}
+              {%- endif -%}
+            </span>
+          </button>
+
+          <cart-note-dialog id="cart-drawer-note" class="cart-drawer__note">
+            <div class="cart-drawer__note-inner">
+              <div class="v-stack gap-4 sm:gap-6">
+                <p class="h5">{{ 'cart.general.order_note' | t }}</p>
+
+                <cart-note class="v-stack gap-4">
+                  {%- assign order_note = 'cart.general.order_note' | t -%}
+                  {%- assign order_save_label = 'cart.general.save_note' | t -%}
+
+                  {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note -%}
+
+                  <div class="justify-self-start">
+                    {%- render 'button', type: 'button', content: order_save_label, size: 'lg', is: 'close-button', secondary: true -%}
+                  </div>
+                </cart-note>
+              </div>
+            </div>
+          </cart-note-dialog>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'discount_code' -%}
+          <cart-discount-form {{ block.shopify_attributes }}>
+            <form class="h-stack gap-2">
+              <input type="text" class="input grow" style="min-width: 0; padding-block: var(--spacing-2-5); padding-inline: var(--spacing-4); border: 1px solid rgb(var(--text-color) / .15); border-radius: var(--rounded-input, var(--rounded-sm)); background: transparent;" name="discount" placeholder="{{ block.settings.placeholder | default: 'Code promo' | escape }}" autocomplete="off" aria-label="{{ block.settings.placeholder | default: 'Code promo' | escape }}">
+              {%- assign apply_label = block.settings.button_text | default: 'Appliquer' -%}
+              {%- render 'button', type: 'submit', content: apply_label, size: 'lg', secondary: true -%}
+            </form>
+            <p class="text-sm" data-discount-message hidden style="margin-block-start: var(--spacing-2);" data-success-text="{{ block.settings.success_text | default: 'Code appliqué !' | escape }}" data-error-text="{{ block.settings.error_text | default: 'Ce code n’est pas valide.' | escape }}"></p>
+          </cart-discount-form>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <form action="{{ routes.cart_url }}" method="POST" class="buy-buttons {% if section.settings.show_checkout_button %}buy-buttons--compact{% endif %}">
+        {%- assign checkout_label = 'cart.general.checkout' | t -%}
+
+        {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
+          <a href="{{ routes.cart_url }}" class="button button--xl {% if section.settings.show_checkout_button %}button--secondary{% endif %}" data-no-instant>
+            {{- 'cart.general.view_cart' | t -}}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.show_checkout_button -%}
+          {%- render 'button', type: 'submit', content: checkout_label, icon: 'picto-lock', name: 'checkout', size: 'xl' -%}
+        {%- endif -%}
+      </form>
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'guarantee' -%}
+            {%- if block.settings.title != blank or block.settings.text != blank -%}
+              {%- liquid
+                assign guarantee_styles = ''
+
+                if block.settings.background.alpha != 0 and block.settings.background != blank
+                  assign guarantee_styles = guarantee_styles | append: 'background: ' | append: block.settings.background | append: '; padding: var(--spacing-3) var(--spacing-4);'
+                endif
+
+                if block.settings.border_color.alpha != 0 and block.settings.border_color != blank
+                  assign guarantee_styles = guarantee_styles | append: ' border: 1px solid ' | append: block.settings.border_color | append: '; padding: var(--spacing-3) var(--spacing-4);'
+                endif
+
+                if block.settings.text_color.alpha != 0 and block.settings.text_color != blank
+                  assign guarantee_styles = guarantee_styles | append: ' color: ' | append: block.settings.text_color | append: ';'
+                endif
+              -%}
+
+              <div class="{% if block.settings.alignment == 'center' %}v-stack gap-1 justify-items-center text-center{% else %}h-stack gap-3{% endif %}" style="align-items: center; border-radius: {{ block.settings.radius | default: 12 }}px; {{ guarantee_styles }}" {{ block.shopify_attributes }}>
+                {%- if block.settings.icon != 'none' -%}
+                  <span style="{% if block.settings.icon_color.alpha != 0 and block.settings.icon_color != blank %}color: {{ block.settings.icon_color }};{% endif %} display: inline-flex;">
+                    {%- render 'icon' with block.settings.icon, width: 26, height: 26 -%}
+                  </span>
+                {%- endif -%}
+                <div class="v-stack gap-0.5">
+                  {%- if block.settings.title != blank -%}<p class="text-sm bold">{{ block.settings.title | escape }}</p>{%- endif -%}
+                  {%- if block.settings.text != blank -%}<p class="text-sm {% unless block.settings.text_color.alpha != 0 and block.settings.text_color != blank %}text-subdued{% endunless %}">{{ block.settings.text | escape }}</p>{%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+
+          {%- when 'payment_icons' -%}
+            <div class="v-stack gap-2" {{ block.shopify_attributes }}>
+              {%- if block.settings.title != blank -%}
+                <p class="text-sm text-subdued text-center sov-pay-title">{%- render 'icon' with 'picto-lock', width: 14, height: 14 -%} {{ block.settings.title | escape }}</p>
+              {%- endif -%}
+              {%- liquid
+                assign payment_types = shop.enabled_payment_types
+                if payment_types.size == 0
+                  assign payment_types = 'visa,master,american_express,apple_pay,google_pay,paypal' | split: ','
+                endif
+              -%}
+              <div class="h-stack gap-1 justify-center sov-pay-icons" style="flex-wrap: wrap;">
+                {%- for type in payment_types -%}
+                  {{- type | payment_type_svg_tag: class: 'payment-icon' -}}
+                {%- endfor -%}
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</cart-drawer>
+
+<script>
+  if (!window.customElements.get('cart-reserve-timer')) {
+    window.customElements.define('cart-reserve-timer', class extends HTMLElement {
+      connectedCallback() {
+        const minutes = parseInt(this.getAttribute('minutes')) || 10;
+        const storageKey = 'cart-reserve-timer-' + this.getAttribute('timer-id');
+        let expiry = parseInt(localStorage.getItem(storageKey));
+
+        if (!expiry || expiry < Date.now()) {
+          expiry = Date.now() + minutes * 60000;
+          localStorage.setItem(storageKey, expiry);
+        }
+
+        const textElement = this.querySelector('[data-timer-text]');
+        const template = textElement.getAttribute('data-template');
+
+        const tick = () => {
+          const remaining = Math.max(0, expiry - Date.now());
+          const mins = Math.floor(remaining / 60000);
+          const secs = Math.floor((remaining % 60000) / 1000);
+          textElement.textContent = template.replace('[temps]', mins + ':' + String(secs).padStart(2, '0'));
+
+          if (remaining <= 0) {
+            clearInterval(this._interval);
+            this.style.display = 'none';
+          }
+        };
+
+        tick();
+        this._interval = setInterval(tick, 1000);
+      }
+
+      disconnectedCallback() {
+        clearInterval(this._interval);
+      }
+    });
+  }
+
+  if (!window.customElements.get('cart-discount-form')) {
+    window.customElements.define('cart-discount-form', class extends HTMLElement {
+      connectedCallback() {
+        this.querySelector('form').addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const input = this.querySelector('input[name="discount"]');
+          const message = this.querySelector('[data-discount-message]');
+          const code = input.value.trim();
+
+          if (!code) {
+            return;
+          }
+
+          try {
+            const response = await fetch(window.Shopify.routes.root + 'cart/update.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ discount: code })
+            });
+            const cart = await response.json();
+            const applied = (cart.discount_codes || []).find((entry) => entry.code.toLowerCase() === code.toLowerCase());
+
+            if (applied && applied.applicable) {
+              message.textContent = message.getAttribute('data-success-text');
+              message.hidden = false;
+              document.dispatchEvent(new CustomEvent('cart:refresh'));
+            } else {
+              message.textContent = message.getAttribute('data-error-text');
+              message.hidden = false;
+            }
+          } catch (error) {
+            message.textContent = message.getAttribute('data-error-text');
+            message.hidden = false;
+          }
+        });
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "blocks": [
+    {
+      "type": "progress_goals",
+      "name": "Objectifs de panier",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Barre de progression vers la livraison offerte et un cadeau. S'affiche en haut du tiroir. Désactivez la barre de livraison gratuite native (réglages globaux du panier) pour éviter un doublon."
+        },
+        {
+          "type": "number",
+          "id": "goal1_amount",
+          "label": "Palier 1 — montant (€)",
+          "default": 50
+        },
+        {
+          "type": "text",
+          "id": "goal1_text_unreached",
+          "label": "Palier 1 — texte avant d'atteindre",
+          "info": "[montant] est remplacé par le montant restant.",
+          "default": "Plus que [montant] pour la livraison offerte 🚚"
+        },
+        {
+          "type": "text",
+          "id": "goal1_emoji",
+          "label": "Palier 1 — emoji",
+          "default": "🚚"
+        },
+        {
+          "type": "checkbox",
+          "id": "goal2_enabled",
+          "label": "Activer le palier 2 (cadeau)",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "goal2_amount",
+          "label": "Palier 2 — montant (€)",
+          "default": 80
+        },
+        {
+          "type": "text",
+          "id": "goal2_text_unreached",
+          "label": "Palier 2 — texte avant d'atteindre",
+          "default": "Plus que [montant] pour votre cadeau 🎁"
+        },
+        {
+          "type": "text",
+          "id": "goal2_emoji",
+          "label": "Palier 2 — emoji",
+          "default": "🎁"
+        },
+        {
+          "type": "text",
+          "id": "text_all_reached",
+          "label": "Texte quand tout est atteint",
+          "default": "Félicitations, vous avez tout débloqué ! 🎉"
+        }
+      ]
+    },
+    {
+      "type": "social_proof",
+      "name": "Preuve sociale",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            {
+              "value": "stars",
+              "label": "5 étoiles"
+            },
+            {
+              "value": "icon",
+              "label": "Icône"
+            }
+          ],
+          "default": "stars"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Note (si style étoiles)",
+          "min": 1,
+          "max": 5,
+          "step": 0.5,
+          "default": 5
+        },
+        {
+          "type": "color",
+          "id": "stars_color",
+          "label": "Couleur des étoiles",
+          "default": "#0551A0"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Disposition",
+          "options": [
+            {
+              "value": "inline",
+              "label": "Sur une ligne"
+            },
+            {
+              "value": "stacked",
+              "label": "Étoiles au-dessus du texte"
+            }
+          ],
+          "default": "stacked"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "rating-star",
+              "label": "Étoile"
+            },
+            {
+              "value": "picto-love",
+              "label": "Cœur"
+            },
+            {
+              "value": "picto-happy",
+              "label": "Sourire"
+            },
+            {
+              "value": "picto-lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "picto-box",
+              "label": "Colis"
+            },
+            {
+              "value": "picto-customer-support",
+              "label": "Support client"
+            }
+          ],
+          "default": "rating-star"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Noté 4,8/5 par plus de 2 000 client(e)s"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Fond"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Bordure"
+        },
+        {
+          "type": "range",
+          "id": "radius",
+          "label": "Arrondi",
+          "min": 0,
+          "max": 24,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        }
+      ]
+    },
+    {
+      "type": "timer",
+      "name": "Timer de réservation",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "minutes",
+          "label": "Durée (minutes)",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "default": 10
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "info": "[temps] est remplacé par le compte à rebours.",
+          "default": "Votre panier est réservé pendant [temps]"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Fond"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte"
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji devant le texte",
+          "default": "⏳"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Bordure"
+        },
+        {
+          "type": "range",
+          "id": "radius",
+          "label": "Arrondi",
+          "min": 0,
+          "max": 24,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Bandeau pleine largeur",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Barre livraison gratuite"
+        },
+        {
+          "type": "text",
+          "id": "shipping_text",
+          "label": "Texte sous le timer",
+          "info": "Videz le champ pour masquer la barre.",
+          "default": "🎉 Félicitations, vous avez débloqué la livraison gratuite !"
+        },
+        {
+          "type": "color",
+          "id": "shipping_bar_color",
+          "label": "Couleur de la barre",
+          "default": "#00B67A"
+        }
+      ]
+    },
+    {
+      "type": "discount_code",
+      "name": "Code promo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Texte du champ",
+          "default": "Code promo"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Texte du bouton",
+          "default": "Appliquer"
+        },
+        {
+          "type": "text",
+          "id": "success_text",
+          "label": "Message de succès",
+          "default": "Code appliqué !"
+        },
+        {
+          "type": "text",
+          "id": "error_text",
+          "label": "Message d'erreur",
+          "default": "Ce code n'est pas valide."
+        }
+      ]
+    },
+    {
+      "type": "guarantee",
+      "name": "Garantie",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "none",
+              "label": "Aucune"
+            },
+            {
+              "value": "picto-secure-profile",
+              "label": "Profil sécurisé"
+            },
+            {
+              "value": "picto-lock",
+              "label": "Cadenas"
+            },
+            {
+              "value": "picto-return",
+              "label": "Retours"
+            },
+            {
+              "value": "picto-award-gift",
+              "label": "Récompense"
+            },
+            {
+              "value": "picto-love",
+              "label": "Cœur"
+            }
+          ],
+          "default": "picto-secure-profile"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "30 jours satisfait ou remboursé"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Retours gratuits, sans justification."
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Disposition",
+          "options": [
+            {
+              "value": "left",
+              "label": "Icône à gauche"
+            },
+            {
+              "value": "center",
+              "label": "Centré (icône au-dessus)"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Fond"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Texte"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Couleur de l'icône"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Bordure"
+        },
+        {
+          "type": "range",
+          "id": "radius",
+          "label": "Arrondi",
+          "min": 0,
+          "max": 24,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        }
+      ]
+    },
+    {
+      "type": "payment_icons",
+      "name": "Icônes de paiement",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Affiche automatiquement les moyens de paiement actifs de la boutique."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Paiement 100% sécurisé"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Cart drawer won't appear to your customers if you have set the cart type to Page in the global theme settings."
+    },
+    {
+      "type": "paragraph",
+      "content": "Free shipping bar can be configured in global cart settings."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_note",
+      "label": "Show cart note",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_text",
+      "label": "Show shipping text",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_cart_button",
+      "label": "Show view cart button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_checkout_button",
+      "label": "Show checkout button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product recommendations"
+    },
+    {
+      "type": "text",
+      "id": "recommendations_title",
+      "label": "Heading",
+      "default": "Trending this month"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Recommendations",
+      "info": "Suggest additional products to your customers. Recommendations already in the cart are automatically hidden.",
+      "limit": 10
+    },
+    {
+      "type": "color",
+      "id": "product_card_background",
+      "label": "Product card background"
+    },
+    {
+      "type": "color",
+      "id": "product_card_text_color",
+      "label": "Product card text"
+    }
+  ]
+}
+{% endschema %}
+

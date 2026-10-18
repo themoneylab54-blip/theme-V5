@@ -1,0 +1,383 @@
+{%- if section.blocks.size > 0 -%}
+  {%- render 'section-spacing-collapsing' -%}
+
+  <style>
+    #shopify-section-{{ section.id }} {
+      --vu-dans-logo-width: {{ section.settings.logo_width_mobile }}px;
+      --vu-dans-logo-gap: {{ section.settings.logo_gap_mobile }}px;
+      --section-spacing-block-start: {{ section.settings.spacing_block_start | default: 12 }}px;
+      --section-spacing-block-end: {{ section.settings.spacing_block_end | default: 12 }}px;
+      --section-stack-spacing-block: {{ section.settings.content_gap | default: 12 }}px;
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} {
+        --vu-dans-logo-width: {{ section.settings.logo_width }}px;
+        --vu-dans-logo-gap: {{ section.settings.logo_gap }}px;
+      }
+    }
+
+    .vu-dans__marquee {
+      display: grid;
+      grid: auto / auto-flow max-content;
+      gap: var(--vu-dans-logo-gap, 48px);
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      justify-self: stretch;
+    }
+
+    .vu-dans__marquee--desktop {
+      display: none;
+    }
+
+    @media screen and (min-width: 700px) {
+      .vu-dans__marquee--mobile {
+        display: none;
+      }
+
+      .vu-dans__marquee--desktop {
+        display: grid;
+      }
+    }
+
+    .vu-dans__item {
+      display: grid;
+      grid: auto / auto-flow max-content;
+      gap: var(--vu-dans-logo-gap, 48px);
+      align-items: center;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .vu-dans__item {
+        animation: translateFull var(--marquee-animation-duration, 0s) linear infinite;
+      }
+
+      {%- if section.settings.pause_hover -%}
+        .vu-dans__marquee:hover .vu-dans__item {
+          animation-play-state: paused;
+        }
+      {%- endif -%}
+    }
+
+    .vu-dans__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--vu-dans-logo-width, 140px);
+    }
+
+    .vu-dans__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .vu-dans__image {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    {%- if section.settings.grayscale -%}
+      .vu-dans__image {
+        filter: grayscale(1);
+        opacity: 0.6;
+        transition: filter 0.2s ease, opacity 0.2s ease;
+      }
+
+      .vu-dans__logo:hover .vu-dans__image {
+        filter: grayscale(0);
+        opacity: 1;
+      }
+    {%- endif -%}
+  </style>
+
+  <div {% render 'section-properties' %}>
+    <div class="section-stack {% if section.settings.text_alignment == 'center' %}sm:justify-items-center{% endif %}">
+      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content, text_alignment: section.settings.text_alignment -%}
+
+      {%- capture logos -%}
+        {%- for block in section.blocks -%}
+          {%- capture sizes -%}(max-width: 699px) {{ section.settings.logo_width_mobile }}px, {{ section.settings.logo_width }}px{%- endcapture -%}
+          {%- capture widths -%}{{ section.settings.logo_width_mobile }}, {{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 2 | at_most: block.settings.image.width }}{%- endcapture -%}
+
+          <div class="vu-dans__logo" {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="vu-dans__link">
+            {%- endif -%}
+
+            {%- if block.settings.image != blank -%}
+              {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: 'vu-dans__image' -}}
+            {%- else -%}
+              {{- 'image' | placeholder_svg_tag: 'vu-dans__image' -}}
+            {%- endif -%}
+
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- endcapture -%}
+
+      <marquee-text scrolling-speed="{{ section.settings.scrolling_speed_mobile }}" class="vu-dans__marquee vu-dans__marquee--mobile">
+        {%- for i in (1..10) -%}
+          <span class="vu-dans__item" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+            {{- logos -}}
+          </span>
+        {%- endfor -%}
+      </marquee-text>
+
+      <marquee-text scrolling-speed="{{ section.settings.scrolling_speed }}" class="vu-dans__marquee vu-dans__marquee--desktop">
+        {%- for i in (1..10) -%}
+          <span class="vu-dans__item" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+            {{- logos -}}
+          </span>
+        {%- endfor -%}
+      </marquee-text>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Vu dans",
+  "class": "shopify-section--vu-dans",
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Largeur pleine page",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Vu dans"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Texte"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Alignement du texte",
+      "options": [
+        {
+          "value": "start",
+          "label": "Gauche"
+        },
+        {
+          "value": "center",
+          "label": "Centré"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Défilement — Ordinateur"
+    },
+    {
+      "type": "range",
+      "id": "scrolling_speed",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "unit": "s",
+      "label": "Vitesse de défilement",
+      "info": "Une valeur plus élevée ralentit le défilement.",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 60,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Largeur des logos",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "min": 16,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement entre les logos",
+      "default": 56
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_hover",
+      "label": "Pause au survol",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Défilement — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "scrolling_speed_mobile",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "unit": "s",
+      "label": "Vitesse de défilement (mobile)",
+      "info": "Une valeur plus élevée ralentit le défilement.",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Largeur des logos (mobile)",
+      "default": 110
+    },
+    {
+      "type": "range",
+      "id": "logo_gap_mobile",
+      "min": 8,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement entre les logos (mobile)",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Espacement vertical"
+    },
+    {
+      "type": "range",
+      "id": "spacing_block_start",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Au-dessus du titre",
+      "info": "0 = le titre démarre au ras de la section.",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Entre le titre et les logos",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "spacing_block_end",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Sous les logos",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Apparence des logos"
+    },
+    {
+      "type": "checkbox",
+      "id": "grayscale",
+      "label": "Logos en niveaux de gris",
+      "info": "Les logos retrouvent leur couleur au survol.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Couleurs",
+      "info": "Le dégradé remplace la couleur unie lorsqu'il est défini."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Arrière-plan"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Dégradé d'arrière-plan"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Couleur du titre"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "Dégradé du titre"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo",
+          "info": "300 x 90px environ, fond transparent recommandé"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vu dans",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

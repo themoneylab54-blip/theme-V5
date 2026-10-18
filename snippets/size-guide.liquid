@@ -1,0 +1,517 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+GUIDE DES TAILLES — Avea Cami Confort™
+----------------------------------------------------------------------------------------------------------------------
+
+Source de vérité unique du guide des tailles. Inclus par :
+* la modale de la fiche produit (bloc "size_guide" de product-info) — context: 'modal'
+* la page /pages/guide-des-tailles (section size-guide-page)   — context: 'page'
+
+Variables supportées :
+* context: 'modal' (lignes cliquables = sélection) ou 'page' (lignes surlignables uniquement)
+* reassurance_text: phrase de réassurance affichée en pied de guide (défaut ci-dessous)
+
+Sans JavaScript, l'intégralité des informations reste lisible : la sélection automatique est un bonus.
+{%- endcomment -%}
+
+{%- liquid
+  comment
+    ------------------------------------------------------------------
+    BLOC DE CONFIGURATION — données de tailles
+    Format d'une ligne : taille|bande|bonnets|sous-poitrine|tour de poitrine|confection FR
+    Les lignes sont séparées par ";".
+
+    // À VALIDER : toute la ligne 4XL est EXTRAPOLÉE (pas de 5 cm) — le
+    // guide fournisseur s'arrête au 3XL alors que la taille est en vente.
+    // À VALIDER : la colonne Confection FR entière est une équivalence
+    // indicative, non fournie par le fournisseur.
+
+    Pour masquer proprement une taille sans casser la mise en page,
+    ajoutez-la à hidden_sizes (ex : '4XL' ou '3XL,4XL').
+    Les tailles listées dans estimated_sizes portent la mention « estimé ».
+    ------------------------------------------------------------------
+  endcomment
+
+  assign size_rows = 'S|85|A,B,C|68–72|82–89|36–38;M|90|B,C,D|73–77|90–97|38–40;L|95|C,D,E|78–82|98–105|42–44;XL|100|D,E,F|83–87|106–113|46–48;2XL|105|E,F,G|88–92|114–121|50–52;3XL|110|F,G,H|93–97|122–129|54–56;4XL|115|G,H|98–102|130–137|58–60' | split: ';'
+  assign hidden_sizes = '' | split: ','
+  assign estimated_sizes = '4XL' | split: ','
+
+  assign context = context | default: 'page'
+  assign reassurance_text = reassurance_text | default: 'Mauvaise taille ? L’échange est simple.'
+-%}
+
+<style>
+  .size-guide {
+    background: #FFF4F1;
+    color: #1A1A1A;
+    border-radius: 12px;
+    padding: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .size-guide__rule {
+    background: #FBECE8;
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    margin-block-end: 1rem;
+    font-size: 1rem;
+  }
+
+  .size-guide__rule strong {
+    color: #A83A6C;
+  }
+
+  .size-guide__list {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .size-guide__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+    background: #FFFFFF;
+    border: 1px solid #EBD3DC;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+    transition: border-color .15s ease, background-color .15s ease;
+  }
+
+  .size-guide__row:hover,
+  .size-guide__row:focus-visible {
+    border-color: #A83A6C;
+  }
+
+  .size-guide__row:focus-visible {
+    outline: 2px solid #A83A6C;
+    outline-offset: 2px;
+  }
+
+  .size-guide__row.is-selected {
+    border-color: #A83A6C;
+    box-shadow: 0 0 0 1px #A83A6C;
+    background: #FBECE8;
+  }
+
+  .size-guide__combo {
+    flex-grow: 1;
+  }
+
+  .size-guide__size {
+    flex-shrink: 0;
+    min-width: 3.2rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: #A83A6C;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-align: center;
+  }
+
+  .size-guide__estimated {
+    font-size: 0.9rem;
+    color: #6b5560;
+  }
+
+  .size-guide details {
+    margin-block-start: 1rem;
+    border: 1px solid #EBD3DC;
+    border-radius: 10px;
+    background: #FFFFFF;
+  }
+
+  .size-guide summary {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .size-guide summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .size-guide summary::after {
+    content: "+";
+    font-size: 1.4rem;
+    line-height: 1;
+    color: #A83A6C;
+    flex-shrink: 0;
+  }
+
+  .size-guide details[open] summary::after {
+    content: "–";
+  }
+
+  .size-guide summary:focus-visible {
+    outline: 2px solid #A83A6C;
+    outline-offset: -2px;
+    border-radius: 10px;
+  }
+
+  .size-guide__details-body {
+    padding: 0 1rem 1rem;
+  }
+
+  .size-guide table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+
+  .size-guide th,
+  .size-guide td {
+    padding: 0.7rem 0.6rem;
+    text-align: left;
+    border-block-start: 1px solid #EBD3DC;
+  }
+
+  .size-guide thead th {
+    border-block-start: none;
+    background: #FBECE8;
+    font-weight: 700;
+  }
+
+  .size-guide tbody tr:nth-child(even) td,
+  .size-guide tbody tr:nth-child(even) th {
+    background: #FBECE8;
+  }
+
+  .size-guide__steps {
+    display: grid;
+    gap: 1rem;
+    margin-block-end: 1rem;
+  }
+
+  .size-guide__step {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+  }
+
+  .size-guide__step svg {
+    flex-shrink: 0;
+    width: 56px;
+    height: 72px;
+  }
+
+  .size-guide__step-number {
+    font-weight: 700;
+    color: #A83A6C;
+  }
+
+  .size-guide__footnotes {
+    margin-block-start: 1rem;
+    font-size: 0.9rem;
+    color: #6b5560;
+  }
+
+  .size-guide__footnotes p {
+    margin: 0.15rem 0;
+  }
+
+  .size-guide__reassurance {
+    margin-block-start: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    background: #FBECE8;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .size-guide__reassurance a {
+    color: #A83A6C;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .size-guide__toast {
+    position: fixed;
+    inset-inline: 0;
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    z-index: 60;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .size-guide__toast > span {
+    background: #1A1A1A;
+    color: #FFFFFF;
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease;
+  }
+
+  .size-guide__toast.is-visible > span {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .size-guide__row,
+    .size-guide__toast > span {
+      transition: none;
+    }
+  }
+</style>
+
+<size-guide class="size-guide" data-context="{{ context }}">
+  <div class="size-guide__rule">
+    <strong>C’est votre tour de sous-poitrine (la bande) qui détermine la taille.</strong>
+    Le bonnet ne sert qu’à ajuster : bonnet E ou plus, prenez la taille au-dessus.
+  </div>
+
+  <h3 class="text-sm bold" style="margin: 0 0 0.5rem; font-size: 1rem;">Ma taille de soutien-gorge</h3>
+
+  <ul class="size-guide__list">
+    {%- for row in size_rows -%}
+      {%- assign parts = row | split: '|' -%}
+      {%- assign size = parts[0] -%}
+
+      {%- if hidden_sizes contains size -%}{%- continue -%}{%- endif -%}
+
+      {%- assign band = parts[1] -%}
+      {%- assign cups = parts[2] | split: ',' -%}
+
+      <li>
+        <button type="button" class="size-guide__row" data-size-select="{{ size }}">
+          <span class="size-guide__combo">
+            {%- for cup in cups -%}
+              {{ band }}&nbsp;{{ cup | strip }}{% unless forloop.last %} · {% endunless %}
+            {%- endfor -%}
+            {%- if estimated_sizes contains size -%}
+              <span class="size-guide__estimated"> — estimé*</span>
+            {%- endif -%}
+          </span>
+          <span class="size-guide__size" aria-hidden="true">{{ size }}</span>
+          <span class="sr-only">Choisir la taille {{ size }}</span>
+        </button>
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <details>
+    <summary>Ma taille habituelle de vêtement</summary>
+    <div class="size-guide__details-body">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Vous portez habituellement (FR)&dagger;</th>
+            <th scope="col">Taille Avea</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for row in size_rows -%}
+            {%- assign parts = row | split: '|' -%}
+            {%- assign size = parts[0] -%}
+            {%- if hidden_sizes contains size -%}{%- continue -%}{%- endif -%}
+            <tr>
+              <th scope="row" style="font-weight: 400;">{{ parts[5] }}</th>
+              <td><strong>{{ size }}</strong>{% if estimated_sizes contains size %}<span class="size-guide__estimated">*</span>{% endif %}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <details>
+    <summary>Je ne connais pas ma taille de soutien-gorge</summary>
+    <div class="size-guide__details-body">
+      <div class="size-guide__steps">
+        <div class="size-guide__step">
+          <svg viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 6c0 8-4 12-8 16v44h36V22c-4-4-8-8-8-16" stroke="#A83A6C" stroke-width="2" stroke-linecap="round"/>
+            <path d="M18 6c3 4 7 6 10 6s7-2 10-6" stroke="#A83A6C" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="40" x2="50" y2="40" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <p style="margin: 0;">
+            <span class="size-guide__step-number">1.</span>
+            <strong>Sous-poitrine :</strong> passez un ruban juste sous la poitrine, bien horizontal, sans serrer. Notez la mesure en cm.
+          </p>
+        </div>
+
+        <div class="size-guide__step">
+          <svg viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 6c0 8-4 12-8 16v44h36V22c-4-4-8-8-8-16" stroke="#A83A6C" stroke-width="2" stroke-linecap="round"/>
+            <path d="M18 6c3 4 7 6 10 6s7-2 10-6" stroke="#A83A6C" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="30" x2="50" y2="30" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <p style="margin: 0;">
+            <span class="size-guide__step-number">2.</span>
+            <strong>Tour de poitrine :</strong> mesurez à l’endroit le plus fort de la poitrine, sans comprimer.
+          </p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Taille</th>
+            <th scope="col">Sous-poitrine (cm)</th>
+            <th scope="col">Tour de poitrine (cm)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for row in size_rows -%}
+            {%- assign parts = row | split: '|' -%}
+            {%- assign size = parts[0] -%}
+            {%- if hidden_sizes contains size -%}{%- continue -%}{%- endif -%}
+            <tr>
+              <th scope="row"><strong>{{ size }}</strong>{% if estimated_sizes contains size %}<span class="size-guide__estimated">*</span>{% endif %}</th>
+              <td>{{ parts[3] }}</td>
+              <td>{{ parts[4] }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <div class="size-guide__footnotes">
+    {%- assign has_estimated = false -%}
+    {%- for row in size_rows -%}
+      {%- assign parts = row | split: '|' -%}
+      {%- if estimated_sizes contains parts[0] and hidden_sizes contains parts[0] -%}{%- continue -%}{%- endif -%}
+      {%- if estimated_sizes contains parts[0] -%}{%- assign has_estimated = true -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- if has_estimated -%}
+      <p>* Mensurations estimées, en cours de vérification.</p>
+    {%- endif -%}
+    <p>&dagger; Équivalence de confection française donnée à titre indicatif.</p>
+  </div>
+
+  <p class="size-guide__reassurance">
+    {{ reassurance_text | escape }}
+    {%- if shop.refund_policy != blank %}
+    <a href="{{ shop.refund_policy.url }}">Voir notre politique de retour</a>
+    {%- endif %}
+  </p>
+
+  <div class="size-guide__toast" role="status" aria-live="polite"><span></span></div>
+</size-guide>
+
+<script>
+  if (!window.customElements.get('size-guide')) {
+    window.customElements.define('size-guide', class extends HTMLElement {
+      connectedCallback() {
+        window.dataLayer = window.dataLayer || [];
+
+        this.addEventListener('click', (event) => {
+          const row = event.target.closest('[data-size-select]');
+
+          if (!row) {
+            return;
+          }
+
+          this._select(row);
+        });
+
+        // Événement analytics d'ouverture : on écoute le déclencheur de la modale qui nous contient.
+        const drawer = this.closest('x-drawer');
+
+        if (drawer && drawer.id && !drawer.hasAttribute('data-sg-tracked')) {
+          drawer.setAttribute('data-sg-tracked', '');
+          document.addEventListener('click', (event) => {
+            if (event.target.closest('[aria-controls="' + drawer.id + '"]:not([is="close-button"])')) {
+              window.dataLayer.push({ event: 'size_guide_open' });
+            }
+          });
+        }
+      }
+
+      _select(row) {
+        const size = row.getAttribute('data-size-select');
+
+        this.querySelectorAll('.size-guide__row').forEach((r) => r.classList.remove('is-selected'));
+        row.classList.add('is-selected');
+
+        window.dataLayer.push({ event: 'size_guide_select', size_guide_size: size });
+
+        if (this.getAttribute('data-context') !== 'modal') {
+          return;
+        }
+
+        const applied = this._applyToThemePicker(size) || this._applyToBundleWidget(size);
+
+        this._toast('Taille ' + size + (applied ? ' sélectionnée' : ' — sélectionnez-la dans le choix des tailles'));
+
+        setTimeout(() => {
+          this.closest('x-drawer')?.querySelector('button[is="close-button"]')?.click();
+        }, applied ? 350 : 1200);
+      }
+
+      /* Mécanisme natif du thème : coche l'option correspondante et laisse le variant-picker réagir à l'événement change. */
+      _applyToThemePicker(size) {
+        try {
+          const input = Array.from(document.querySelectorAll('input[data-option-position]'))
+            .find((i) => i.value.trim().toUpperCase() === size.toUpperCase());
+
+          if (input) {
+            input.checked = true;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+            return true;
+          }
+        } catch (error) {}
+
+        return false;
+      }
+
+      /* Best-effort : pré-remplit le premier menu Taille du widget de bundles s'il est présent. Ne casse rien s'il change. */
+      _applyToBundleWidget(size) {
+        try {
+          const selects = Array.from(document.querySelectorAll('select')).filter((select) => {
+            if (!select.closest('[class*="kaching" i], [id*="kaching" i], [data-kaching]')) {
+              return false;
+            }
+
+            return Array.from(select.options).some((option) => (option.text || option.value).trim().toUpperCase() === size.toUpperCase());
+          });
+
+          const target = selects[0];
+
+          if (target) {
+            const option = Array.from(target.options).find((o) => (o.text || o.value).trim().toUpperCase() === size.toUpperCase());
+            target.value = option.value;
+            target.dispatchEvent(new Event('input', { bubbles: true }));
+            target.dispatchEvent(new Event('change', { bubbles: true }));
+            return true;
+          }
+        } catch (error) {}
+
+        return false;
+      }
+
+      _toast(message) {
+        const toast = this.querySelector('.size-guide__toast');
+        toast.querySelector('span').textContent = message;
+        toast.classList.add('is-visible');
+        clearTimeout(this._toastTimer);
+        this._toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2500);
+      }
+    });
+  }
+</script>

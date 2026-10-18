@@ -1,0 +1,947 @@
+{%- if section.blocks.size > 0 -%}
+  {%- render 'section-spacing-collapsing' -%}
+
+  {%- comment -%}
+  ------------------------------------------------------------------------------------------------------------------------
+  CSS
+  ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  <style>
+    #shopify-section-{{ section.id }} {
+      --video-testimonials-card-ratio: {{ section.settings.card_ratio }};
+      --video-testimonials-card-width: {{ section.settings.card_width_mobile | default: 62 }}vw;
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} {
+        --video-testimonials-card-width: 42vw;
+      }
+    }
+
+    @media screen and (min-width: 1150px) {
+      #shopify-section-{{ section.id }} {
+        --video-testimonials-card-width: 27vw;
+      }
+    }
+
+    .video-testimonials__badge-row {
+      text-align: center;
+    }
+
+    .video-testimonials__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--spacing-2) var(--spacing-4);
+      border-radius: var(--rounded-full);
+      background: {{ section.settings.badge_background | default: 'rgb(var(--text-color) / .08)' }};
+      color: {{ section.settings.badge_text_color | default: 'rgb(var(--text-color))' }};
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .video-testimonials__list {
+      grid: auto / auto-flow var(--video-testimonials-card-width);
+      gap: var(--grid-gutter);
+      align-items: start;
+      display: grid;
+    }
+
+    .video-testimonials__card {
+      position: relative;
+      aspect-ratio: var(--video-testimonials-card-ratio, 3 / 4);
+      border-radius: {% if section.settings.card_radius != blank %}{{ section.settings.card_radius }}px{% else %}var(--rounded-lg){% endif %};
+      overflow: hidden;
+      margin: 0;
+      background: rgb(var(--text-color) / .06);
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    .video-testimonials__media,
+    .video-testimonials__media video-media,
+    .video-testimonials__media img,
+    .video-testimonials__media svg {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    {%- liquid
+      assign overlay_rgb = '0, 0, 0'
+      if section.settings.caption_overlay_color.alpha != 0 and section.settings.caption_overlay_color != blank
+        assign overlay_rgb = section.settings.caption_overlay_color.red | append: ', ' | append: section.settings.caption_overlay_color.green | append: ', ' | append: section.settings.caption_overlay_color.blue
+      endif
+
+      assign overlay_max = section.settings.caption_overlay_opacity | default: 85 | divided_by: 100.0
+      assign overlay_mid = overlay_max | times: 0.65
+    -%}
+
+    .video-testimonials__caption {
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      z-index: 1;
+      display: grid;
+      gap: var(--spacing-2);
+      margin: 0;
+      padding: var(--spacing-10) var(--spacing-4) var(--spacing-4);
+      background: linear-gradient(to top, rgba({{ overlay_rgb }}, {{ overlay_max }}) 0%, rgba({{ overlay_rgb }}, {{ overlay_mid }}) 55%, rgba({{ overlay_rgb }}, 0) 100%);
+      color: {{ section.settings.caption_text_color | default: '#ffffff' }};
+      pointer-events: none;
+    }
+
+    .video-testimonials__caption .rating__star--full {
+      --star-color: {{ section.settings.stars_color.rgb | default: '13 165 88' }};
+    }
+
+    .vt-tap {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .vt-tap:focus-visible {
+      outline: 2px solid rgb(var(--text-color));
+      outline-offset: -2px;
+    }
+
+    .vt-sound {
+      position: absolute;
+      top: var(--spacing-3);
+      inset-inline-end: var(--spacing-3);
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: rgba(0, 0, 0, .55);
+      color: #ffffff;
+      pointer-events: none;
+    }
+
+    .vt-sound svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .vt-sound__icon--on {
+      display: none;
+    }
+
+    .video-testimonials__card.is-sound-on .vt-sound__icon--on {
+      display: block;
+    }
+
+    .video-testimonials__card.is-sound-on .vt-sound__icon--off {
+      display: none;
+    }
+
+    .video-testimonials__quote {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .video-testimonials__attribution {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-2);
+    }
+
+    .video-testimonials__avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--rounded-full);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .video-testimonials__name {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .video-testimonials__detail {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.2;
+      opacity: .85;
+    }
+
+    @media screen and (max-width: 699px) {
+      {%- if section.settings.center_cards_mobile %}
+      #shopify-section-{{ section.id }} .video-testimonials__list {
+        padding-inline: calc((100vw - var(--video-testimonials-card-width)) / 2);
+        scroll-padding-inline: calc((100vw - var(--video-testimonials-card-width)) / 2);
+      }
+      {%- endif %}
+
+      .video-testimonials__caption {
+        padding: var(--spacing-8) var(--spacing-3) var(--spacing-3);
+      }
+
+      .video-testimonials__quote {
+        font-size: 14px;
+      }
+
+      .video-testimonials__avatar {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    @media screen and (min-width: 700px) {
+      .video-testimonials__quote {
+        font-size: 15px;
+      }
+    }
+  </style>
+
+  {%- comment -%}
+  ------------------------------------------------------------------------------------------------------------------------
+  LIQUID
+  ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  <div {% render 'section-properties' %}>
+    <div class="section-stack">
+      {%- if section.settings.badge != blank -%}
+        <div class="video-testimonials__badge-row">
+          <span class="video-testimonials__badge">{{ section.settings.badge | escape }}</span>
+        </div>
+      {%- endif -%}
+
+      {%- render 'section-header', heading: section.settings.title, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content, text_alignment: section.settings.text_alignment -%}
+
+      <div class="floating-controls-container">
+        {%- assign scroll_area_id = 'scroll-area-' | append: section.id -%}
+        {%- assign autoplay_enabled = section.settings.autoplay_muted -%}
+        {%- assign loop_enabled = false -%}
+        {%- if section.blocks.size >= 2 -%}
+          {%- assign loop_enabled = true -%}
+        {%- endif -%}
+
+        <loop-carousel id="{{ scroll_area_id }}" {% if loop_enabled %}loop{% endif %} per-set="{{ section.blocks.size }}" class="video-testimonials__list scroll-area bleed is-scrollable">
+          {%- capture real_cards -%}{%- endcapture -%}
+          {%- capture clone_cards -%}{%- endcapture -%}
+
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign loading_strategy = nil
+
+              if section.index > 3 or forloop.index > 3
+                assign loading_strategy = 'lazy'
+              endif
+            -%}
+
+            {%- capture card_inner -%}
+              <div class="video-testimonials__media">
+                {%- if block.type == 'video' -%}
+                  {%- capture poster -%}
+                    {%- assign poster_image = block.settings.poster_image | default: block.settings.video.preview_image -%}
+
+                    {%- if poster_image -%}
+                      {{- poster_image | image_url: width: poster_image.width | image_tag: loading: loading_strategy, sizes: '(max-width: 699px) 78vw, 480px', widths: '300,400,500,600,700,800,960' -}}
+                    {%- elsif block.settings.video_url.type == 'youtube' -%}
+                      <img src="https://i.ytimg.com/vi/{{ block.settings.video_url.id }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                    {%- else -%}
+                      {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
+                    {%- endif -%}
+                  {%- endcapture -%}
+
+                  {%- if block.settings.video != blank -%}
+                    <video-media {% if autoplay_enabled %}autoplay{% else %}show-play-button{% endif %} style="--aspect-ratio: {{ block.settings.video.aspect_ratio }}">
+                      {%- if autoplay_enabled -%}
+                        {{- block.settings.video | video_tag: playsinline: true, controls: false, muted: true, loop: true, preload: 'metadata', image_size: '800x' -}}
+                      {%- else -%}
+                        {{- block.settings.video | video_tag: playsinline: true, controls: true, muted: false, loop: false, preload: 'metadata', image_size: '800x' -}}
+                      {%- endif -%}
+                      {{- poster -}}
+                    </video-media>
+                  {%- elsif block.settings.video_url != blank -%}
+                    <video-media host="{{ block.settings.video_url.type }}" {% if autoplay_enabled %}autoplay{% else %}show-play-button{% endif %}>
+                      {{- poster -}}
+
+                      <template>
+                        {%- if block.settings.video_url.type == 'youtube' -%}
+                          <iframe src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?playsinline=1&rel=0&modestbranding=1&enablejsapi=1&controls=0&disablekb=1&fs=0&iv_load_policy=3{% if autoplay_enabled %}&autoplay=1&mute=1&loop=1&playlist={{ block.settings.video_url.id }}{% endif %}" allow="autoplay; encrypted-media"></iframe>
+                        {%- elsif block.settings.video_url.type == 'vimeo' -%}
+                          <iframe src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?playsinline=1&dnt=1&title=0&byline=0&portrait=0&transparent=0&pip=0&controls=0&keyboard=0{% if autoplay_enabled %}&autoplay=1&muted=1&loop=1{% endif %}" allow="autoplay; encrypted-media"></iframe>
+                        {%- endif -%}
+                      </template>
+                    </video-media>
+                  {%- else -%}
+                    {{- poster -}}
+                  {%- endif -%}
+                {%- else -%}
+                  {%- if block.settings.image != blank -%}
+                    {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: loading_strategy, sizes: '(max-width: 699px) 78vw, 480px', widths: '300,400,500,600,700,800,960' -}}
+                  {%- else -%}
+                    {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+
+              {%- if block.type == 'video' and autoplay_enabled -%}
+                {%- comment -%}
+                  Une fois l'iframe Vimeo/YouTube chargée, elle capture tous les clics : ce bouton
+                  transparent posé au-dessus reçoit le toucher (et le clavier) à sa place.
+                {%- endcomment -%}
+                <button type="button" class="vt-tap" aria-label="Activer le son ou mettre en pause"></button>
+                <span class="vt-sound" aria-hidden="true">
+                  <svg class="vt-sound__icon vt-sound__icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                  <svg class="vt-sound__icon vt-sound__icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+                </span>
+              {%- endif -%}
+
+              <figcaption class="video-testimonials__caption">
+                {%- if block.type == 'video' -%}
+                  <div class="rating">
+                    <div class="rating__stars" role="img" aria-label="{{ 'general.rating.info' | t: rating_value: block.settings.rating, rating_max: 5 }}">
+                      {%- for i in (1..5) -%}
+                        {%- if i <= block.settings.rating -%}
+                          {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--full' -%}
+                        {%- else -%}
+                          {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--empty' -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.testimonial != blank -%}
+                  <p class="video-testimonials__quote">{{ block.settings.testimonial }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.attr_image != blank or block.settings.attr_1 != blank or block.settings.attr_2 != blank -%}
+                  <div class="video-testimonials__attribution">
+                    {%- if block.settings.attr_image != blank -%}
+                      {{- block.settings.attr_image | image_url: width: 80 | image_tag: loading: 'lazy', sizes: '32px', widths: '32,64,96', class: 'video-testimonials__avatar' -}}
+                    {%- endif -%}
+
+                    {%- if block.settings.attr_1 != blank or block.settings.attr_2 != blank -%}
+                      <div>
+                        {%- if block.settings.attr_1 != blank -%}<p class="video-testimonials__name">{{ block.settings.attr_1 }}</p>{%- endif -%}
+                        {%- if block.settings.attr_2 != blank -%}<p class="video-testimonials__detail">{{ block.settings.attr_2 }}</p>{%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </figcaption>
+            {%- endcapture -%}
+
+            {%- capture real_cards -%}{{ real_cards }}<figure class="video-testimonials__card" {{ block.shopify_attributes }}>{{ card_inner }}</figure>{%- endcapture -%}
+
+            {%- if loop_enabled -%}
+              {%- capture clone_cards -%}{{ clone_cards }}<figure class="video-testimonials__card" aria-hidden="true" inert>{{ card_inner }}</figure>{%- endcapture -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if loop_enabled -%}{{ clone_cards }}{%- endif -%}
+          {{ real_cards }}
+          {%- if loop_enabled -%}{{ clone_cards }}{%- endif -%}
+        </loop-carousel>
+
+        <button is="prev-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}" {% unless loop_enabled %}disabled{% endunless %}>
+          <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+          <span class="animated-arrow animated-arrow--reverse"></span>
+        </button>
+
+        <button is="next-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}">
+          <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+          <span class="animated-arrow"></span>
+        </button>
+      </div>
+
+      <script>
+        if (!window.customElements.get('loop-carousel')) {
+          window.customElements.define('loop-carousel', class extends HTMLElement {
+            connectedCallback() {
+              this._settleTimer = null;
+
+              if (this.hasAttribute('loop')) {
+                requestAnimationFrame(() => this._recenter());
+
+                this.addEventListener('scroll', () => {
+                  clearTimeout(this._settleTimer);
+                  this._settleTimer = setTimeout(() => this._recenter(), 120);
+                }, { passive: true });
+
+                window.addEventListener('resize', () => this._recenter());
+              }
+
+              this.addEventListener('control:prev', () => this._step(-1));
+              this.addEventListener('control:next', () => this._step(1));
+            }
+
+            get _perSet() {
+              return parseInt(this.getAttribute('per-set')) || 1;
+            }
+
+            get _setWidth() {
+              const items = this.children;
+              return items.length > this._perSet ? items[this._perSet].offsetLeft - items[0].offsetLeft : 0;
+            }
+
+            get _itemOffset() {
+              const items = this.children;
+              return items.length < 2 ? this.clientWidth : items[1].offsetLeft - items[0].offsetLeft;
+            }
+
+            _recenter() {
+              const width = this._setWidth;
+
+              if (!width) {
+                return;
+              }
+
+              if (this.scrollLeft < width * 0.5) {
+                this.scrollLeft += width;
+              } else if (this.scrollLeft >= width * 1.5) {
+                this.scrollLeft -= width;
+              }
+            }
+
+            _step(direction) {
+              this.scrollBy({ left: direction * this._itemOffset, behavior: 'smooth' });
+            }
+          });
+        }
+
+        // Visiteuses préférant réduire les animations : pas de lecture automatique.
+        // Ce script s'exécute pendant le parsing, avant l'activation de video-media
+        // (theme.js est un module) : retirer l'attribut ici suffit à revenir au
+        // comportement « clic pour lancer ».
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.querySelectorAll('#shopify-section-{{ section.id }} video-media[autoplay]').forEach((media) => {
+            media.removeAttribute('autoplay');
+            media.removeAttribute('role');
+            media.removeAttribute('tabindex');
+            media.removeAttribute('aria-label');
+            media.setAttribute('show-play-button', '');
+
+            const video = media.querySelector('video');
+            if (video) {
+              video.muted = false;
+              video.controls = true;
+              video.loop = false;
+            }
+
+            const card = media.closest('.video-testimonials__card');
+            if (card) {
+              card.querySelectorAll('.vt-sound, .vt-tap').forEach((el) => el.remove());
+            }
+          });
+        }
+
+        if (!window.__videoTestimonialsMedia) {
+          window.__videoTestimonialsMedia = true;
+
+          const sendCommand = (media, vimeoMethod, youtubeFunc, value) => {
+            const iframe = media.querySelector('iframe');
+
+            if (!iframe || !iframe.contentWindow) {
+              return;
+            }
+
+            if (media.getAttribute('host') === 'vimeo') {
+              iframe.contentWindow.postMessage(JSON.stringify({ method: vimeoMethod, value: value }), '*');
+            } else {
+              iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: youtubeFunc, args: value === undefined ? [] : [value] }), '*');
+            }
+          };
+
+          const unmute = (media) => {
+            sendCommand(media, 'setMuted', 'unMute', false);
+            sendCommand(media, 'setVolume', 'setVolume', media.getAttribute('host') === 'vimeo' ? 1 : 100);
+          };
+
+          const setSound = (media, on) => {
+            if (media.hasAttribute('host')) {
+              if (on) {
+                unmute(media);
+              } else {
+                sendCommand(media, 'setMuted', 'mute', true);
+              }
+            } else {
+              const video = media.querySelector('video');
+              if (video) {
+                video.muted = !on;
+              }
+            }
+
+            media.toggleAttribute('sound-on', on);
+            const card = media.closest('.video-testimonials__card');
+            if (card) {
+              card.classList.toggle('is-sound-on', on);
+            }
+          };
+
+          const restart = (media) => {
+            if (media.hasAttribute('host')) {
+              sendCommand(media, 'setCurrentTime', 'seekTo', 0);
+            } else {
+              const video = media.querySelector('video');
+              if (video) {
+                video.currentTime = 0;
+              }
+            }
+          };
+
+          const toggleSound = (media) => {
+            if (media.hasAttribute('sound-on')) {
+              // Le son est déjà actif : l'appui met en pause, le suivant relance.
+              if (media.hasAttribute('playing')) {
+                if (typeof media.pause === 'function') {
+                  media.pause();
+                }
+              } else if (typeof media.play === 'function') {
+                media.play();
+              }
+              return;
+            }
+
+            // Une seule vidéo avec le son à la fois.
+            document.querySelectorAll('.video-testimonials__card video-media[sound-on]').forEach((other) => setSound(other, false));
+
+            if (media.hasAttribute('loaded')) {
+              restart(media);
+            }
+            setSound(media, true);
+            if (typeof media.play === 'function') {
+              media.play();
+            }
+
+            // Le lecteur hébergé peut mettre ~1-2 s à être pilotable : on ré-applique.
+            [800, 2000].forEach((delay) => {
+              setTimeout(() => {
+                if (media.hasAttribute('sound-on')) {
+                  setSound(media, true);
+                }
+              }, delay);
+            });
+          };
+
+          document.addEventListener('click', (event) => {
+            const tap = event.target.closest('.vt-tap');
+
+            if (tap) {
+              const card = tap.closest('.video-testimonials__card');
+              const media = card && card.querySelector('video-media');
+              if (media) {
+                toggleSound(media);
+              }
+              return;
+            }
+
+            const media = event.target.closest('.video-testimonials__card video-media');
+
+            if (!media) {
+              return;
+            }
+
+            if (media.hasAttribute('autoplay')) {
+              toggleSound(media);
+              return;
+            }
+
+            if (!media.hasAttribute('host')) {
+              return;
+            }
+
+            if (media.hasAttribute('loaded')) {
+              if (media.hasAttribute('playing')) {
+                sendCommand(media, 'pause', 'pauseVideo');
+              } else {
+                sendCommand(media, 'play', 'playVideo');
+                unmute(media);
+              }
+              return;
+            }
+
+            setTimeout(() => unmute(media), 800);
+            setTimeout(() => unmute(media), 2000);
+          });
+
+          // Lecture quand la carte est visible, pause (et son coupé) quand elle sort de l'écran.
+          const autoplayObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              const media = entry.target;
+
+              if (typeof media.play !== 'function') {
+                return;
+              }
+
+              if (entry.isIntersecting) {
+                media.play();
+              } else if (media.hasAttribute('loaded')) {
+                media.pause();
+                if (media.hasAttribute('sound-on')) {
+                  setSound(media, false);
+                }
+              }
+            });
+          }, { threshold: 0.1 });
+
+          const observeAutoplayMedias = () => {
+            document.querySelectorAll('.video-testimonials__card video-media[autoplay]').forEach((media) => autoplayObserver.observe(media));
+          };
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', observeAutoplayMedias);
+          } else {
+            observeAutoplayMedias();
+          }
+          document.addEventListener('shopify:section:load', observeAutoplayMedias);
+        }
+      </script>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Témoignages vidéo",
+  "class": "shopify-section--video-testimonials",
+  "tag": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Largeur pleine page",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Contenu"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "info": "Petite pilule affichée au-dessus du titre.",
+      "default": "50 000+ clientes conquises !"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Elles nous font confiance"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Sous-titre",
+      "default": "<p>Découvrez les avis vidéo de nos clientes, sans filtre.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Alignement du texte",
+      "options": [
+        {
+          "value": "start",
+          "label": "Gauche"
+        },
+        {
+          "value": "center",
+          "label": "Centré"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Format des cartes"
+    },
+    {
+      "type": "select",
+      "id": "card_ratio",
+      "label": "Ratio des cartes",
+      "options": [
+        {
+          "value": "3 / 4",
+          "label": "3:4 (portrait, recommandé)"
+        },
+        {
+          "value": "4 / 5",
+          "label": "4:5 (portrait)"
+        },
+        {
+          "value": "9 / 16",
+          "label": "9:16 (plein écran)"
+        }
+      ],
+      "default": "3 / 4"
+    },
+    {
+      "type": "select",
+      "id": "card_width_mobile",
+      "label": "Largeur des cartes (mobile)",
+      "options": [
+        {
+          "value": "78",
+          "label": "1 carte (pleine largeur)"
+        },
+        {
+          "value": "62",
+          "label": "1 carte + aperçu de la suivante (recommandé)"
+        },
+        {
+          "value": "46",
+          "label": "2 cartes"
+        }
+      ],
+      "default": "62"
+    },
+    {
+      "type": "checkbox",
+      "id": "center_cards_mobile",
+      "label": "Centrer les cartes (mobile)",
+      "info": "La carte active s'affiche au centre de l'écran, avec un aperçu de ses voisines de chaque côté.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Lecture automatique"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_muted",
+      "label": "Lecture automatique (sans le son)",
+      "info": "Chaque vidéo démarre en muet dès qu'elle apparaît à l'écran et tourne en boucle. Un appui active le son (la vidéo reprend du début), un second la met en pause, un troisième la relance. Désactivée automatiquement pour les visiteuses qui préfèrent réduire les animations.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Couleurs",
+      "info": "Le dégradé remplace la couleur unie lorsqu'il est défini."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Fond"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Dégradé de fond"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Couleur du titre"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "Dégradé du titre"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Fond du badge"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Texte du badge"
+    },
+    {
+      "type": "color",
+      "id": "stars_color",
+      "label": "Couleur des étoiles",
+      "default": "#0551A0"
+    },
+    {
+      "type": "header",
+      "content": "Style des cartes"
+    },
+    {
+      "type": "color",
+      "id": "caption_text_color",
+      "label": "Texte incrusté sur la vidéo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "caption_overlay_color",
+      "label": "Couleur du dégradé bas de carte",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "caption_overlay_opacity",
+      "label": "Intensité du dégradé",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 85
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Arrondi des cartes",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Témoignage (image)",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "800 x 1000px environ, format portrait recommandé."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "testimonial",
+          "label": "Témoignage",
+          "default": "Je n'aurais jamais cru qu'un produit puisse changer autant ma routine !"
+        },
+        {
+          "type": "image_picker",
+          "id": "attr_image",
+          "label": "Photo (ronde)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "attr_1",
+          "label": "Nom",
+          "default": "DeAnn"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "attr_2",
+          "label": "Détail",
+          "default": "64 ans"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Témoignage (vidéo)",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Vidéo",
+          "info": "Remplace la vidéo YouTube / Vimeo ci-dessous si les deux sont renseignées."
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "label": "Vidéo YouTube / Vimeo"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_image",
+          "label": "Vignette (image d'aperçu)",
+          "info": "Visible tant que la vidéo n'est pas lancée. Shopify la convertit et la sert automatiquement en WebP. À défaut : aperçu de la vidéo, ou miniature YouTube."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Note (étoiles)",
+          "default": 5
+        },
+        {
+          "type": "inline_richtext",
+          "id": "testimonial",
+          "label": "Témoignage",
+          "default": "Je n'aurais jamais cru qu'un produit puisse changer autant ma routine !"
+        },
+        {
+          "type": "image_picker",
+          "id": "attr_image",
+          "label": "Photo (ronde)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "attr_1",
+          "label": "Nom",
+          "default": "DeAnn"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "attr_2",
+          "label": "Détail",
+          "default": "64 ans"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Témoignages vidéo",
+      "blocks": [
+        {
+          "type": "video",
+          "settings": {
+            "attr_1": "DeAnn",
+            "attr_2": "64 ans",
+            "rating": 5,
+            "testimonial": "Je n'aurais jamais cru qu'un produit puisse changer autant ma routine !"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "attr_1": "Sophie",
+            "attr_2": "38 ans",
+            "rating": 5,
+            "testimonial": "Résultat visible dès les premiers jours, je suis conquise."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "attr_1": "Karim",
+            "attr_2": "45 ans",
+            "rating": 4,
+            "testimonial": "Livraison rapide et un produit qui tient toutes ses promesses."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

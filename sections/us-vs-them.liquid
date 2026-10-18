@@ -1,0 +1,479 @@
+{%- render 'section-spacing-collapsing' -%}
+
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+LIQUID SETUP
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- liquid
+  assign column_prefixes = 'first,second,third,four' | split: ','
+  assign active_columns = ''
+
+  for prefix in column_prefixes
+    assign heading_key = prefix | append: '_heading'
+    assign heading_value = section.settings[heading_key]
+
+    if heading_value != blank
+      assign active_columns = active_columns | append: prefix | append: ','
+    endif
+  endfor
+
+  assign active_columns = active_columns | split: ','
+  assign columns_count = active_columns.size | at_least: 1
+  assign list_item_blocks = section.blocks | where: 'type', 'list_item'
+  assign table_row_blocks = section.blocks | where: 'type', 'table_row'
+
+  assign table_active_background = section.settings.table_active_background | default: '#1a1a1a'
+  assign table_active_text_color = section.settings.table_active_text_color | default: '#ffffff'
+  assign check_color = section.settings.check_color | default: '#0551A0'
+  assign cross_color = section.settings.cross_color | default: '#d95d69'
+  assign bullet_color = section.settings.bullet_color | default: settings.text_color
+  assign table_radius = section.settings.table_radius | default: 20
+-%}
+
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+CSS
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} .us-vs-them__table-wrapper {
+    border-radius: {{ table_radius }}px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__table {
+    width: 100%;
+    {%- if columns_count > 2 %}
+    min-width: calc(160px + {{ columns_count }} * 110px);
+    {%- endif %}
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__cell {
+    text-align: center;
+    padding: var(--spacing-3) var(--spacing-2);
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__cell--label {
+    text-align: left;
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__table tbody .us-vs-them__cell {
+    border-top: 1px solid {{ section.settings.table_border_color | default: 'rgb(var(--text-color) / .08)' }};
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__row--header .us-vs-them__cell h3 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__cell--active {
+    background: {{ table_active_background }};
+    color: {{ table_active_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__icon--check {
+    color: {{ check_color }};
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__icon--cross {
+    color: {{ cross_color }};
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__bullet {
+    color: {{ bullet_color }};
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__heading {
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .us-vs-them__heading em {
+    font-style: italic;
+  }
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-{{ section.id }} .us-vs-them__cell {
+      padding: var(--spacing-5) var(--spacing-5);
+    }
+
+    #shopify-section-{{ section.id }} .us-vs-them__table {
+      min-width: calc(200px + {{ columns_count }} * 110px);
+    }
+  }
+</style>
+
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+LIQUID
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<div {% render 'section-properties' %}>
+  <div class="section-stack section-stack--horizontal">
+    <div class="section-stack__intro">
+      <div class="v-stack gap-5">
+        {%- if section.settings.subheading != blank -%}
+          <p class="subheading">{{ section.settings.subheading | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.title != blank -%}
+          <div class="us-vs-them__heading h2" {% if section.settings.heading_color != blank %}style="color: {{ section.settings.heading_color }};"{% endif %}>
+            {{ section.settings.title }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.content != blank -%}
+          <div class="prose">{{ section.settings.content }}</div>
+        {%- endif -%}
+
+        {%- if list_item_blocks.size > 0 -%}
+          <div class="v-stack gap-3">
+            {%- for block in list_item_blocks -%}
+              <div class="h-stack align-center gap-3" {{ block.shopify_attributes }}>
+                <span class="us-vs-them__bullet" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"></circle>
+                    <path d="M7.75 12.25L10.25 14.75L16.25 8.75" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <span>{{ block.settings.text | escape }}</span>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.button_text != blank -%}
+          {%- render 'button', size: 'lg', href: section.settings.button_url, content: section.settings.button_text, background: section.settings.button_background, text_color: section.settings.button_text_color -%}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="section-stack__main">
+      <div class="us-vs-them__table-wrapper ring scroll-area">
+        <table class="us-vs-them__table">
+          <colgroup>
+            <col style="width: 34%;">
+            {%- for prefix in active_columns -%}
+              <col>
+            {%- endfor -%}
+          </colgroup>
+
+          <thead>
+            <tr class="us-vs-them__row us-vs-them__row--header">
+              <th class="us-vs-them__cell us-vs-them__cell--label" scope="col"></th>
+
+              {%- for prefix in active_columns -%}
+                {%- assign heading_key = prefix | append: '_heading' -%}
+
+                <th class="us-vs-them__cell {% if forloop.first %}us-vs-them__cell--active{% endif %}" scope="col">
+                  <h3>{{ section.settings[heading_key] | escape }}</h3>
+                </th>
+              {%- endfor -%}
+            </tr>
+          </thead>
+
+          <tbody>
+            {%- for block in table_row_blocks -%}
+              <tr class="us-vs-them__row" {{ block.shopify_attributes }}>
+                <th class="us-vs-them__cell us-vs-them__cell--label" scope="row">{{ block.settings.row_heading | escape }}</th>
+
+                {%- for prefix in active_columns -%}
+                  {%- assign icon_key = prefix | append: '_column_icon' -%}
+                  {%- assign icon_value = block.settings[icon_key] -%}
+
+                  <td class="us-vs-them__cell {% if forloop.first %}us-vs-them__cell--active{% endif %}">
+                    {%- case icon_value -%}
+                      {%- when 'check' -%}
+                        <svg class="us-vs-them__icon us-vs-them__icon--check" width="22" height="16" viewBox="0 0 37 27" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                          <path d="M34.4998 2.5L12.4998 24.5L2.49976 14.5" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      {%- when 'cross' -%}
+                        <svg class="us-vs-them__icon us-vs-them__icon--cross" width="17" height="17" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                          <path d="M36.5 12.5L12.5 36.5" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M12.5 12.5L36.5 36.5" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    {%- endcase -%}
+                  </td>
+                {%- endfor -%}
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Nous vs eux",
+  "class": "shopify-section--us-vs-them",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Largeur pleine page",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Contenu"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Titre",
+      "info": "Utilisez l'italique et le gras de l'éditeur pour reproduire le style \"Nous vs Eux\".",
+      "default": "<p><em>Nous</em> vs les autres marques</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Texte",
+      "default": "<p>Nous sommes fiers de la qualité de nos produits, ce qui n'est pas toujours le cas des autres.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Bouton"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texte du bouton",
+      "default": "Découvrir nos produits"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Lien du bouton"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Fond du bouton"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Texte du bouton"
+    },
+    {
+      "type": "header",
+      "content": "Puces"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Couleur des puces"
+    },
+    {
+      "type": "header",
+      "content": "Tableau comparatif"
+    },
+    {
+      "type": "text",
+      "id": "first_heading",
+      "label": "En-tête colonne 1 (mise en avant)",
+      "default": "Notre marque"
+    },
+    {
+      "type": "text",
+      "id": "second_heading",
+      "label": "En-tête colonne 2",
+      "default": "Autres marques"
+    },
+    {
+      "type": "text",
+      "id": "third_heading",
+      "label": "En-tête colonne 3"
+    },
+    {
+      "type": "text",
+      "id": "four_heading",
+      "label": "En-tête colonne 4"
+    },
+    {
+      "type": "range",
+      "id": "table_radius",
+      "label": "Arrondi du tableau",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "table_border_color",
+      "label": "Couleur des bordures du tableau"
+    },
+    {
+      "type": "header",
+      "content": "Colonne mise en avant"
+    },
+    {
+      "type": "paragraph",
+      "content": "La colonne 1 est toujours mise en avant (fond de couleur)."
+    },
+    {
+      "type": "color",
+      "id": "table_active_background",
+      "label": "Fond de la colonne mise en avant"
+    },
+    {
+      "type": "color",
+      "id": "table_active_text_color",
+      "label": "Texte de la colonne mise en avant"
+    },
+    {
+      "type": "header",
+      "content": "Icônes du tableau"
+    },
+    {
+      "type": "color",
+      "id": "check_color",
+      "label": "Couleur de la coche"
+    },
+    {
+      "type": "color",
+      "id": "cross_color",
+      "label": "Couleur de la croix"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs",
+      "info": "Le dégradé remplace la couleur unie lorsqu'il est défini."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Fond"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Dégradé de fond"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Couleur du titre"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "list_item",
+      "name": "Élément de liste",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Avantage"
+        }
+      ]
+    },
+    {
+      "type": "table_row",
+      "name": "Ligne du tableau",
+      "settings": [
+        {
+          "type": "text",
+          "id": "row_heading",
+          "label": "Nom de la fonctionnalité",
+          "default": "Fonctionnalité"
+        },
+        {
+          "type": "select",
+          "id": "first_column_icon",
+          "label": "Colonne 1",
+          "default": "check",
+          "options": [
+            { "value": "check", "label": "Coche" },
+            { "value": "cross", "label": "Croix" },
+            { "value": "none", "label": "Aucune" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "second_column_icon",
+          "label": "Colonne 2",
+          "default": "cross",
+          "options": [
+            { "value": "check", "label": "Coche" },
+            { "value": "cross", "label": "Croix" },
+            { "value": "none", "label": "Aucune" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "third_column_icon",
+          "label": "Colonne 3",
+          "default": "none",
+          "options": [
+            { "value": "check", "label": "Coche" },
+            { "value": "cross", "label": "Croix" },
+            { "value": "none", "label": "Aucune" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "four_column_icon",
+          "label": "Colonne 4",
+          "default": "none",
+          "options": [
+            { "value": "check", "label": "Coche" },
+            { "value": "cross", "label": "Croix" },
+            { "value": "none", "label": "Aucune" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nous vs eux",
+      "blocks": [
+        { "type": "list_item", "settings": { "text": "Résultats plus rapides" } },
+        { "type": "list_item", "settings": { "text": "Qualité supérieure" } },
+        { "type": "list_item", "settings": { "text": "Satisfaction garantie" } },
+        { "type": "list_item", "settings": { "text": "Fabriqué avec soin" } },
+        { "type": "table_row", "settings": { "row_heading": "Qualité premium", "first_column_icon": "check", "second_column_icon": "cross" } },
+        { "type": "table_row", "settings": { "row_heading": "Ingrédients simples", "first_column_icon": "check", "second_column_icon": "cross" } },
+        { "type": "table_row", "settings": { "row_heading": "Tarifs transparents", "first_column_icon": "check", "second_column_icon": "cross" } },
+        { "type": "table_row", "settings": { "row_heading": "Support client dédié", "first_column_icon": "check", "second_column_icon": "cross" } },
+        { "type": "table_row", "settings": { "row_heading": "Tests qualité indépendants", "first_column_icon": "check", "second_column_icon": "cross" } },
+        { "type": "table_row", "settings": { "row_heading": "Satisfait ou remboursé", "first_column_icon": "check", "second_column_icon": "cross" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

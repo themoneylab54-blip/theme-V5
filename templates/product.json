@@ -1,0 +1,921 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "badges": {
+          "type": "badges",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {
+            "show_empty": false
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "collapse_content": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#2F7D57",
+            "atc_button_text_color": "#FFFFFF",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "badges",
+        "price",
+        "rating",
+        "payment_terms",
+        "separator",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "image_with_text_overlay_6mHMnA": {
+      "type": "image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "enable_parallax": false,
+        "image_size": "auto",
+        "image": "shopify://shop_images/hero_desktop_1.webp",
+        "mobile_image": "shopify://shop_images/Hero_mobile_1_7e6cd550-b751-4d56-8997-e7b9e4b86821.webp",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    },
+    "vu_dans_rjVDz9": {
+      "type": "vu-dans",
+      "blocks": {
+        "logo_Va4ibx": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/marie-claire-magazine-logo.webp",
+            "link": ""
+          }
+        },
+        "logo_tF6Q6X": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/allure-magazine-logo.webp",
+            "link": ""
+          }
+        },
+        "logo_yQqj6D": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/elle-magazine-logo.webp",
+            "link": ""
+          }
+        },
+        "logo_6yyyWk": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/beauty-hub-magazine-logo.webp",
+            "link": ""
+          }
+        },
+        "logo_LwgBJA": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/vogue-magazine-logo.webp",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_Va4ibx",
+        "logo_tF6Q6X",
+        "logo_yQqj6D",
+        "logo_6yyyWk",
+        "logo_LwgBJA"
+      ],
+      "name": "Vu dans",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "Vu dans",
+        "content": "",
+        "text_alignment": "center",
+        "scrolling_speed": 40,
+        "logo_width": 150,
+        "logo_gap": 40,
+        "pause_hover": false,
+        "scrolling_speed_mobile": 11,
+        "logo_width_mobile": 110,
+        "logo_gap_mobile": 36,
+        "spacing_block_start": 12,
+        "content_gap": 12,
+        "spacing_block_end": 12,
+        "grayscale": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "slideshow_gUAwaA": {
+      "type": "slideshow",
+      "blocks": {
+        "image_hLCpAq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/desktop.webp",
+            "mobile_image": "shopify://shop_images/mobile_40f1fbcf-10db-4d6c-bcc7-efbd46ccb444.webp",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_hLCpAq"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "none",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#ffffff",
+        "background_gradient": ""
+      }
+    },
+    "video_testimonials_CCEKGi": {
+      "type": "video-testimonials",
+      "blocks": {
+        "video_f8faQF": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://vimeo.com/1211697380?share=copy&fl=sv&fe=ci",
+            "rating": 5,
+            "testimonial": "Au goût miel",
+            "attr_1": "",
+            "attr_2": "64 ans"
+          }
+        },
+        "video_BLDEdW": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://vimeo.com/1211695974?share=copy&fl=sv&fe=ci",
+            "rating": 5,
+            "testimonial": "4 plantes traditionnelles",
+            "attr_1": "",
+            "attr_2": "56 ans"
+          }
+        },
+        "video_d8TwfT": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://vimeo.com/1211696027?share=copy&fl=sv&fe=ci",
+            "rating": 5,
+            "testimonial": "Pensé pour l'après-allaitement",
+            "attr_1": "",
+            "attr_2": "43 ans"
+          }
+        }
+      },
+      "block_order": [
+        "video_f8faQF",
+        "video_BLDEdW",
+        "video_d8TwfT"
+      ],
+      "name": "Témoignages vidéo",
+      "settings": {
+        "full_width": true,
+        "badge": "50 000+ clientes conquises !",
+        "title": "Une routine simple, au goût miel",
+        "content": "",
+        "text_alignment": "center",
+        "card_ratio": "9 / 16",
+        "card_width_mobile": "62",
+        "center_cards_mobile": true,
+        "autoplay_muted": true,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "badge_background": "",
+        "badge_text_color": "",
+        "stars_color": "#2F4A3A",
+        "caption_text_color": "#ffffff",
+        "caption_overlay_color": "#000000",
+        "caption_overlay_opacity": 85,
+        "card_radius": 16
+      }
+    },
+    "reviews_carousel_rjcz8R": {
+      "type": "reviews-carousel",
+      "blocks": {
+        "review_qNm6z7": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/testimonial_3.webp",
+            "author": "Une maman · Reddit r/grossesse",
+            "title": "Le poids est revenu, pas le ventre",
+            "verified": false,
+            "rating": 5,
+            "content": "<p>« 4 mois après, je suis revenue à mon poids d'avant (13kg perdus), mais le ventre est encore un peu là »</p>"
+          }
+        },
+        "review_FzxtfH": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/testimonial_1.webp",
+            "author": "Une maman · Forum Doctissimo",
+            "title": "Plus gros en fin de journée",
+            "verified": false,
+            "rating": 5,
+            "content": "<p>« Il fait toujours une bosse et, en fin de journée, il est encore plus gros. »</p>"
+          }
+        },
+        "review_TCa6QW": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/testimonial_4.webp",
+            "author": "Une maman · Forum Doctissimo",
+            "title": "« C'est pour quand ? »",
+            "verified": false,
+            "rating": 5,
+            "content": "<p>« Y en a même une un jour dans l'ascenseur qui m'a dit : \"c'est pour quand?\" alors que j'avais déjà accouché !!!! »</p>"
+          }
+        },
+        "review_N8XDAP": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/testimonial_2.webp",
+            "author": "Une maman · Reddit r/grossesse",
+            "title": "Le 36 dans un carton",
+            "verified": false,
+            "rating": 4,
+            "content": "<p>« Je regarde mon 36 de loin, il risque de rester en carton longtemps. »</p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_qNm6z7",
+        "review_FzxtfH",
+        "review_TCa6QW",
+        "review_N8XDAP"
+      ],
+      "name": "Carrousel d'avis clients",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "Vous n'êtes pas seule.",
+        "content": "",
+        "link_url": "",
+        "link_text": "",
+        "image_ratio": "1 / 1",
+        "card_width_mobile": "62",
+        "center_cards_mobile": true,
+        "verified_text": "Avis vérifié",
+        "verified_color": "#2F7D57",
+        "stars_color": "#2F7D57",
+        "background": "#E8EFE4",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "review_card_background": "#FFFFFF",
+        "review_card_text_color": "",
+        "badge_background": "#2F4A3A",
+        "badge_text_color": "#FFFFFF",
+        "tag_background": "#F3E6D8",
+        "tag_text_color": "#2F4A3A"
+      }
+    },
+    "rich_text_kptxUX": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_FbL6CF": {
+          "type": "heading",
+          "settings": {
+            "text": "Vous avez retrouvé votre poids. Pas encore votre jean.",
+            "heading_tag": "h2",
+            "text_color": "",
+            "gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_FbL6CF"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "slideshow_mCiCWM": {
+      "type": "slideshow",
+      "blocks": {
+        "image_TjKADK": {
+          "type": "image",
+          "settings": {
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_TjKADK"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#ffffff",
+        "background_gradient": ""
+      }
+    },
+    "featured_product_WGyjFc": {
+      "type": "featured-product",
+      "blocks": {
+        "rating_line_jbfGDP": {
+          "type": "rating_line",
+          "settings": {
+            "rating": 5,
+            "stars_color": "#2F4A3A",
+            "text": "4,8/5 — +1457 Avis vérifiés",
+            "link": "",
+            "style": "squares",
+            "prefix": "Noté",
+            "score": "4,8",
+            "score_label": "EXCELLENT",
+            "count_text": "+1 457 avis",
+            "square_color": "#00B67A"
+          }
+        },
+        "title_qpeM4C": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "image_frjMpa": {
+          "type": "image",
+          "settings": {
+            "alignment": "start",
+            "max_width": 260
+          }
+        },
+        "icon_benefit_jcgr9Q": {
+          "type": "icon_benefit",
+          "settings": {
+            "icon": "none",
+            "text": "<p><strong>4 plantes</strong> : gaillet gratteron, trèfle rouge, stillingie, frêne piquant</p>",
+            "icon_background": "",
+            "icon_color": ""
+          }
+        },
+        "icon_benefit_hQkbxn": {
+          "type": "icon_benefit",
+          "settings": {
+            "icon": "picto-love",
+            "text": "<p><strong>Au goût miel</strong>, simple à glisser dans votre routine</p>",
+            "icon_background": "",
+            "icon_color": ""
+          }
+        },
+        "icon_benefit_Chrk6D": {
+          "type": "icon_benefit",
+          "settings": {
+            "icon": "picto-love",
+            "text": "<p>Pensé pour <strong>l'après-allaitement</strong>, même longtemps après</p>",
+            "icon_background": "",
+            "icon_color": ""
+          }
+        },
+        "stock_alert_3pYUjY": {
+          "type": "stock_alert",
+          "settings": {
+            "text": "Plus que 5 en stock!",
+            "color": "#c62828"
+          }
+        },
+        "buy_buttons_zB9pB6": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#2F7D57",
+            "atc_button_text_color": "#FFFFFF",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "image_jQQtQP": {
+          "type": "image",
+          "settings": {
+            "alignment": "center",
+            "max_width": 430
+          }
+        },
+        "collapsible_text_jGVFpi": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "Comment prendre les gouttes Sovéline ?",
+            "content": "<p><strong>Comment prendre les gouttes Sovéline ?</strong></p><p>Suivez le mode d'emploi et la dose indiqués sur l'étiquette du flacon. Ne dépassez pas la dose journalière recommandée.</p><p>Les gouttes ont un <strong>goût miel</strong>.</p><p><strong>Précautions.</strong> Si vous allaitez, si vous êtes enceinte ou si vous suivez un traitement, demandez l'avis de votre médecin, de votre sage-femme ou de votre pharmacien avant la première prise. Un complément alimentaire ne remplace pas une alimentation variée et équilibrée, ni un mode de vie sain. Tenir hors de portée des jeunes enfants.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_yKpzL4": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "Les 4 plantes, et ce que Sovéline ne fait pas",
+            "content": "<p><strong>Gaillet gratteron</strong> (<em>Galium aparine</em>)</p><p><strong>Trèfle rouge</strong> (<em>Trifolium pratense</em>)</p><p><strong>Stillingie</strong> (<em>Stillingia sylvatica</em>)</p><p><strong>Frêne piquant</strong> (<em>Zanthoxylum americanum</em>)</p><p>Quatre plantes traditionnelles, dans un flacon au goût miel. Composition complète et dosage : voir l'étiquette du flacon.</p><p>Sovéline accompagne votre routine quand votre ventre vous semble gonflé, surtout en fin de journée.</p><p><strong>Ce n'est pas un produit minceur.</strong> Il ne vise ni le gras, ni la peau distendue, ni l'écartement des abdominaux (diastasis). Pour cela, un kiné ou une sage-femme peut évaluer votre situation.</p><p>Sovéline ne remplace ni la rééducation, ni un avis médical. Il s'ajoute à votre routine.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_LzPRXy": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "Livraison, suivi & garantie 30 jours",
+            "content": "<p>Chaque commande part avec un <strong>numéro de suivi</strong>. Vous suivez votre colis à tout moment.</p><p>Une question sur votre commande ? Écrivez-nous avec le formulaire de contact en bas de page.</p><p>Essayez Sovéline pendant 30 jours. Si ce n'est pas pour vous, vous êtes remboursée.</p><p><strong>Aucun abonnement caché.</strong> Vous payez ce que vous commandez, une seule fois.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "rating_line_jbfGDP",
+        "title_qpeM4C",
+        "image_frjMpa",
+        "icon_benefit_jcgr9Q",
+        "icon_benefit_hQkbxn",
+        "icon_benefit_Chrk6D",
+        "stock_alert_3pYUjY",
+        "buy_buttons_zB9pB6",
+        "image_jQQtQP",
+        "collapsible_text_jGVFpi",
+        "collapsible_text_yKpzL4",
+        "collapsible_text_LzPRXy"
+      ],
+      "name": "Featured product",
+      "settings": {
+        "full_width": true,
+        "product": "selivia",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "mobile_media_size": "contained",
+        "mobile_carousel_control": "thumbnails",
+        "enable_video_autoplay": false,
+        "enable_video_looping": false,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "images_with_text_scrolling_cdfMBi": {
+      "type": "images-with-text-scrolling",
+      "blocks": {
+        "item_aDeB3L": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Le poids est parti. Le ventre est resté.",
+            "content": "<p>Vous avez retrouvé votre poids, ou presque. Pourtant votre ventre reste mou et ressort après le déjeuner. Sur les forums, des centaines de mamans écrivent la même chose.</p>"
+          }
+        },
+        "item_Q6RReN": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Il change au fil de la journée",
+            "content": "<p>Plus petit le matin, plus gros le soir ? Vous l'avez peut-être déjà remarqué. Prenez-le en photo de profil, matin et soir, pendant une semaine.</p>"
+          }
+        },
+        "item_TEwPGa": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Une routine à vous, sans contrainte",
+            "content": "<p>Quatre plantes traditionnelles, au goût miel. Sans gaine qui serre. Sans séance à 60-130 €. Sans massage à refaire chaque jour.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_aDeB3L",
+        "item_Q6RReN",
+        "item_TEwPGa"
+      ],
+      "name": "Images and text scrolling",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "show_counter": true,
+        "desktop_image_effect": "reveal",
+        "image_position": "end",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "us_vs_them_d7XtPC": {
+      "type": "us-vs-them",
+      "blocks": {
+        "table_row_GMGxN9": {
+          "type": "table_row",
+          "settings": {
+            "row_heading": "Rien à sacrifier : vous gardez vos repas",
+            "first_column_icon": "check",
+            "second_column_icon": "cross",
+            "third_column_icon": "none",
+            "four_column_icon": "none"
+          }
+        },
+        "table_row_dTJ4Bq": {
+          "type": "table_row",
+          "settings": {
+            "row_heading": "Sans rendez-vous, sans séance payante",
+            "first_column_icon": "check",
+            "second_column_icon": "cross",
+            "third_column_icon": "none",
+            "four_column_icon": "none"
+          }
+        },
+        "table_row_Uegq7M": {
+          "type": "table_row",
+          "settings": {
+            "row_heading": "Rien à enfiler, même en pleine chaleur",
+            "first_column_icon": "check",
+            "second_column_icon": "cross",
+            "third_column_icon": "none",
+            "four_column_icon": "none"
+          }
+        },
+        "table_row_rY7hJb": {
+          "type": "table_row",
+          "settings": {
+            "row_heading": "Un geste de 10 secondes, chaque matin",
+            "first_column_icon": "check",
+            "second_column_icon": "cross",
+            "third_column_icon": "none",
+            "four_column_icon": "none"
+          }
+        },
+        "table_row_hMnym8": {
+          "type": "table_row",
+          "settings": {
+            "row_heading": "Moins de 1 € par jour en cure de 3 mois",
+            "first_column_icon": "check",
+            "second_column_icon": "cross",
+            "third_column_icon": "none",
+            "four_column_icon": "none"
+          }
+        },
+        "table_row_dYbxRV": {
+          "type": "table_row",
+          "settings": {
+            "row_heading": "30 jours satisfaite ou remboursée",
+            "first_column_icon": "check",
+            "second_column_icon": "cross",
+            "third_column_icon": "none",
+            "four_column_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "table_row_GMGxN9",
+        "table_row_dTJ4Bq",
+        "table_row_Uegq7M",
+        "table_row_rY7hJb",
+        "table_row_hMnym8",
+        "table_row_dYbxRV"
+      ],
+      "name": "Nous vs eux",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "<p>Sovéline vs <em>ce que vous avez déjà essayé</em></p>",
+        "content": "<p>Marche, sel réduit, séances, bas, tisanes : vous avez déjà beaucoup donné.</p>",
+        "button_text": "",
+        "button_url": "",
+        "button_background": "",
+        "button_text_color": "",
+        "bullet_color": "#2F7D57",
+        "first_heading": "Sovéline",
+        "second_heading": "Régimes, séances, bas",
+        "third_heading": "",
+        "four_heading": "",
+        "table_radius": 20,
+        "table_border_color": "",
+        "table_active_background": "#FFFFFF",
+        "table_active_text_color": "#2F4A3A",
+        "check_color": "#2F7D57",
+        "cross_color": "",
+        "background": "#E8EFE4",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": ""
+      }
+    },
+    "17848327462a3405ac": {
+      "type": "apps",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "faq_iHzKiM": {
+      "type": "faq",
+      "blocks": {
+        "item_p8WFLA": {
+          "type": "item",
+          "settings": {
+            "title": "Est-ce vraiment efficace contre les poches et le visage gonflé ?",
+            "content": "<p>Les poches et le visage gonflé du matin sont souvent liés à <strong>l'eau que le corps retient</strong>.</p><p>Les 4 plantes de Sovéline accompagnent le drainage naturel du corps. Beaucoup de clientes décrivent un visage qui paraît <strong>moins gonflé et plus net</strong>. Résultats variables selon chaque personne.</p>"
+          }
+        },
+        "item_VA349H": {
+          "type": "item",
+          "settings": {
+            "title": "À quelle fréquence dois-je le prendre ?",
+            "content": "<p>Une prise <strong>chaque matin</strong> : 2 pipettes (2 ml), directement ou dans un verre d'eau.</p><p>10 secondes, et c'est fait. Aucune contrainte dans votre journée.</p>"
+          }
+        },
+        "item_gbyy6A": {
+          "type": "item",
+          "settings": {
+            "title": "Est-ce un diurétique ? Vais-je devoir courir aux toilettes ?",
+            "content": "<p>Non.</p><p>Sovéline n'est <strong>pas un diurétique</strong> : c'est un complément alimentaire à base de 4 plantes. Son action est <strong>progressive et douce</strong>. Si un diurétique vous a été prescrit, ne l'arrêtez jamais sans avis médical.</p>"
+          }
+        },
+        "item_EeCCgj": {
+          "type": "item",
+          "settings": {
+            "title": "Quand vais-je sentir une différence ?",
+            "content": "<p>Certaines clientes ressentent une <strong>sensation de légèreté</strong> dès les premiers jours.</p><p>Le reste vient <strong>progressivement</strong>, à votre rythme. La semaine 3 est souvent celle du doute : continuez. Faites le bilan à la fin de votre cure de 3 mois.</p>"
+          }
+        },
+        "item_XptJqp": {
+          "type": "item",
+          "settings": {
+            "title": "Quels sont les ingrédients ? Est-ce sans danger ?",
+            "content": "<p>4 plantes : <strong>gaillet gratteron, trèfle rouge, stillingie et frêne piquant</strong>. Composition complète sur l'étiquette.</p><p>Respectez la dose indiquée. Vous suivez un traitement (thyroïde, tension, hormones…) ? Demandez d'abord l'avis de votre médecin ou de votre pharmacien.</p>"
+          }
+        },
+        "item_BJhiWm": {
+          "type": "item",
+          "settings": {
+            "title": "Puis-je continuer à manger normalement ?",
+            "content": "<p>Oui.</p><p><strong>Aucun régime</strong> n'est nécessaire : vous gardez vos repas, même en famille. Sovéline s'ajoute à votre quotidien, en complément d'une alimentation variée.</p>"
+          }
+        },
+        "item_hyNFhm": {
+          "type": "item",
+          "settings": {
+            "title": "Est-ce que ça fait maigrir ?",
+            "content": "<p>Non. Sovéline <strong>n'est pas un produit minceur</strong> et ne fait pas perdre de kilos.</p><p>Il accompagne la sensation de gonflement : visage, chevilles, ventre lourd. Méfiez-vous des gouttes qui promettent des kilos en moins.</p>"
+          }
+        },
+        "item_pN7yV9": {
+          "type": "item",
+          "settings": {
+            "title": "Y a-t-il une garantie de remboursement ?",
+            "content": "<p>Oui.</p><p><strong>30 jours satisfaite ou remboursée.</strong> Essayez votre 1er flacon pendant 30 jours. Pas convaincue ? Un e-mail suffit : vous êtes remboursée, même flacon entamé.</p>"
+          }
+        },
+        "item_7UXRU3": {
+          "type": "item",
+          "settings": {
+            "title": "Je me suis déjà fait avoir avec des gouttes vues sur Facebook.",
+            "content": "<p>Vous avez raison de vérifier.</p><p>Chez Sovéline : une vraie société (LIZOM PRO LTD), une adresse qui répond (contact@soveline.fr), un colis suivi et <strong>aucun abonnement caché</strong>.</p>"
+          }
+        },
+        "item_NOJs4e": {
+          "type": "item",
+          "settings": {
+            "title": "Mes jambes ont gonflé d'un coup, ou d'un seul côté.",
+            "content": "<p>Consultez un médecin rapidement, avant tout complément.</p><p>Un gonflement soudain, douloureux ou d'un seul côté doit toujours être vérifié.</p>"
+          }
+        },
+        "item_xAli1h": {
+          "type": "item",
+          "settings": {
+            "title": "Comment se passe la livraison ?",
+            "content": "<p>Livraison <strong>offerte</strong>, avec un numéro de suivi envoyé par e-mail. Une question ? Écrivez-nous à contact@soveline.fr.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_p8WFLA",
+        "item_VA349H",
+        "item_gbyy6A",
+        "item_EeCCgj",
+        "item_XptJqp",
+        "item_BJhiWm",
+        "item_hyNFhm",
+        "item_pN7yV9",
+        "item_7UXRU3",
+        "item_NOJs4e",
+        "item_xAli1h"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "FAQ",
+        "content": "<p>Ce que vous vous demandez avant de commander.</p>",
+        "team_avatar_width": 160,
+        "support_hours": "Notre service client est à votre disposition du lundi au vendredi, de 8h00 à 20h30.",
+        "answer_time": "Délai moyen de réponse : 24h",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "",
+        "accordion_text_color": ""
+      }
+    },
+    "contact_kp7GeL": {
+      "type": "contact",
+      "name": "Contact form",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "Une question avant de commander ?",
+        "content": "<p>Écrivez-nous avec le formulaire ci-dessous. Nous vous répondons par e-mail.</p>",
+        "text_position": "start",
+        "contact_form_size": "large",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "contact_background": "",
+        "contact_text_color": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_overlay_6mHMnA",
+    "vu_dans_rjVDz9",
+    "slideshow_gUAwaA",
+    "video_testimonials_CCEKGi",
+    "reviews_carousel_rjcz8R",
+    "rich_text_kptxUX",
+    "slideshow_mCiCWM",
+    "featured_product_WGyjFc",
+    "images_with_text_scrolling_cdfMBi",
+    "us_vs_them_d7XtPC",
+    "17848327462a3405ac",
+    "faq_iHzKiM",
+    "contact_kp7GeL"
+  ]
+}

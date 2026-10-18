@@ -1,0 +1,91 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+GUIDE DES TAILLES — PAGE
+----------------------------------------------------------------------------------------------------------------------
+
+Version page du guide des tailles (/pages/guide-des-tailles). Le contenu vit dans snippets/size-guide.liquid,
+partagé avec la modale de la fiche produit — une seule source de vérité.
+{%- endcomment -%}
+
+{%- render 'section-spacing-collapsing' -%}
+
+<div {% render 'section-properties' %}>
+  <div class="section-stack" style="max-width: 720px; margin-inline: auto;">
+    {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, heading_color: section.settings.heading_color, content: section.settings.content, text_alignment: 'center' -%}
+
+    {%- render 'size-guide', context: 'page', reassurance_text: section.settings.reassurance_text -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Guide des tailles",
+  "class": "shopify-section--size-guide-page",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Largeur pleine page",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Guide des tailles"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Texte d'introduction",
+      "default": "<p>Trouvez votre taille en quelques secondes à partir de votre taille de soutien-gorge.</p>"
+    },
+    {
+      "type": "text",
+      "id": "reassurance_text",
+      "label": "Phrase de réassurance",
+      "info": "Reprenez la formulation exacte de votre politique de retour — ne promettez rien qu'elle ne couvre pas.",
+      "default": "Mauvaise taille ? L'échange est simple."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Couleur du titre"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs",
+      "info": "Le dégradé remplace la couleur unie lorsqu'il est défini."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Fond"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Dégradé de fond"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guide des tailles"
+    }
+  ]
+}
+{% endschema %}

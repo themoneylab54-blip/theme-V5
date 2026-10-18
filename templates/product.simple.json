@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "featured_product": {
+      "type": "featured-product",
+      "blocks": {
+        "rating_line_jbfGDP": {
+          "type": "rating_line",
+          "settings": {
+            "rating": 5,
+            "stars_color": "#2F4A3A",
+            "text": "4,8/5 — plus de 300 avis vérifiés",
+            "link": "",
+            "style": "squares",
+            "prefix": "Noté",
+            "score": "4,8",
+            "score_label": "EXCELLENT",
+            "count_text": "+300 avis",
+            "square_color": "#00B67A"
+          }
+        },
+        "title_qpeM4C": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "image_frjMpa": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/reassurance.webp",
+            "alignment": "start",
+            "max_width": 260
+          }
+        },
+        "icon_benefit_jcgr9Q": {
+          "type": "icon_benefit",
+          "settings": {
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/vignette.webp",
+            "text": "<p><strong>4 plantes</strong> : gaillet gratteron, trèfle rouge, stillingie, frêne piquant</p>",
+            "icon_background": "",
+            "icon_color": ""
+          }
+        },
+        "icon_benefit_hQkbxn": {
+          "type": "icon_benefit",
+          "settings": {
+            "icon": "picto-love",
+            "custom_icon": "shopify://shop_images/vignette-copie.webp",
+            "text": "<p><strong>Au goût miel</strong>, simple à glisser dans votre routine</p>",
+            "icon_background": "",
+            "icon_color": ""
+          }
+        },
+        "icon_benefit_Chrk6D": {
+          "type": "icon_benefit",
+          "settings": {
+            "icon": "picto-love",
+            "custom_icon": "shopify://shop_images/vignette-copie-2.webp",
+            "text": "<p>Pensé pour <strong>l'après-allaitement</strong>, même longtemps après</p>",
+            "icon_background": "",
+            "icon_color": ""
+          }
+        },
+        "size_guide_d7cEyL": {
+          "type": "size_guide",
+          "settings": {
+            "text": "Guide des tailles",
+            "use_integrated_guide": true,
+            "reassurance_text": "Mauvaise taille ? L'échange est simple.",
+            "page": "",
+            "image": "shopify://shop_images/Guide_taille2.webp",
+            "style": "fill",
+            "stretch": true,
+            "size": "base",
+            "border_color": "#2F4A3A",
+            "border_width": 3,
+            "border_radius": 42,
+            "background": "#FFFFFF",
+            "text_color": "#2F4A3A"
+          }
+        },
+        "stock_alert_3pYUjY": {
+          "type": "stock_alert",
+          "settings": {
+            "text": "Plus que 13 en stock!",
+            "color": "#c62828"
+          }
+        },
+        "buy_buttons_zB9pB6": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#2F7D57",
+            "atc_button_text_color": "#FFFFFF",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "image_jQQtQP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/trust_CF.webp",
+            "alignment": "center",
+            "max_width": 430
+          }
+        },
+        "collapsible_text_jGVFpi": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "Comment prendre les gouttes Sovéline ?",
+            "content": "<p><strong>Comment prendre les gouttes Sovéline ?</strong></p><p>Suivez le mode d'emploi et la dose indiqués sur l'étiquette du flacon. Ne dépassez pas la dose journalière recommandée.</p><p>Les gouttes ont un <strong>goût miel</strong>.</p><p><strong>Précautions.</strong> Si vous allaitez, si vous êtes enceinte ou si vous suivez un traitement, demandez l'avis de votre médecin, de votre sage-femme ou de votre pharmacien avant la première prise. Un complément alimentaire ne remplace pas une alimentation variée et équilibrée, ni un mode de vie sain. Tenir hors de portée des jeunes enfants.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_yKpzL4": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "Les 4 plantes, et ce que Sovéline ne fait pas",
+            "content": "<p><strong>Gaillet gratteron</strong> (<em>Galium aparine</em>)</p><p><strong>Trèfle rouge</strong> (<em>Trifolium pratense</em>)</p><p><strong>Stillingie</strong> (<em>Stillingia sylvatica</em>)</p><p><strong>Frêne piquant</strong> (<em>Zanthoxylum americanum</em>)</p><p>Quatre plantes traditionnelles, dans un flacon au goût miel. Composition complète et dosage : voir l'étiquette du flacon.</p><p>Sovéline accompagne votre routine quand votre ventre vous semble gonflé, surtout en fin de journée.</p><p><strong>Ce n'est pas un produit minceur.</strong> Il ne vise ni le gras, ni la peau distendue, ni l'écartement des abdominaux (diastasis). Pour cela, un kiné ou une sage-femme peut évaluer votre situation.</p><p>Sovéline ne remplace ni la rééducation, ni un avis médical. Il s'ajoute à votre routine.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_LzPRXy": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "Livraison, suivi & garantie 30 jours",
+            "content": "<p>Chaque commande part avec un <strong>numéro de suivi</strong>. Vous suivez votre colis à tout moment.</p><p>Une question sur votre commande ? Écrivez-nous avec le formulaire de contact en bas de page.</p><p>Essayez Sovéline pendant 30 jours. Si ce n'est pas pour vous, vous êtes remboursée.</p><p><strong>Aucun abonnement caché.</strong> Vous payez ce que vous commandez, une seule fois.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "rating_line_jbfGDP",
+        "title_qpeM4C",
+        "image_frjMpa",
+        "icon_benefit_jcgr9Q",
+        "icon_benefit_hQkbxn",
+        "icon_benefit_Chrk6D",
+        "size_guide_d7cEyL",
+        "stock_alert_3pYUjY",
+        "buy_buttons_zB9pB6",
+        "image_jQQtQP",
+        "collapsible_text_jGVFpi",
+        "collapsible_text_yKpzL4",
+        "collapsible_text_LzPRXy"
+      ],
+      "name": "Featured product",
+      "settings": {
+        "full_width": true,
+        "product": "debardeur-avea",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "mobile_media_size": "contained",
+        "mobile_carousel_control": "thumbnails",
+        "enable_video_autoplay": false,
+        "enable_video_looping": false,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    }
+  },
+  "order": [
+    "featured_product"
+  ]
+}

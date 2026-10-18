@@ -1,0 +1,835 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+REVIEWS CAROUSEL
+----------------------------------------------------------------------------------------------------------------------
+
+Carrousel d'avis clients : note moyenne globale + cards avec grande photo, étoiles style Trustpilot, nom et citation.
+{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  {%- render 'section-spacing-collapsing' -%}
+
+  {%- liquid
+    # La mention s'affiche des que son texte est renseigne : videz le champ pour la
+    # retirer partout, ou decochez un avis pour la masquer sur celui-la seulement.
+    # Aucun interrupteur de section, qu'une sauvegarde de l'editeur pourrait figer.
+    assign verified_label = section.settings.verified_text | default: 'Avis vérifié'
+
+    assign verified_color = '#0551A0'
+    if section.settings.verified_color != blank and section.settings.verified_color.alpha != 0
+      assign verified_color = section.settings.verified_color
+    endif
+  -%}
+
+  <style>
+    #shopify-section-{{ section.id }} {
+      --testimonial-list-items-per-row: 1;
+      --testimonial-list-carousel-item-width: {{ section.settings.card_width_mobile | default: 62 }}vw;
+      --testimonial-list-grid: auto / auto-flow var(--testimonial-list-carousel-item-width);
+    }
+
+    #shopify-section-{{ section.id }} .rating__star--full {
+      --star-color: {{ section.settings.stars_color.rgb }};
+    }
+
+    #shopify-section-{{ section.id }} .review-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      white-space: nowrap;
+    }
+
+    #shopify-section-{{ section.id }} .review-verified svg {
+      flex-shrink: 0;
+      width: 1.0625rem;
+      height: 1.0625rem;
+      fill: {{ verified_color }};
+    }
+
+    /* Toutes les cartes à la hauteur de la plus grande : les avis longs s'affichent en entier. */
+    #shopify-section-{{ section.id }} .testimonial-list {
+      align-items: stretch;
+    }
+
+    #shopify-section-{{ section.id }} .testimonial {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .testimonial__photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: {{ section.settings.image_ratio | default: '1 / 1' }};
+      object-fit: cover;
+    }
+
+    #shopify-section-{{ section.id }} .testimonial__body {
+      padding: var(--spacing-4) var(--spacing-5) var(--spacing-5);
+    }
+
+    @media screen and (max-width: 699px) {
+      {%- if section.settings.center_cards_mobile %}
+      #shopify-section-{{ section.id }} .testimonial-list {
+        padding-inline: calc((100vw - var(--testimonial-list-carousel-item-width)) / 2);
+        scroll-padding-inline: calc((100vw - var(--testimonial-list-carousel-item-width)) / 2);
+      }
+
+      #shopify-section-{{ section.id }} .testimonial {
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+      }
+      {%- endif %}
+
+      #shopify-section-{{ section.id }} .testimonial__body {
+        padding: var(--spacing-3) var(--spacing-4) var(--spacing-4);
+      }
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} {
+        --testimonial-list-carousel-item-width: 52vw;
+      }
+    }
+
+    @media screen and (min-width: 1000px) {
+      #shopify-section-{{ section.id }} {
+        --testimonial-list-carousel-item-width: 36vw;
+      }
+    }
+
+    @media screen and (min-width: 1150px) {
+      #shopify-section-{{ section.id }} {
+        --testimonial-list-carousel-item-width: calc(100% / 3 - (var(--grid-gutter) / 3 * 2));
+      }
+    }
+
+    /* Cartes d'avis façon « avant / après » : photo double, badge, mention vérifiée, citation, pastilles. */
+    #shopify-section-{{ section.id }} .sov-review {
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(47, 74, 58, .10);
+      border: 0;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__media {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      aspect-ratio: {{ section.settings.image_ratio | default: '1 / 1' }};
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__media--split {
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgb(var(--background));
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__media .testimonial__photo {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      object-fit: cover;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__badge {
+      position: absolute;
+      top: .7rem;
+      left: .7rem;
+      padding: .32rem .62rem;
+      border-radius: 8px;
+      background: {{ section.settings.badge_background | default: '#2F4A3A' }};
+      color: {{ section.settings.badge_text_color | default: '#FFFFFF' }};
+      border: 1px solid rgb(255 255 255 / .35);
+      box-shadow: 0 4px 12px rgb(0 0 0 / .18);
+      font-size: .6875rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__badge--after {
+      left: calc(50% + .7rem);
+      background: {{ section.settings.badge_after_background | default: '#2F7D57' }};
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .5rem;
+      padding: 1.1rem 1.15rem 1.3rem;
+    }
+
+    #shopify-section-{{ section.id }} .review-verified {
+      font-size: .8125rem;
+      font-weight: 700;
+      color: {{ verified_color }};
+    }
+
+    #shopify-section-{{ section.id }} .review-verified svg {
+      fill: none;
+      stroke: {{ verified_color }};
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__name {
+      font-weight: 700;
+      font-size: 1.0625rem;
+      line-height: 1.25;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__quote {
+      font-style: italic;
+      font-size: .9375rem;
+      line-height: 1.55;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__quote p {
+      margin: 0;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .35rem;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .34rem .66rem;
+      border-radius: 8px;
+      background: {{ section.settings.tag_background | default: '#F3E6D8' }};
+      color: {{ section.settings.tag_text_color | default: '#2F4A3A' }};
+      border: 1px solid rgb(47 74 58 / .12);
+      font-size: .75rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: .01em;
+    }
+
+    #shopify-section-{{ section.id }} .sov-review__tag svg {
+      width: .8rem;
+      height: .8rem;
+      flex-shrink: 0;
+      fill: {{ section.settings.badge_after_background | default: '#2F7D57' }};
+    }
+
+    /* Note en-tête « carrés étoilés » */
+    #shopify-section-{{ section.id }} .sov-hr { display: grid; gap: .45rem; }
+    #shopify-section-{{ section.id }} .sov-hr__top { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem .75rem; }
+    #shopify-section-{{ section.id }} .sov-hr__label { font-size: 1.25rem; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; line-height: 1; }
+    #shopify-section-{{ section.id }} .sov-hr__squares { display: inline-flex; gap: 3px; }
+    #shopify-section-{{ section.id }} .sov-hr__sq { display: inline-grid; place-items: center; width: 2rem; height: 2rem; background: linear-gradient(90deg, var(--sq) var(--fill), #DCDCE6 var(--fill)); }
+    #shopify-section-{{ section.id }} .sov-hr__sq svg { width: 78%; height: 78%; fill: #FFFFFF; }
+    #shopify-section-{{ section.id }} .sov-hr__line { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .3rem; font-size: .9375rem; }
+    #shopify-section-{{ section.id }} .sov-hr__mark { width: 1rem; height: 1rem; fill: var(--sq); }
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} .sov-hr__label { font-size: 1.05rem; }
+      #shopify-section-{{ section.id }} .sov-hr__sq { width: 1.6rem; height: 1.6rem; }
+      #shopify-section-{{ section.id }} .sov-hr__line { font-size: .875rem; }
+    }
+  </style>
+
+  {%- liquid
+    assign total_rating = 0
+
+    for block in section.blocks
+      assign total_rating = total_rating | plus: block.settings.rating
+    endfor
+
+    assign average_rating = total_rating | times: 1.0 | divided_by: section.blocks.size | round: 1
+    assign average_rating_stars = average_rating | round
+  -%}
+
+  <div {% render 'section-properties' %}>
+    <div class="section-stack">
+      <div class="v-stack gap-4 sm:gap-5">
+        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content, link_text: section.settings.link_text, link_url: section.settings.link_url -%}
+
+        {%- if section.settings.show_average != false -%}
+          {%- if section.settings.rating_style == 'squares' -%}
+            {%- liquid
+              assign hr_score_text = section.settings.rating_score | default: '4,8'
+              assign hr_score = hr_score_text | replace: ',', '.' | plus: 0
+            -%}
+            <div class="sov-hr" style="--sq: {{ section.settings.rating_square_color | default: '#00B67A' }};">
+              <div class="sov-hr__top">
+                {%- if section.settings.rating_label != blank -%}<span class="sov-hr__label">{{ section.settings.rating_label | escape }}</span>{%- endif -%}
+                <span class="sov-hr__squares" role="img" aria-label="{{ 'general.rating.info' | t: rating_value: hr_score_text, rating_max: 5 }}">
+                  {%- for i in (1..5) -%}
+                    {%- assign hr_fill = hr_score | minus: forloop.index0 -%}
+                    {%- if hr_fill >= 1 -%}{%- assign hr_pct = 100 -%}{%- elsif hr_fill <= 0 -%}{%- assign hr_pct = 0 -%}{%- else -%}{%- assign hr_pct = hr_fill | times: 100 | round -%}{%- endif -%}
+                    <span class="sov-hr__sq" style="--fill: {{ hr_pct }}%;"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.85 6.5 7.05.62-5.35 4.65 1.6 6.93L12 17.62 5.85 21.3l1.6-6.93L2.1 9.72l7.05-.62z"/></svg></span>
+                  {%- endfor -%}
+                </span>
+              </div>
+              <p class="sov-hr__line">
+                <span>{{ section.settings.rating_prefix | default: 'Noté' | escape }} <strong>{{ hr_score_text | escape }}/5</strong></span>
+                {%- if section.settings.rating_count != blank -%}<span aria-hidden="true">·</span><strong>{{ section.settings.rating_count | escape }}</strong>{%- endif -%}
+                <svg class="sov-hr__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.85 6.5 7.05.62-5.35 4.65 1.6 6.93L12 17.62 5.85 21.3l1.6-6.93L2.1 9.72l7.05-.62z"/></svg>
+              </p>
+            </div>
+          {%- else -%}
+        <div class="h-stack gap-3 sm:gap-4">
+          <span class="h1">{{ average_rating }}</span>
+
+          <div class="rating">
+            <div class="rating__stars" role="img" aria-label="{{ 'general.rating.info' | t: rating_value: average_rating, rating_max: 5 }}">
+              {%- for i in (1..5) -%}
+                {%- if i <= average_rating_stars -%}
+                  {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--full' -%}
+                {%- else -%}
+                  {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--empty' -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+
+        <p class="text-subdued text-sm">{{ 'general.rating.info' | t: rating_value: average_rating, rating_max: 5 }} &middot; {{ section.blocks.size }} avis</p>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      <div class="floating-controls-container">
+        {%- assign scroll_area_id = 'scroll-area-' | append: section.id -%}
+        {%- assign loop_enabled = false -%}
+        {%- if section.blocks.size >= 2 -%}
+          {%- assign loop_enabled = true -%}
+        {%- endif -%}
+
+        <loop-carousel id="{{ scroll_area_id }}" {% if loop_enabled %}loop{% endif %} per-set="{{ section.blocks.size }}" class="testimonial-list scroll-area bleed is-scrollable">
+          {%- capture real_cards -%}{%- endcapture -%}
+          {%- capture clone_cards -%}{%- endcapture -%}
+
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign loading_strategy = nil
+
+              if section.index > 3 or forloop.index > 3
+                assign loading_strategy = 'lazy'
+              endif
+            -%}
+
+            {%- capture card_inner -%}
+              {%- liquid
+                assign img_before = block.settings.image
+                assign img_after = block.settings.image_after
+                assign has_split = false
+                if img_before != blank and img_after != blank
+                  assign has_split = true
+                endif
+              -%}
+
+              {%- if img_before != blank or img_after != blank -%}
+                <div class="sov-review__media{% if has_split %} sov-review__media--split{% endif %}">
+                  {%- if img_before != blank -%}
+                    {{- img_before | image_url: width: img_before.width | image_tag: loading: loading_strategy, sizes: '(max-width: 699px) 40vw, 20vw', widths: '200,300,400,500,600,800', class: 'testimonial__photo', alt: block.settings.author -}}
+                  {%- endif -%}
+                  {%- if img_after != blank -%}
+                    {{- img_after | image_url: width: img_after.width | image_tag: loading: loading_strategy, sizes: '(max-width: 699px) 40vw, 20vw', widths: '200,300,400,500,600,800', class: 'testimonial__photo', alt: block.settings.author -}}
+                  {%- endif -%}
+                  {%- if block.settings.media_badge != blank -%}
+                    {%- assign badge_parts = block.settings.media_badge | replace: '·', '|' | replace: '/', '|' | split: '|' -%}
+                    {%- if badge_parts.size == 2 -%}
+                      <span class="sov-review__badge sov-review__badge--before">{{ badge_parts[0] | strip | escape }}</span>
+                      <span class="sov-review__badge sov-review__badge--after">{{ badge_parts[1] | strip | escape }}</span>
+                    {%- else -%}
+                      <span class="sov-review__badge">{{ block.settings.media_badge | escape }}</span>
+                    {%- endif -%}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              <div class="testimonial__body sov-review__body">
+                {%- if verified_label != blank and block.settings.verified != false -%}
+                  <span class="review-verified">
+                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke-width="1.6"/><path d="m4.8 8.2 2.1 2.1 4.3-4.4" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {{- verified_label | escape -}}
+                  </span>
+                {%- endif -%}
+
+                <div class="rating">
+                  <div class="rating__stars" role="img" aria-label="{{ 'general.rating.info' | t: rating_value: block.settings.rating, rating_max: 5 }}">
+                    {%- for i in (1..5) -%}
+                      {%- if i <= block.settings.rating -%}
+                        {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--full' -%}
+                      {%- else -%}
+                        {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--empty' -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+
+                {%- if block.settings.author != blank -%}
+                  <p class="sov-review__name">{{ block.settings.author | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.title != blank -%}
+                  <p class="bold">{{ block.settings.title | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.content != blank -%}
+                  <div class="testimonial__content sov-review__quote">
+                    {{- block.settings.content -}}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.tags != blank -%}
+                  <div class="sov-review__tags">
+                    {%- assign review_tags = block.settings.tags | split: ',' -%}
+                    {%- for tag in review_tags -%}
+                      {%- assign tag_label = tag | strip -%}
+                      {%- if tag_label != blank -%}<span class="sov-review__tag"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.5 2.5C7 2.5 3 5.6 3 10.2c0 1 .3 2 .8 2.8C5 9.6 7.6 7.5 10.6 6.4 8 8 6.1 10.3 5 13.5c.7.4 1.6.6 2.6.6 4.3 0 6.2-4 5.9-11.6Z"/></svg>{{ tag_label | escape }}</span>{%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endcapture -%}
+
+            {%- capture real_cards -%}{{ real_cards }}<div {% render 'surface', class: 'testimonial sov-review', background: section.settings.review_card_background, text_color: section.settings.review_card_text_color, background_fallback: 'bg-secondary' %} {{ block.shopify_attributes }}>{{ card_inner }}</div>{%- endcapture -%}
+
+            {%- if loop_enabled -%}
+              {%- capture clone_cards -%}{{ clone_cards }}<div {% render 'surface', class: 'testimonial sov-review', background: section.settings.review_card_background, text_color: section.settings.review_card_text_color, background_fallback: 'bg-secondary' %} aria-hidden="true" inert>{{ card_inner }}</div>{%- endcapture -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if loop_enabled -%}{{ clone_cards }}{%- endif -%}
+          {{ real_cards }}
+          {%- if loop_enabled -%}{{ clone_cards }}{%- endif -%}
+        </loop-carousel>
+
+        <button is="prev-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}" {% unless loop_enabled %}disabled{% endunless %}>
+          <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+          <span class="animated-arrow animated-arrow--reverse"></span>
+        </button>
+
+        <button is="next-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}">
+          <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+          <span class="animated-arrow"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (!window.customElements.get('loop-carousel')) {
+      window.customElements.define('loop-carousel', class extends HTMLElement {
+        connectedCallback() {
+          this._settleTimer = null;
+
+          if (this.hasAttribute('loop')) {
+            requestAnimationFrame(() => this._recenter());
+
+            this.addEventListener('scroll', () => {
+              clearTimeout(this._settleTimer);
+              this._settleTimer = setTimeout(() => this._recenter(), 120);
+            }, { passive: true });
+
+            window.addEventListener('resize', () => this._recenter());
+          }
+
+          this.addEventListener('control:prev', () => this._step(-1));
+          this.addEventListener('control:next', () => this._step(1));
+        }
+
+        get _perSet() {
+          return parseInt(this.getAttribute('per-set')) || 1;
+        }
+
+        get _setWidth() {
+          const items = this.children;
+          return items.length > this._perSet ? items[this._perSet].offsetLeft - items[0].offsetLeft : 0;
+        }
+
+        get _itemOffset() {
+          const items = this.children;
+          return items.length < 2 ? this.clientWidth : items[1].offsetLeft - items[0].offsetLeft;
+        }
+
+        _recenter() {
+          const width = this._setWidth;
+
+          if (!width) {
+            return;
+          }
+
+          if (this.scrollLeft < width * 0.5) {
+            this.scrollLeft += width;
+          } else if (this.scrollLeft >= width * 1.5) {
+            this.scrollLeft -= width;
+          }
+        }
+
+        _step(direction) {
+          this.scrollBy({ left: direction * this._itemOffset, behavior: 'smooth' });
+        }
+      });
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Carrousel d'avis clients",
+  "class": "shopify-section--reviews-carousel",
+  "tag": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Largeur pleine page",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Ce que nos clients en pensent"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Texte"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "URL du lien"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Texte du lien",
+      "default": "Voir tous les avis"
+    },
+    {
+      "type": "header",
+      "content": "Format des cartes"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Format de la photo",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Carré (recommandé)"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Portrait 4:5"
+        },
+        {
+          "value": "3 / 2",
+          "label": "Paysage 3:2"
+        }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "select",
+      "id": "card_width_mobile",
+      "label": "Largeur des cartes (mobile)",
+      "options": [
+        {
+          "value": "78",
+          "label": "1 carte (pleine largeur)"
+        },
+        {
+          "value": "62",
+          "label": "1 carte + aperçu de la suivante (recommandé)"
+        },
+        {
+          "value": "46",
+          "label": "2 cartes"
+        }
+      ],
+      "default": "62"
+    },
+    {
+      "type": "checkbox",
+      "id": "center_cards_mobile",
+      "label": "Centrer les cartes (mobile)",
+      "info": "La carte active s'affiche au centre de l'écran, avec un aperçu de ses voisines de chaque côté.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_average",
+      "label": "Afficher la note",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "rating_style",
+      "label": "Style de la note",
+      "options": [
+        {
+          "value": "squares",
+          "label": "Carrés étoilés (style avis vérifiés)"
+        },
+        {
+          "value": "classic",
+          "label": "Classique (note + étoiles)"
+        }
+      ],
+      "default": "classic"
+    },
+    {
+      "type": "text",
+      "id": "rating_label",
+      "label": "Mention",
+      "default": "Excellent"
+    },
+    {
+      "type": "text",
+      "id": "rating_score",
+      "label": "Note",
+      "info": "Ex. : 4,8. Remplit les carrés au dixième près.",
+      "default": "4,8"
+    },
+    {
+      "type": "text",
+      "id": "rating_count",
+      "label": "Nombre d'avis",
+      "default": "+1 457 avis"
+    },
+    {
+      "type": "text",
+      "id": "rating_prefix",
+      "label": "Texte avant la note",
+      "default": "Noté"
+    },
+    {
+      "type": "color",
+      "id": "rating_square_color",
+      "label": "Couleur des carrés",
+      "default": "#00B67A"
+    },
+    {
+      "type": "header",
+      "content": "Badge photo et pastilles"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Fond du badge photo (« Avant »)",
+      "default": "#0551A0"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Texte du badge photo",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "badge_after_background",
+      "label": "Fond du badge « Après » et icône des pastilles",
+      "default": "#2F7D57"
+    },
+    {
+      "type": "color",
+      "id": "tag_background",
+      "label": "Fond des pastilles",
+      "default": "#FDE4EC"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Texte des pastilles",
+      "default": "#0551A0"
+    },
+    {
+      "type": "header",
+      "content": "Avis vérifiés"
+    },
+    {
+      "type": "text",
+      "id": "verified_text",
+      "label": "Texte de la mention",
+      "info": "Videz le champ pour retirer la mention de tous les avis. À n'afficher que si vos avis sont réellement vérifiés : la mention est encadrée par la loi.",
+      "default": "Avis vérifié"
+    },
+    {
+      "type": "color",
+      "id": "verified_color",
+      "label": "Couleur du badge",
+      "default": "#0551A0"
+    },
+    {
+      "type": "header",
+      "content": "Étoiles"
+    },
+    {
+      "type": "color",
+      "id": "stars_color",
+      "label": "Couleur des étoiles",
+      "default": "#0551A0"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs",
+      "info": "Le dégradé remplace la couleur unie si les deux sont définis."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Arrière-plan"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Dégradé d'arrière-plan"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Couleur du titre"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "Dégradé du titre"
+    },
+    {
+      "type": "color",
+      "id": "review_card_background",
+      "label": "Arrière-plan des cartes d'avis"
+    },
+    {
+      "type": "color",
+      "id": "review_card_text_color",
+      "label": "Texte des cartes d'avis"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Avis",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo (avant, ou photo unique)",
+          "info": "Format portrait recommandé."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_after",
+          "label": "Photo après (facultatif)",
+          "info": "Avec deux photos, la carte les affiche côte à côte."
+        },
+        {
+          "type": "text",
+          "id": "media_badge",
+          "label": "Badge sur la photo",
+          "info": "Ex. : Avant · Après. Laissez vide pour ne rien afficher."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Nom du client"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre court de l'avis",
+          "default": "Avis client"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Avis vérifié",
+          "info": "Décochez pour masquer la mention sur cet avis précis.",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Note",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Texte de l'avis",
+          "default": "<p>Partagez ici ce que vos clients pensent de vos produits, de votre service client ou de vos délais de livraison.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tags",
+          "label": "Pastilles",
+          "info": "Séparées par des virgules. Ex. : Post-partum, 6 semaines"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carrousel d'avis clients",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "author": "Camille D.",
+            "title": "Livraison rapide et produit conforme",
+            "rating": 5,
+            "content": "<p>J'ai reçu ma commande en 3 jours et la qualité est vraiment au rendez-vous. Je recommande sans hésiter !</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Thomas L.",
+            "title": "Très satisfait",
+            "rating": 5,
+            "content": "<p>Deuxième commande sur ce site et toujours aussi convaincu. Le service client est réactif et à l'écoute.</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Sophie M.",
+            "title": "Bon rapport qualité-prix",
+            "rating": 4,
+            "content": "<p>Produit conforme à la description, emballage soigné. Je referai appel à eux sans problème.</p>"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Julien P.",
+            "title": "Exactement ce qu'il me fallait",
+            "rating": 5,
+            "content": "<p>Simple, efficace, et le résultat dépasse mes attentes. Merci à toute l'équipe !</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

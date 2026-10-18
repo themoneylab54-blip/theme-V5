@@ -1,0 +1,70 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    --page-max-width: {{ section.settings.content_width }};
+  }
+</style>
+
+{%- comment -%}
+  La page du guide des tailles est reconnue par son adresse (handle) et affiche le composant
+  interactif à la place de son contenu d'origine — aucune assignation de template nécessaire
+  dans l'admin. Pour revenir au comportement standard, assignez le template "guide-des-tailles"
+  à une autre page et retirez ce branchement.
+{%- endcomment -%}
+{%- assign is_size_guide_page = false -%}
+{%- if page.handle contains 'guide-des-tailles' or page.handle contains 'guide-taille' or page.handle contains 'guide-des-taille' -%}
+  {%- assign is_size_guide_page = true -%}
+{%- endif -%}
+
+<div class="container">
+  <div class="page-spacer">
+    <div class="page">
+      <h1 class="h1 text-center">{{ page.title }}</h1>
+
+      {%- if is_size_guide_page -%}
+        {%- render 'size-guide', context: 'page' -%}
+      {%- elsif page.content != empty -%}
+        <div class="prose">
+          {{ page.content }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page",
+  "class": "shopify-section--main-page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "Content width",
+      "options": [
+        {
+          "value": "60ch",
+          "label": "Small"
+        },
+        {
+          "value": "80ch",
+          "label": "Medium"
+        },
+        {
+          "value": "100ch",
+          "label": "Large"
+        },
+        {
+          "value": "120ch",
+          "label": "X-Large"
+        },
+        {
+          "value": "100%",
+          "label": "Full width"
+        }
+      ],
+      "default": "80ch"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,115 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message_r3Aeeq": {
+          "type": "message",
+          "settings": {
+            "text": "SATISFAIT OU REMBOURSÉ PENDANT 30 JOURS",
+            "url": ""
+          }
+        },
+        "message_RyXpHb": {
+          "type": "message",
+          "settings": {
+            "text": "STOCKS BIENTÔT ÉPUISÉS",
+            "url": ""
+          }
+        },
+        "message": {
+          "type": "message",
+          "settings": {
+            "text": "PROMO D'AUTOMNE: JUSQU'À 50% DE RÉDUCTION ",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "message_r3Aeeq",
+        "message_RyXpHb",
+        "message"
+      ],
+      "settings": {
+        "enable_sticky": true,
+        "autoplay": false,
+        "cycle_speed": 6,
+        "text_size": "text-xs",
+        "navigation_mode": "scrolling",
+        "scrolling_speed": 10,
+        "background": "#2f4a3a",
+        "background_gradient": "",
+        "text_color": "#f7f3ec"
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_kEMTDB": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "",
+            "layout": "horizontal",
+            "submenu_style": "bold_heading",
+            "image_heading_1": "",
+            "image_link_1": "",
+            "image_text_color_1": "#ffffff",
+            "image_heading_2": "",
+            "image_link_2": "",
+            "image_text_color_2": "#ffffff",
+            "image_heading_3": "",
+            "image_link_3": "",
+            "image_text_color_3": "#ffffff",
+            "product": "",
+            "product_card_background": "",
+            "product_card_text_color": "",
+            "promo_content_layout": "grid",
+            "stretch_promo": false,
+            "drawer_link_image": "hide"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_kEMTDB"
+      ],
+      "settings": {
+        "show_search": false,
+        "enable_sticky": true,
+        "hide_on_scroll": false,
+        "logo": "shopify://shop_images/logo.webp",
+        "logo_max_width": 120,
+        "logo_mobile_max_width": 125,
+        "menu": "main-menu",
+        "sidebar_menu": "",
+        "secondary_menu": "",
+        "menu_open_trigger": "click",
+        "opening_from": "left",
+        "layout": "logo_center_navigation_inline",
+        "show_social_media": false,
+        "show_locale_selector": false,
+        "show_country_selector": false,
+        "show_country_flag": false,
+        "show_country_name": false,
+        "transparent_header_text_color": "#ffffff",
+        "reduce_padding": false,
+        "background_opacity": 100,
+        "background_blur_radius": 0
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
