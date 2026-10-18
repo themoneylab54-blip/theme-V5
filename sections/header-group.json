@@ -17,21 +17,21 @@
         "message_r3Aeeq": {
           "type": "message",
           "settings": {
-            "text": "SATISFAIT OU REMBOURSÉ PENDANT 30 JOURS",
+            "text": "30-DAY MONEY-BACK GUARANTEE",
             "url": ""
           }
         },
         "message_RyXpHb": {
           "type": "message",
           "settings": {
-            "text": "STOCKS BIENTÔT ÉPUISÉS",
+            "text": "STOCK IS RUNNING LOW",
             "url": ""
           }
         },
         "message": {
           "type": "message",
           "settings": {
-            "text": "PROMO D'AUTOMNE: JUSQU'À 50% DE RÉDUCTION ",
+            "text": "FALL SALE: UP TO 50% OFF",
             "url": ""
           }
         }
@@ -87,7 +87,6 @@
         "show_search": false,
         "enable_sticky": true,
         "hide_on_scroll": false,
-        "logo": "shopify://shop_images/logo.webp",
         "logo_max_width": 120,
         "logo_mobile_max_width": 125,
         "menu": "main-menu",
