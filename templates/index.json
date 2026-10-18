@@ -482,7 +482,7 @@
         "stock_alert_3pYUjY": {
           "type": "stock_alert",
           "settings": {
-            "text": "Plus que 6 en Stock !",
+            "text": "Only 6 Left In Stock: Ships in 24/48 Hours",
             "color": "#c62828"
           }
         },
