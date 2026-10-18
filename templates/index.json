@@ -763,84 +763,116 @@
     "faq_iHzKiM": {
       "type": "faq",
       "blocks": {
-        "item_p8WFLA": {
+        "item_7MLK8k": {
           "type": "item",
           "settings": {
-            "title": "Est-ce vraiment efficace contre les poches et le visage gonflé ?",
-            "content": "<p>Les poches et le visage gonflé du matin sont souvent liés à <strong>l'eau que le corps retient</strong>.</p><p>Les 4 plantes de Sovéline accompagnent le drainage naturel du corps. Beaucoup de clientes décrivent un visage qui paraît <strong>moins gonflé et plus net</strong>. Résultats variables selon chaque personne.</p>"
+            "title": "What is ALTAÏ Second Wind?",
+            "content": "<p>ALTAÏ Second Wind is a liquid dietary supplement for adult men. It combines botanical extracts and minerals in a dropper format—a simple option if you prefer not to swallow capsules.</p>"
           }
         },
-        "item_FpWc4e": {
+        "item_2jJr6V": {
           "type": "item",
           "settings": {
-            "title": "À quelle fréquence dois-je le prendre ?",
-            "content": "<p>Une prise <strong>chaque matin</strong> : 2 pipettes (2 ml), directement ou dans un verre d'eau.</p><p>10 secondes, et c'est fait. Aucune contrainte dans votre journée.</p>"
+            "title": "How soon will I notice a difference?",
+            "content": "<p>There’s no guaranteed timeline or result. Individual responses can vary, and some people may not notice a difference. Follow the label directions, and remember that your purchase comes with a 90-day money-back guarantee, subject to its terms.</p>"
           }
         },
-        "item_VA349H": {
+        "item_CqTLQO": {
           "type": "item",
           "settings": {
-            "title": "Est-ce un diurétique ? Vais-je devoir courir aux toilettes ?",
-            "content": "<p>Non.</p><p>Sovéline n'est <strong>pas un diurétique</strong> : c'est un complément alimentaire à base de 4 plantes. Son action est <strong>progressive et douce</strong>. Si un diurétique vous a été prescrit, ne l'arrêtez jamais sans avis médical.</p>"
+            "title": "Why drops instead of capsules?",
+            "content": "<p>The main difference is how you take them. ALTAÏ comes as drops taken under the tongue, so there are no capsules to swallow. A liquid format does not, by itself, guarantee faster or better results.</p>"
           }
         },
-        "item_gbyy6A": {
+        "item_gjEzw9": {
           "type": "item",
           "settings": {
-            "title": "Quand vais-je sentir une différence ?",
-            "content": "<p>Certaines clientes ressentent une <strong>sensation de légèreté</strong> dès les premiers jours.</p><p>Le reste vient <strong>progressivement</strong>, à votre rythme. La semaine 3 est souvent celle du doute : continuez. Faites le bilan à la fin de votre cure de 3 mois.</p>"
+            "title": "How do I take ALTAÏ?",
+            "content": "<p>ALTAÏ is taken under the tongue using the included dropper. Follow the directions on your bottle for the serving size and frequency. Do not exceed the recommended amount.</p>"
           }
         },
-        "item_EeCCgj": {
+        "item_2LooXH": {
           "type": "item",
           "settings": {
-            "title": "Quels sont les ingrédients ? Est-ce sans danger ?",
-            "content": "<p>4 plantes : <strong>gaillet gratteron, trèfle rouge, stillingie et frêne piquant</strong>. Composition complète sur l'étiquette.</p>"
+            "title": "How long does one bottle last?",
+            "content": "<p>Each 60 mL bottle contains 30 servings of 2 mL. At one serving per day, that would be a 30-day supply. Always follow the usage directions on your bottle.</p>"
           }
         },
-        "item_XptJqp": {
+        "item_jbiX4v": {
           "type": "item",
           "settings": {
-            "title": "Puis-je continuer à manger normalement ?",
-            "content": "<p>Oui.</p><p><strong>Aucun régime</strong> n'est nécessaire : vous gardez vos repas, même en famille. Sovéline s'ajoute à votre quotidien, en complément d'une alimentation variée.</p>"
+            "title": "What’s inside the formula?",
+            "content": "<p>The formula includes Tongkat Ali, Shilajit, Fadogia agrestis, Ashwagandha, magnesium, zinc, Ajuga turkestanica, boron citrate, and a botanical blend.</p><p>The liquid base contains organic glycerin, purified water, citric acid, and natural flavors. See the Supplement Facts section for the amounts and full ingredient list.</p>"
           }
         },
-        "item_hyNFhm": {
+        "item_j81ys0": {
           "type": "item",
           "settings": {
-            "title": "Y a-t-il une garantie de remboursement ?",
-            "content": "<p>Oui.</p><p><strong>30 jours satisfaite ou remboursée.</strong> Essayez votre 1er flacon pendant 30 jours. Pas convaincue ? Un e-mail suffit : vous êtes remboursée, même flacon entamé.</p>"
+            "title": "Is ALTAÏ testosterone or a prescription medication?",
+            "content": "<p>No. ALTAÏ is a dietary supplement, and its formula does not contain testosterone. It is not a prescription medication or a replacement for treatment recommended by your healthcare professional.</p>"
           }
         },
-        "item_8Py5EB": {
+        "item_vd4GOw": {
           "type": "item",
           "settings": {
-            "title": "Comment se passe la livraison ?",
-            "content": "<p>Livraison <strong>offerte</strong>, avec un numéro de suivi envoyé par e-mail. Une question ? Écrivez-nous à contact@soveline.fr.</p>"
+            "title": "Can I take it with medication or other supplements?",
+            "content": "<p>Check with your doctor or pharmacist before use, and show them the full ingredient list. Supplements can interact with medicines and with each other. Do not stop or change a prescribed treatment to take ALTAÏ. <a href=\"https://www.fda.gov/consumers/consumer-updates/fda-101-dietary-supplements\" target=\"_blank\" title=\"FDA guidance\">FDA guidance</a>.</p>"
+          }
+        },
+        "item_6hBOEk": {
+          "type": "item",
+          "settings": {
+            "title": "Are there any side effects?",
+            "content": "<p>Side effects are possible, and “natural” does not mean risk-free. Ashwagandha can cause stomach upset or drowsiness, and rare cases of liver injury have been reported with ashwagandha supplements. <a href=\"https://www.nccih.nih.gov/health/ashwagandha\" target=\"_blank\" title=\"NIH information\">NIH information</a>.</p><p>Read the warnings on your bottle. If you experience an unwanted reaction, stop use and seek medical advice.</p>"
+          }
+        },
+        "item_rtSfjL": {
+          "type": "item",
+          "settings": {
+            "title": "What if ALTAÏ isn’t right for me?",
+            "content": "<p>ALTAÏ comes with a 90-day money-back guarantee. Please review the guarantee terms for eligibility, any return requirements, and how to request a refund.</p>"
+          }
+        },
+        "item_BDUmW3": {
+          "type": "item",
+          "settings": {
+            "title": "Will my order arrive discreetly?",
+            "content": "<p>Yes. Your order ships in plain, discreet packaging, so the outer parcel doesn’t advertise what’s inside.</p>"
+          }
+        },
+        "item_KcvExt": {
+          "type": "item",
+          "settings": {
+            "title": "Can I buy ALTAÏ for my partner?",
+            "content": "<p>Yes. Reading the ingredients and directions together is a good place to start. Choosing whether to use it should be his decision.</p>"
           }
         }
       },
       "block_order": [
-        "item_p8WFLA",
-        "item_FpWc4e",
-        "item_VA349H",
-        "item_gbyy6A",
-        "item_EeCCgj",
-        "item_XptJqp",
-        "item_hyNFhm",
-        "item_8Py5EB"
+        "item_7MLK8k",
+        "item_2jJr6V",
+        "item_CqTLQO",
+        "item_gjEzw9",
+        "item_2LooXH",
+        "item_jbiX4v",
+        "item_j81ys0",
+        "item_vd4GOw",
+        "item_6hBOEk",
+        "item_rtSfjL",
+        "item_BDUmW3",
+        "item_KcvExt"
       ],
       "name": "FAQ",
       "settings": {
         "full_width": true,
         "subheading": "",
-        "title": "FAQ",
-        "content": "",
+        "title": "YOUR QUESTIONS. STRAIGHT ANSWERS.",
+        "content": "<p>Get to know the formula, the routine, and what to expect.</p>",
         "team_avatar_width": 160,
-        "support_hours": "Notre service client est à votre disposition du lundi au vendredi, de 8h00 à 20h30.",
-        "answer_time": "Délai moyen de réponse : 24h",
-        "button_text": "",
-        "button_url": "",
+        "support_hours": "Still have a question?",
+        "answer_time": "Get in touch with a question about the product or your order. For advice about your health or medication, speak with your doctor or pharmacist.",
+        "button_text": "Contact us",
+        "button_url": "/pages/contact",
         "text_position": "center",
         "background": "",
         "background_gradient": "",
