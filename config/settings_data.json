@@ -47,7 +47,7 @@
     "cart_type": "drawer",
     "cart_icon": "shopping_basket",
     "cart_show_free_shipping_threshold": false,
-    "favicon": "shopify://shop_images/favicon.webp",
+    "favicon": "shopify://shop_images/altai-favicon.svg",
     "checkout_accent_color": "#111111",
     "checkout_button_color": "#111111",
     "content_for_index": []
