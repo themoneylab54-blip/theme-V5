@@ -16,7 +16,7 @@
           "type": "rating_line",
           "settings": {
             "rating": 5,
-            "stars_color": "#2F4A3A",
+            "stars_color": "#f5b800",
             "text": "4,8/5 — plus de 300 avis vérifiés",
             "link": "",
             "style": "squares",
@@ -82,11 +82,11 @@
             "style": "fill",
             "stretch": true,
             "size": "base",
-            "border_color": "#2F4A3A",
+            "border_color": "#111111",
             "border_width": 3,
             "border_radius": 42,
             "background": "#FFFFFF",
-            "text_color": "#2F4A3A"
+            "text_color": "#111111"
           }
         },
         "stock_alert_3pYUjY": {
@@ -101,8 +101,8 @@
           "settings": {
             "show_payment_button": false,
             "show_gift_card_recipient": true,
-            "atc_button_background": "#2F7D57",
-            "atc_button_text_color": "#FFFFFF",
+            "atc_button_background": "#f6cc50",
+            "atc_button_text_color": "#000000",
             "payment_button_background": "",
             "payment_button_text_color": ""
           }

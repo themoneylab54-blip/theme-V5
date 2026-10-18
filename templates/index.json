@@ -26,8 +26,8 @@
         "cta_text": "Je découvre Sovéline",
         "cta_position": "on_image",
         "cta_url": "",
-        "cta_background": "#2f7d57",
-        "cta_text_color": "#ffffff"
+        "cta_background": "#f6cc50",
+        "cta_text_color": "#000000"
       }
     },
     "vu_dans_rjVDz9": {
@@ -170,8 +170,8 @@
             "button_text": "",
             "button_link": "",
             "text_color": "#ffffff",
-            "button_background": "#2f7d57",
-            "button_text_color": "#ffffff",
+            "button_background": "#f6cc50",
+            "button_text_color": "#000000",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
             "background": "",
@@ -192,7 +192,7 @@
         "transition_type": "fade_with_text",
         "autoplay": false,
         "cycle_speed": 6,
-        "background": "#f7f3ec",
+        "background": "#ffffff",
         "background_gradient": ""
       }
     },
@@ -237,8 +237,8 @@
             "button_text": "",
             "button_link": "",
             "text_color": "#ffffff",
-            "button_background": "#2f7d57",
-            "button_text_color": "#ffffff",
+            "button_background": "#f6cc50",
+            "button_text_color": "#000000",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
             "background": "",
@@ -259,7 +259,7 @@
         "transition_type": "fade_with_text",
         "autoplay": false,
         "cycle_speed": 6,
-        "background": "#f7f3ec",
+        "background": "#ffffff",
         "background_gradient": ""
       }
     },
@@ -368,21 +368,21 @@
         "rating_count": "+1 457 avis",
         "rating_prefix": "Noté",
         "rating_square_color": "#00b67a",
-        "badge_background": "#2f4a3a",
+        "badge_background": "#000000",
         "badge_text_color": "#ffffff",
-        "badge_after_background": "#2f7d57",
-        "tag_background": "#f3e6d8",
-        "tag_text_color": "#2f4a3a",
+        "badge_after_background": "#66242c",
+        "tag_background": "#f6cc50",
+        "tag_text_color": "#000000",
         "verified_text": "Acheteuse vérifiée",
-        "verified_color": "#2f7d57",
-        "stars_color": "#2f7d57",
-        "background": "#e8efe4",
+        "verified_color": "#111111",
+        "stars_color": "#f5b800",
+        "background": "#000000",
         "background_gradient": "",
-        "text_color": "",
+        "text_color": "#ffffff",
         "heading_color": "",
         "heading_gradient": "",
         "review_card_background": "#ffffff",
-        "review_card_text_color": ""
+        "review_card_text_color": "#111111"
       }
     },
     "featured_product_WGyjFc": {
@@ -393,7 +393,7 @@
           "settings": {
             "style": "squares",
             "rating": 5,
-            "stars_color": "#2f7d57",
+            "stars_color": "#f5b800",
             "text": "4,8/5 — + 1,457 Avis vérifiés",
             "link": "",
             "prefix": "Noté",
@@ -480,8 +480,8 @@
           "settings": {
             "show_payment_button": false,
             "show_gift_card_recipient": true,
-            "atc_button_background": "#24cd70",
-            "atc_button_text_color": "#ffffff",
+            "atc_button_background": "#f6cc50",
+            "atc_button_text_color": "#000000",
             "payment_button_background": "",
             "payment_button_text_color": ""
           }
@@ -716,18 +716,18 @@
         "button_url": "",
         "button_background": "",
         "button_text_color": "",
-        "bullet_color": "#2f7d57",
+        "bullet_color": "#111111",
         "first_heading": "Sovéline",
         "second_heading": "Régimes, séances, bas",
         "third_heading": "",
         "four_heading": "",
         "table_radius": 20,
         "table_border_color": "",
-        "table_active_background": "#ffffff",
-        "table_active_text_color": "#2f4a3a",
-        "check_color": "#2f7d57",
+        "table_active_background": "#f6cc50",
+        "table_active_text_color": "#000000",
+        "check_color": "#000000",
         "cross_color": "",
-        "background": "#e8efe4",
+        "background": "#f6f6f6",
         "background_gradient": "",
         "text_color": "",
         "heading_color": ""
