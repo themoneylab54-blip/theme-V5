@@ -274,7 +274,8 @@
         "review_FzxtfH": {
           "type": "review",
           "settings": {
-            "media_badge": "Avant · Après",
+            "image": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp",
+            "media_badge": "",
             "author": "Nathalie B.",
             "title": "",
             "verified": true,
