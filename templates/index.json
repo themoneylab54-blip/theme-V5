@@ -508,6 +508,7 @@
         "image_jQQtQP": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/altai-trust-badges.webp",
             "alignment": "center",
             "max_width": 500
           }
