@@ -177,6 +177,33 @@
                 <span>{{ block.settings.text | escape }}</span>
               </div>
 
+            {%- when 'sold_bar' -%}
+              {%- liquid
+                assign sold_percent = block.settings.percent
+                assign show_sold = true
+                if block.settings.mode == 'inventory'
+                  if current_variant.inventory_management == 'shopify' and block.settings.batch_size > 0
+                    assign units_left = current_variant.inventory_quantity | at_least: 0
+                    assign units_sold = block.settings.batch_size | minus: units_left | at_least: 0
+                    assign sold_percent = units_sold | times: 100 | divided_by: block.settings.batch_size | at_least: 1 | at_most: 99
+                  else
+                    assign show_sold = false
+                  endif
+                endif
+              -%}
+              {%- if show_sold -%}
+                <div class="ap-sold" style="--sold: {{ sold_percent }}%; --sold-color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
+                  <div class="ap-sold__row">
+                    <div class="ap-sold__track"><div class="ap-sold__fill"></div></div>
+                    {%- assign sold_label = sold_percent | append: '' -%}
+                    <span class="ap-sold__pct">{{ block.settings.text | replace: '[percent]', sold_label | escape }}</span>
+                  </div>
+                  {%- if block.settings.subtext != blank -%}
+                    <p class="ap-sold__sub">{{ block.settings.subtext | escape }}</p>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
             {%- when 'price' -%}
               <div class="ap-price" {{ block.shopify_attributes }}>
                 <span class="ap-price__current" data-price>{{ init_price | money }}</span>
@@ -481,6 +508,28 @@
       "settings": [
         { "type": "text", "id": "text", "label": "Texte", "default": "Only a few left in stock" },
         { "type": "color", "id": "color", "label": "Couleur", "default": "#c62828" }
+      ]
+    },
+    {
+      "type": "sold_bar",
+      "name": "Barre « % vendu »",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "Pourcentage",
+          "options": [
+            { "value": "manual", "label": "Fixé à la main" },
+            { "value": "inventory", "label": "Calculé sur le stock réel" }
+          ],
+          "default": "manual"
+        },
+        { "type": "range", "id": "percent", "label": "Pourcentage vendu (mode « à la main »)", "min": 1, "max": 99, "step": 1, "unit": "%", "default": 93 },
+        { "type": "number", "id": "batch_size", "label": "Taille du lot (mode « stock réel »)", "info": "Unités au départ du lot. % vendu = (lot − stock restant) ÷ lot. Le suivi de stock Shopify doit être activé, sinon la barre est masquée.", "default": 500 },
+        { "type": "text", "id": "text", "label": "Texte", "info": "[percent] = pourcentage.", "default": "[percent]% Sold" },
+        { "type": "text", "id": "subtext", "label": "Texte sous la barre" },
+        { "type": "color", "id": "color", "label": "Couleur", "default": "#d33f3f" }
       ]
     },
     {

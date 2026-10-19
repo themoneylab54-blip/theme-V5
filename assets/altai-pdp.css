@@ -205,6 +205,34 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-stock__dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: currentColor; animation: ap-pulse 1.6s ease-in-out infinite; }
 @keyframes ap-pulse { 50% { opacity: .35; } }
 
+.ap-sold { margin: 16px 3px 0; padding: 20px 24px; border-radius: 12px; background: var(--ap-white); box-shadow: 0 2px 14px rgba(0, 0, 0, .09); }
+.ap-sold__row { display: flex; align-items: center; gap: 20px; }
+.ap-sold__track { flex: 1; height: 8px; border-radius: 99px; background: #E5E5E5; overflow: hidden; }
+.ap-sold__fill { width: var(--sold); height: 100%; border-radius: 99px; background: var(--sold-color, #D33F3F); animation: ap-sold-fill 1.4s ease-out both; }
+.ap-sold__pct { flex: none; color: var(--sold-color, #D33F3F); font-size: 15px; font-weight: 600; white-space: nowrap; }
+.ap-sold__sub { margin-top: 10px !important; color: var(--sold-color, #D33F3F); font-size: 14px; font-weight: 600; text-align: center; }
+@keyframes ap-sold-fill { from { width: 0; } }
+
+/* Barre de compte à rebours (au-dessus de l'en-tête) */
+.ap-countdown { display: block; background: var(--cd-bg, #66242C); color: var(--cd-text, #ffffff); }
+.ap-countdown[hidden] { display: none; }
+.ap-countdown__inner { display: flex; align-items: center; justify-content: center; gap: 22px; min-height: 50px; padding: 5px 16px; text-decoration: none; color: inherit; }
+.ap-countdown__copy { display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.15; }
+.ap-countdown__title { font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 20px; letter-spacing: .02em; }
+.ap-countdown__sub { margin-top: 2px; font-size: 11px; opacity: .85; }
+.ap-countdown__timer { display: flex; align-items: flex-start; gap: 4px; }
+.ap-cd { display: flex; flex-direction: column; align-items: center; min-width: 28px; }
+.ap-cd[hidden], .ap-cd__sep[hidden] { display: none; }
+.ap-cd__num { font-size: 21px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.ap-cd__label { font-size: 10px; line-height: 1.2; opacity: .85; }
+.ap-cd__sep { font-size: 19px; font-weight: 700; line-height: 1.15; }
+@media screen and (min-width: 990px) {
+  .ap-countdown__inner { gap: 34px; }
+  .ap-countdown__title { font-size: 22px; }
+  .ap-countdown__sub { font-size: 12px; }
+  .ap-cd__num { font-size: 23px; }
+}
+
 .ap-price {
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 16px 0; padding: 14px 0;
   border-block: 1px solid #DCDCDC;

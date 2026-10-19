@@ -186,6 +186,38 @@ class AltaiBuybox extends HTMLElement {
 }
 if (!customElements.get('altai-buybox')) customElements.define('altai-buybox', AltaiBuybox);
 
+/* Compte à rebours jusqu'à une date de fin réelle */
+class AltaiCountdown extends HTMLElement {
+  connectedCallback() {
+    const { date, time, offset } = this.dataset;
+    this.end = new Date(`${date}T${time || '23:59'}:00${offset || 'Z'}`).getTime();
+    if (Number.isNaN(this.end)) { this.hidden = true; return; }
+    this.tick();
+    this._timer = setInterval(() => this.tick(), 1000);
+  }
+
+  disconnectedCallback() {
+    clearInterval(this._timer);
+  }
+
+  tick() {
+    let left = Math.max(0, Math.floor((this.end - Date.now()) / 1000));
+    if (left === 0) {
+      clearInterval(this._timer);
+      if (this.dataset.hideWhenOver === 'true') { this.hidden = true; return; }
+    }
+    const days = Math.floor(left / 86400); left %= 86400;
+    const parts = { days, hours: Math.floor(left / 3600), minutes: Math.floor((left % 3600) / 60), seconds: left % 60 };
+    Object.entries(parts).forEach(([unit, value]) => {
+      const el = this.querySelector(`[data-cd="${unit}"]`);
+      if (el) el.textContent = String(value).padStart(2, '0');
+    });
+    this.querySelectorAll('[data-cd-days]').forEach((el) => (el.hidden = days === 0));
+    this.hidden = false;
+  }
+}
+if (!customElements.get('altai-countdown')) customElements.define('altai-countdown', AltaiCountdown);
+
 /* « Lire plus d'avis » et vidéos UGC */
 document.addEventListener('click', (event) => {
   const more = event.target.closest('[data-more]');

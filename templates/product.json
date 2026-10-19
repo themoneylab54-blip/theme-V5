@@ -142,13 +142,6 @@
             "text": "<p>Simple drops. No capsules to swallow</p>"
           }
         },
-        "buy_stock": {
-          "type": "stock",
-          "settings": {
-            "text": "Only 6 Left In Stock: Ships in 24/48 Hours",
-            "color": "#c62828"
-          }
-        },
         "buy_price": {
           "type": "price",
           "settings": {
@@ -270,6 +263,17 @@
             "image": "shopify://shop_images/altai-trust-badges.webp",
             "max_width": 500
           }
+        },
+        "buy_sold": {
+          "type": "sold_bar",
+          "settings": {
+            "mode": "manual",
+            "percent": 93,
+            "batch_size": 500,
+            "text": "[percent]% Sold",
+            "subtext": "Only 6 Left In Stock: Ships in 24/48 Hours",
+            "color": "#d33f3f"
+          }
         }
       },
       "block_order": [
@@ -281,7 +285,7 @@
         "buy_feature_2",
         "buy_feature_3",
         "buy_feature_4",
-        "buy_stock",
+        "buy_sold",
         "buy_price",
         "buy_variants",
         "buy_bundles",
@@ -919,13 +923,6 @@
         "ugc_title": ""
       },
       "blocks": {
-        "buy2_stock": {
-          "type": "stock",
-          "settings": {
-            "text": "Only 6 Left In Stock: Ships in 24/48 Hours",
-            "color": "#c62828"
-          }
-        },
         "buy2_price": {
           "type": "price",
           "settings": {
@@ -985,10 +982,21 @@
             "item3_icon": "lock",
             "item3_text": ""
           }
+        },
+        "buy2_sold": {
+          "type": "sold_bar",
+          "settings": {
+            "mode": "manual",
+            "percent": 93,
+            "batch_size": 500,
+            "text": "[percent]% Sold",
+            "subtext": "Only 6 Left In Stock: Ships in 24/48 Hours",
+            "color": "#d33f3f"
+          }
         }
       },
       "block_order": [
-        "buy2_stock",
+        "buy2_sold",
         "buy2_price",
         "buy2_variants",
         "buy2_bundles",

@@ -106,9 +106,29 @@
         "background_opacity": 100,
         "background_blur_radius": 0
       }
+    },
+    "altai_countdown": {
+      "type": "altai-countdown-bar",
+      "settings": {
+        "only_product": true,
+        "hide_announcement": true,
+        "heading": "FALL SALE",
+        "subheading": "Shop Now and Get Up To 50% Off",
+        "end_date": "2026-10-31",
+        "end_time": "23:59",
+        "timezone": "-04:00",
+        "hide_when_over": true,
+        "label_days": "Days",
+        "label_hours": "Hrs",
+        "label_minutes": "Mins",
+        "label_seconds": "Secs",
+        "background": "#66242c",
+        "text_color": "#ffffff"
+      }
     }
   },
   "order": [
+    "altai_countdown",
     "announcement-bar",
     "header"
   ]
