@@ -1,0 +1,41 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test delivery",
+  "blocks": [
+    {
+      "type": "delivery",
+      "name": "Date de livraison",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "days",
+          "label": "Délai (jours ouvrés)",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 7
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Order today for delivery by"
+        },
+        {
+          "type": "text",
+          "id": "text_after",
+          "label": "Texte après la date"
+        },
+        {
+          "type": "text",
+          "id": "date_locale",
+          "label": "Langue de la date",
+          "default": "en-US"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

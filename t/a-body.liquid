@@ -1,0 +1,391 @@
+{%- comment -%}
+  ALTAÏ — bloc d'achat de la page produit (mise en page inspirée de Resilia).
+  Galerie + infos produit + packs + bouton d'ajout au panier relié au tiroir panier du thème.
+  La mise en page « compacte » (sans galerie) sert à répéter le bloc d'achat en bas de page.
+{%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'altai-pdp.js' | asset_url }}" type="module"></script>
+
+{%- liquid
+  assign compact = false
+  if section.settings.layout == 'compact'
+    assign compact = true
+  endif
+
+  assign form_id = 'ap-form-' | append: section.id
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_image = product.featured_media.preview_image | default: product.featured_image
+
+  assign init_qty = 1
+  assign init_discount = 0
+  for b in section.blocks
+    if b.type == 'bundles'
+      assign qty_key = 'tier' | append: b.settings.default_tier | append: '_qty'
+      assign discount_key = 'tier' | append: b.settings.default_tier | append: '_discount'
+      assign init_qty = b.settings[qty_key] | default: 1
+      assign init_discount = b.settings[discount_key] | default: 0
+    endif
+  endfor
+
+  assign init_factor = 100 | minus: init_discount
+  assign init_price = current_variant.price | times: init_qty | times: init_factor | divided_by: 100
+  assign unit_compare = current_variant.price
+  if current_variant.compare_at_price > current_variant.price
+    assign unit_compare = current_variant.compare_at_price
+  endif
+  assign init_compare = unit_compare | times: init_qty
+  assign has_compare = false
+  if init_compare > init_price
+    assign has_compare = true
+  endif
+  assign init_save = init_compare | minus: init_price
+-%}
+
+<section class="ap ap-main{% if compact %} ap-main--compact{% endif %}">
+  <div class="ap-container">
+    <div class="ap-main__grid">
+      {%- unless compact -%}
+        {%- assign media_list = product.media | where: 'media_type', 'image' -%}
+        <div class="ap-main__media">
+          <altai-gallery class="ap-gallery">
+            <altai-carousel class="ap-carousel ap-gallery__main" data-gallery-main>
+              <div class="ap-carousel__track" data-track>
+                {%- for media in media_list -%}
+                  <div class="ap-carousel__item">
+                    {%- if forloop.first -%}
+                      {{- media.preview_image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 990px) 52vw, 100vw', widths: '400,600,800,1000,1200,1400', alt: media.alt -}}
+                    {%- else -%}
+                      {{- media.preview_image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 52vw, 100vw', widths: '400,600,800,1000,1200,1400', alt: media.alt -}}
+                    {%- endif -%}
+                  </div>
+                {%- else -%}
+                  <div class="ap-carousel__item">{{ 'product-1' | placeholder_svg_tag }}</div>
+                {%- endfor -%}
+              </div>
+              {%- if media_list.size > 1 -%}
+                <div class="ap-gallery__dots"><div class="ap-dots" data-dots></div></div>
+              {%- endif -%}
+            </altai-carousel>
+
+            {%- if media_list.size > 1 -%}
+              <altai-carousel class="ap-carousel ap-gallery__thumbs ap-hide-mob">
+                <div class="ap-carousel__track" data-track>
+                  {%- for media in media_list -%}
+                    <div class="ap-carousel__item">
+                      <button type="button" class="ap-thumb{% if forloop.first %} is-active{% endif %}" data-thumb aria-label="{{ forloop.index }} / {{ media_list.size }}">
+                        {{- media.preview_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' -}}
+                      </button>
+                    </div>
+                  {%- endfor -%}
+                </div>
+                {%- if media_list.size > 5 -%}
+                  <button type="button" class="ap-arrow ap-arrow--white" data-prev aria-label="{{ 'general.accessibility.previous' | t }}">{% render 'altai-icon', icon: 'chevron-left' %}</button>
+                  <button type="button" class="ap-arrow ap-arrow--white" data-next aria-label="{{ 'general.accessibility.next' | t }}">{% render 'altai-icon', icon: 'chevron-right' %}</button>
+                {%- endif -%}
+              </altai-carousel>
+            {%- endif -%}
+          </altai-gallery>
+
+          {%- if section.settings.ugc_image_1 != blank or section.settings.ugc_image_2 != blank or section.settings.ugc_image_3 != blank -%}
+            <div class="ap-gallery-ugc ap-hide-mob">
+              {%- if section.settings.ugc_title != blank -%}
+                <h2 class="ap-gallery-ugc__title">{{ section.settings.ugc_title | escape }}</h2>
+              {%- endif -%}
+              <altai-carousel class="ap-carousel">
+                <div class="ap-carousel__track" data-track style="--gap: 16px;">
+                  {%- for i in (1..3) -%}
+                    {%- assign ugc_key = 'ugc_image_' | append: i -%}
+                    {%- assign ugc_image = section.settings[ugc_key] -%}
+                    {%- if ugc_image != blank -%}
+                      <div class="ap-carousel__item">
+                        <div class="ap-ugc__card">{{ ugc_image | image_url: width: 500 | image_tag: loading: 'lazy', sizes: '220px' }}</div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              </altai-carousel>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endunless -%}
+
+      <altai-buybox class="ap-main__info"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %}>
+        <script type="application/json" data-product-json>
+          [{%- for v in product.variants -%}{"id":{{ v.id }},"price":{{ v.price }},"compare_at_price":{{ v.compare_at_price | default: 0 }},"available":{{ v.available | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+        </script>
+
+        {%- assign in_features = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type != 'feature' and in_features -%}
+            </div>
+            {%- assign in_features = false -%}
+          {%- endif -%}
+
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {%- render block -%}
+
+            {%- when 'rating' -%}
+              <div class="ap-rating" {{ block.shopify_attributes }}>
+                {%- render 'altai-stars', rating: block.settings.rating, size: 15 -%}
+                <span class="ap-hide-mob">{{ block.settings.text | escape }}</span>
+                <span class="ap-hide-desk">{{ block.settings.text_mobile | default: block.settings.text | escape }}</span>
+                {%- if block.settings.avatar_1 != blank -%}
+                  <span class="ap-rating__avatars">
+                    {%- for i in (1..5) -%}
+                      {%- assign avatar_key = 'avatar_' | append: i -%}
+                      {%- if block.settings[avatar_key] != blank -%}
+                        {{- block.settings[avatar_key] | image_url: width: 60 | image_tag: loading: 'lazy', alt: '' -}}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </span>
+                {%- endif -%}
+              </div>
+
+            {%- when 'subtitle' -%}
+              <p class="ap-subtitle" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+
+            {%- when 'title' -%}
+              {%- if compact -%}
+                <h2 class="ap-title" {{ block.shopify_attributes }}>{{ block.settings.heading | default: product.title | escape }}</h2>
+              {%- else -%}
+                <h1 class="ap-title" {{ block.shopify_attributes }}>{{ block.settings.heading | default: product.title | escape }}</h1>
+              {%- endif -%}
+
+            {%- when 'text' -%}
+              <div class="ap-desc" {{ block.shopify_attributes }}>
+                {%- if block.settings.text != blank -%}{{ block.settings.text }}{%- else -%}{{ product.description }}{%- endif -%}
+              </div>
+
+            {%- when 'feature' -%}
+              {%- unless in_features -%}
+                <div class="ap-features" style="--cols: {{ section.settings.feature_columns }};">
+                {%- assign in_features = true -%}
+              {%- endunless -%}
+              <div class="ap-feature" {{ block.shopify_attributes }}>
+                {%- if block.settings.custom_icon != blank -%}
+                  {{- block.settings.custom_icon | image_url: width: 80 | image_tag: loading: 'lazy', class: 'ap-feature__icon', alt: '' -}}
+                {%- else -%}
+                  <span class="ap-feature__icon">{%- render 'altai-icon', icon: block.settings.icon, size: 22 -%}</span>
+                {%- endif -%}
+                <div>{{ block.settings.text }}</div>
+              </div>
+
+            {%- when 'stock' -%}
+              <div class="ap-stock" style="--stock-color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
+                <span class="ap-stock__dot"></span>
+                <span>{{ block.settings.text | escape }}</span>
+              </div>
+
+            {%- when 'sold_bar' -%}
+              {%- liquid
+                assign sold_percent = block.settings.percent
+                assign show_sold = true
+                if block.settings.mode == 'inventory'
+                  if current_variant.inventory_management == 'shopify' and block.settings.batch_size > 0
+                    assign units_left = current_variant.inventory_quantity | at_least: 0
+                    assign units_sold = block.settings.batch_size | minus: units_left | at_least: 0
+                    assign sold_percent = units_sold | times: 100 | divided_by: block.settings.batch_size | at_least: 1 | at_most: 99
+                  else
+                    assign show_sold = false
+                  endif
+                endif
+              -%}
+              {%- if show_sold -%}
+                <div class="ap-sold" style="--sold: {{ sold_percent }}%; --sold-color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
+                  <div class="ap-sold__row">
+                    <div class="ap-sold__track"><div class="ap-sold__fill"></div></div>
+                    {%- assign sold_label = sold_percent | append: '' -%}
+                    <span class="ap-sold__pct">{{ block.settings.text | replace: '[percent]', sold_label | escape }}</span>
+                  </div>
+                  {%- if block.settings.subtext != blank -%}
+                    <p class="ap-sold__sub">{{ block.settings.subtext | escape }}</p>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+            {%- when 'price' -%}
+              <div class="ap-price" {{ block.shopify_attributes }}>
+                <span class="ap-price__current" data-price>{{ init_price | money }}</span>
+                <s class="ap-price__compare" data-compare{% unless has_compare %} hidden{% endunless %}>{% if has_compare %}{{ init_compare | money }}{% endif %}</s>
+                {%- if block.settings.save_label != blank -%}
+                  <span class="ap-price__save" data-save{% unless has_compare %} hidden{% endunless %}>{{ block.settings.save_label | escape }}&nbsp;<span data-save-amount>{{ init_save | money }}</span></span>
+                {%- endif -%}
+              </div>
+
+            {%- when 'variant_picker' -%}
+              {%- unless product.has_only_default_variant -%}
+                <div class="ap-variants" {{ block.shopify_attributes }}>
+                  {%- for variant in product.variants -%}
+                    <label class="ap-variant">
+                      <input type="radio" name="ap-variant-{{ section.id }}" value="{{ variant.id }}" data-variant-input{% if variant.id == current_variant.id %} checked{% endif %}{% unless variant.available %} disabled{% endunless %}>
+                      <span>{{ variant.title | escape }}</span>
+                    </label>
+                  {%- endfor -%}
+                </div>
+              {%- endunless -%}
+
+            {%- when 'bundles' -%}
+              <div class="ap-offers" {{ block.shopify_attributes }}>
+                {%- for i in (1..3) -%}
+                  {%- liquid
+                    assign prefix = 'tier' | append: i
+                    assign k_enabled = prefix | append: '_enabled'
+                    assign k_qty = prefix | append: '_qty'
+                    assign k_title = prefix | append: '_title'
+                    assign k_badge = prefix | append: '_badge'
+                    assign k_discount = prefix | append: '_discount'
+                    assign k_image = prefix | append: '_image'
+                    assign k_gift_heading = prefix | append: '_gift_heading'
+                    assign k_gift1_title = prefix | append: '_gift1_title'
+                    assign k_gift1_text = prefix | append: '_gift1_text'
+                    assign k_gift2_title = prefix | append: '_gift2_title'
+                    assign k_gift2_text = prefix | append: '_gift2_text'
+
+                    assign tier_qty = block.settings[k_qty] | default: 1
+                    assign tier_discount = block.settings[k_discount] | default: 0
+                    assign tier_factor = 100 | minus: tier_discount
+                    assign tier_price = current_variant.price | times: tier_qty | times: tier_factor | divided_by: 100
+                    assign tier_compare = unit_compare | times: tier_qty
+                    assign tier_unit = tier_price | divided_by: tier_qty
+                    assign tier_unit_money = tier_unit | money
+                    assign i_str = i | append: ''
+                    assign tier_image = block.settings[k_image] | default: product_image
+                    assign image_count = tier_qty | at_most: 3
+                    if block.settings[k_image] != blank
+                      assign image_count = 1
+                    endif
+                  -%}
+                  {%- if block.settings[k_enabled] -%}
+                    <label class="ap-offer" data-tier>
+                      <input type="radio" name="ap-tier-{{ section.id }}" value="{{ i }}" data-tier-input data-qty="{{ tier_qty }}" data-discount="{{ tier_discount }}"{% if block.settings.default_tier == i_str %} checked{% endif %}>
+                      <span class="ap-offer__box">
+                        {%- if block.settings[k_badge] != blank -%}
+                          <span class="ap-offer__badge">{{ block.settings[k_badge] | escape }}</span>
+                        {%- endif -%}
+                        <span class="ap-offer__grid">
+                          <span class="ap-offer__media">
+                            {%- if tier_image != blank -%}
+                              {%- for n in (1..image_count) -%}
+                                {{- tier_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' -}}
+                              {%- endfor -%}
+                            {%- endif -%}
+                            {%- if tier_qty > 1 and block.settings[k_image] == blank -%}
+                              <span class="ap-offer__qty">×{{ tier_qty }}</span>
+                            {%- endif -%}
+                          </span>
+                          <span class="ap-offer__info">
+                            <span class="ap-offer__title">{{ block.settings[k_title] | escape }}</span>
+                            {%- if block.settings.unit_text != blank -%}
+                              <span class="ap-offer__unit" data-tier-unit data-template="{{ block.settings.unit_text | escape }}">{{ block.settings.unit_text | replace: '[price]', tier_unit_money | escape }}</span>
+                            {%- endif -%}
+                          </span>
+                          <span class="ap-offer__prices">
+                            <span class="ap-offer__price" data-tier-price>{{ tier_price | money }}</span>
+                            <s class="ap-offer__compare" data-tier-compare{% if tier_compare <= tier_price %} hidden{% endif %}>{% if tier_compare > tier_price %}{{ tier_compare | money }}{% endif %}</s>
+                          </span>
+                        </span>
+                        {%- if block.settings[k_gift1_title] != blank or block.settings[k_gift2_title] != blank -%}
+                          <span class="ap-offer__gifts">
+                            {%- if block.settings[k_gift_heading] != blank -%}
+                              <span class="ap-offer__divider">{{ block.settings[k_gift_heading] | escape }}</span>
+                            {%- endif -%}
+                            {%- if block.settings[k_gift1_title] != blank -%}
+                              <span class="ap-gift">
+                                {%- render 'altai-icon', icon: 'check-circle', size: 20 -%}
+                                <span><span class="ap-gift__title" style="display:block">{{ block.settings[k_gift1_title] | escape }}</span>{% if block.settings[k_gift1_text] != blank %}<span class="ap-gift__sub" style="display:block">{{ block.settings[k_gift1_text] | escape }}</span>{% endif %}</span>
+                              </span>
+                            {%- endif -%}
+                            {%- if block.settings[k_gift2_title] != blank -%}
+                              <span class="ap-gift">
+                                {%- render 'altai-icon', icon: 'check-circle', size: 20 -%}
+                                <span><span class="ap-gift__title" style="display:block">{{ block.settings[k_gift2_title] | escape }}</span>{% if block.settings[k_gift2_text] != blank %}<span class="ap-gift__sub" style="display:block">{{ block.settings[k_gift2_text] | escape }}</span>{% endif %}</span>
+                              </span>
+                            {%- endif -%}
+                          </span>
+                        {%- endif -%}
+                      </span>
+                    </label>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+            {%- when 'delivery' -%}
+              {%- assign fallback_seconds = block.settings.days | plus: 2 | times: 86400 -%}
+              <div class="ap-delivery" data-delivery data-days="{{ block.settings.days }}" data-locale="{{ block.settings.date_locale | default: 'en-US' | escape }}" {{ block.shopify_attributes }}>
+                <span class="ap-delivery__dot"></span>
+                <span>{{ block.settings.text | escape }}</span>
+                <span class="ap-delivery__date" data-delivery-date>{{ 'now' | date: '%s' | plus: fallback_seconds | date: '%a, %b %-d' }}</span>
+                {%- if block.settings.text_after != blank -%}
+                  <span>·</span><span>{{ block.settings.text_after | escape }}</span>
+                {%- endif -%}
+              </div>
+
+            {%- when 'buy_button' -%}
+              {%- assign atc_label = block.settings.label | default: 'Add To Cart' -%}
+              <div {{ block.shopify_attributes }}>
+                {%- form 'product', product, is: 'product-form', id: form_id -%}
+                  <input type="hidden" name="id" value="{{ current_variant.id }}">
+                  <input type="hidden" name="quantity" value="{{ init_qty }}">
+                  <button type="submit" class="ap-atc" data-atc{% unless current_variant.available %} disabled{% endunless %}>
+                    <span data-atc-label data-available="{{ atc_label | escape }}" data-sold-out="{{ 'product.general.sold_out_button' | t | escape }}">
+                      {%- if current_variant.available -%}{{ atc_label | escape }}{%- else -%}{{ 'product.general.sold_out_button' | t }}{%- endif -%}
+                    </span>
+                    {%- if block.settings.show_price -%}
+                      <span class="ap-atc__pill">
+                        <s data-compare{% unless has_compare %} hidden{% endunless %}>{% if has_compare %}{{ init_compare | money }}{% endif %}</s>
+                        <span data-price>{{ init_price | money }}</span>
+                      </span>
+                    {%- endif -%}
+                    {%- if block.settings.show_arrow -%}
+                      {%- render 'altai-icon', icon: 'arrow-right', size: 22 -%}
+                    {%- endif -%}
+                  </button>
+                {%- endform -%}
+              </div>
+
+            {%- when 'info_bar' -%}
+              <div class="ap-infobar" {{ block.shopify_attributes }}>
+                {%- assign info_first = true -%}
+                {%- for i in (1..3) -%}
+                  {%- assign info_text_key = 'item' | append: i | append: '_text' -%}
+                  {%- assign info_icon_key = 'item' | append: i | append: '_icon' -%}
+                  {%- if block.settings[info_text_key] != blank -%}
+                    {%- unless info_first -%}<span class="ap-infobar__sep">|</span>{%- endunless -%}
+                    <span class="ap-infobar__item">
+                      {%- render 'altai-icon', icon: block.settings[info_icon_key], size: 14 -%}
+                      {{ block.settings[info_text_key] | escape }}
+                    </span>
+                    {%- assign info_first = false -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+            {%- when 'accordion' -%}
+              <details class="ap-acc"{% if block.settings.open %} open{% endif %} {{ block.shopify_attributes }}>
+                <summary>{{ block.settings.title | escape }}<span class="ap-acc__toggle" aria-hidden="true"></span></summary>
+                <div class="ap-acc__content">{{ block.settings.content }}</div>
+              </details>
+
+            {%- when 'image' -%}
+              {%- if block.settings.image != blank -%}
+                <div class="ap-media-row" style="--max: {{ block.settings.max_width }}px;" {{ block.shopify_attributes }}>
+                  {{- block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 500px, 100vw' -}}
+                </div>
+              {%- endif -%}
+
+            {%- when 'liquid' -%}
+              <div {{ block.shopify_attributes }}>{{ block.settings.liquid }}</div>
+          {%- endcase -%}
+        {%- endfor -%}
+        {%- if in_features -%}
+          </div>
+        {%- endif -%}
+      </altai-buybox>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{"name": "Test", "settings": []}
+{% endschema %}

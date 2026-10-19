@@ -1,0 +1,32 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test accordion",
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordéon",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Description"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Contenu",
+          "default": "<p>Content</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "open",
+          "label": "Ouvert par défaut",
+          "default": false
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,77 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test feature",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Bénéfice (icône)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            {
+              "value": "flame",
+              "label": "Flamme"
+            },
+            {
+              "value": "user",
+              "label": "Silhouette"
+            },
+            {
+              "value": "heart",
+              "label": "Cœur"
+            },
+            {
+              "value": "dropper",
+              "label": "Pipette"
+            },
+            {
+              "value": "drop",
+              "label": "Goutte"
+            },
+            {
+              "value": "bolt",
+              "label": "Éclair"
+            },
+            {
+              "value": "shield",
+              "label": "Bouclier"
+            },
+            {
+              "value": "leaf",
+              "label": "Feuille"
+            },
+            {
+              "value": "brain",
+              "label": "Cerveau"
+            },
+            {
+              "value": "sun",
+              "label": "Soleil"
+            },
+            {
+              "value": "check-circle",
+              "label": "Coche"
+            }
+          ],
+          "default": "check-circle"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Icône personnalisée"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texte",
+          "default": "<p>Benefit</p>"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

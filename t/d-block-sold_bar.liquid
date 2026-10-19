@@ -1,0 +1,66 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test sold_bar",
+  "blocks": [
+    {
+      "type": "sold_bar",
+      "name": "Barre « % vendu »",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "Pourcentage",
+          "options": [
+            {
+              "value": "manual",
+              "label": "Fixé à la main"
+            },
+            {
+              "value": "inventory",
+              "label": "Calculé sur le stock réel"
+            }
+          ],
+          "default": "manual"
+        },
+        {
+          "type": "range",
+          "id": "percent",
+          "label": "Pourcentage vendu (mode « à la main »)",
+          "min": 1,
+          "max": 99,
+          "step": 1,
+          "unit": "%",
+          "default": 93
+        },
+        {
+          "type": "number",
+          "id": "batch_size",
+          "label": "Taille du lot (mode « stock réel »)",
+          "info": "Unités au départ du lot. % vendu = (lot − stock restant) ÷ lot. Le suivi de stock Shopify doit être activé, sinon la barre est masquée.",
+          "default": 500
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "info": "[percent] = pourcentage.",
+          "default": "[percent]% Sold"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Texte sous la barre"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Couleur",
+          "default": "#d33f3f"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

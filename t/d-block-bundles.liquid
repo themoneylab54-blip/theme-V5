@@ -1,0 +1,260 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test bundles",
+  "blocks": [
+    {
+      "type": "bundles",
+      "name": "Packs",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Les remises affichées ici sont visuelles : créez la réduction automatique correspondante dans Shopify (Réductions) pour qu'elle s'applique au paiement."
+        },
+        {
+          "type": "select",
+          "id": "default_tier",
+          "label": "Pack sélectionné par défaut",
+          "options": [
+            {
+              "value": "1",
+              "label": "Pack 1"
+            },
+            {
+              "value": "2",
+              "label": "Pack 2"
+            },
+            {
+              "value": "3",
+              "label": "Pack 3"
+            }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "unit_text",
+          "label": "Prix unitaire",
+          "info": "[price] = prix par flacon.",
+          "default": "[price] per bottle"
+        },
+        {
+          "type": "header",
+          "content": "Pack 1"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier1_enabled",
+          "label": "Afficher",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "tier1_qty",
+          "label": "Quantité",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "tier1_title",
+          "label": "Titre",
+          "default": "Buy One"
+        },
+        {
+          "type": "text",
+          "id": "tier1_badge",
+          "label": "Badge"
+        },
+        {
+          "type": "range",
+          "id": "tier1_discount",
+          "label": "Remise",
+          "min": 0,
+          "max": 80,
+          "step": 1,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "image_picker",
+          "id": "tier1_image",
+          "label": "Image (sinon photo produit)"
+        },
+        {
+          "type": "text",
+          "id": "tier1_gift_heading",
+          "label": "Titre des cadeaux",
+          "default": "PLUS FREE GIFTS"
+        },
+        {
+          "type": "text",
+          "id": "tier1_gift1_title",
+          "label": "Cadeau 1"
+        },
+        {
+          "type": "text",
+          "id": "tier1_gift1_text",
+          "label": "Cadeau 1 – détail"
+        },
+        {
+          "type": "text",
+          "id": "tier1_gift2_title",
+          "label": "Cadeau 2"
+        },
+        {
+          "type": "text",
+          "id": "tier1_gift2_text",
+          "label": "Cadeau 2 – détail"
+        },
+        {
+          "type": "header",
+          "content": "Pack 2"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier2_enabled",
+          "label": "Afficher",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "tier2_qty",
+          "label": "Quantité",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "tier2_title",
+          "label": "Titre",
+          "default": "Buy Two"
+        },
+        {
+          "type": "text",
+          "id": "tier2_badge",
+          "label": "Badge",
+          "default": "Most Popular"
+        },
+        {
+          "type": "range",
+          "id": "tier2_discount",
+          "label": "Remise",
+          "min": 0,
+          "max": 80,
+          "step": 1,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "image_picker",
+          "id": "tier2_image",
+          "label": "Image (sinon photo produit)"
+        },
+        {
+          "type": "text",
+          "id": "tier2_gift_heading",
+          "label": "Titre des cadeaux",
+          "default": "PLUS FREE GIFTS"
+        },
+        {
+          "type": "text",
+          "id": "tier2_gift1_title",
+          "label": "Cadeau 1"
+        },
+        {
+          "type": "text",
+          "id": "tier2_gift1_text",
+          "label": "Cadeau 1 – détail"
+        },
+        {
+          "type": "text",
+          "id": "tier2_gift2_title",
+          "label": "Cadeau 2"
+        },
+        {
+          "type": "text",
+          "id": "tier2_gift2_text",
+          "label": "Cadeau 2 – détail"
+        },
+        {
+          "type": "header",
+          "content": "Pack 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier3_enabled",
+          "label": "Afficher",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "tier3_qty",
+          "label": "Quantité",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 3
+        },
+        {
+          "type": "text",
+          "id": "tier3_title",
+          "label": "Titre",
+          "default": "Buy Three"
+        },
+        {
+          "type": "text",
+          "id": "tier3_badge",
+          "label": "Badge"
+        },
+        {
+          "type": "range",
+          "id": "tier3_discount",
+          "label": "Remise",
+          "min": 0,
+          "max": 80,
+          "step": 1,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "image_picker",
+          "id": "tier3_image",
+          "label": "Image (sinon photo produit)"
+        },
+        {
+          "type": "text",
+          "id": "tier3_gift_heading",
+          "label": "Titre des cadeaux",
+          "default": "PLUS FREE GIFTS"
+        },
+        {
+          "type": "text",
+          "id": "tier3_gift1_title",
+          "label": "Cadeau 1"
+        },
+        {
+          "type": "text",
+          "id": "tier3_gift1_text",
+          "label": "Cadeau 1 – détail"
+        },
+        {
+          "type": "text",
+          "id": "tier3_gift2_title",
+          "label": "Cadeau 2"
+        },
+        {
+          "type": "text",
+          "id": "tier3_gift2_text",
+          "label": "Cadeau 2 – détail"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

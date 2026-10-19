@@ -1,0 +1,61 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test rating",
+  "blocks": [
+    {
+      "type": "rating",
+      "name": "Note et avis",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Note",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte (ordinateur)",
+          "default": "Rated 4.8 • 10,577+ Reviews"
+        },
+        {
+          "type": "text",
+          "id": "text_mobile",
+          "label": "Texte (mobile)",
+          "default": "10,577+ Reviews"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_1",
+          "label": "Avatar 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_2",
+          "label": "Avatar 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_3",
+          "label": "Avatar 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_4",
+          "label": "Avatar 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_5",
+          "label": "Avatar 5"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

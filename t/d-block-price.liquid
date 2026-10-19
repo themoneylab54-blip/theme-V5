@@ -1,0 +1,22 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test price",
+  "blocks": [
+    {
+      "type": "price",
+      "name": "Prix",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "save_label",
+          "label": "Libellé de l'économie",
+          "default": "SALE - Save",
+          "info": "S'affiche seulement si un prix barré existe."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

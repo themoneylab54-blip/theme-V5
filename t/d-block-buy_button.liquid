@@ -1,0 +1,33 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test buy_button",
+  "blocks": [
+    {
+      "type": "buy_button",
+      "name": "Bouton d'achat",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Texte",
+          "default": "Add To Cart"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_price",
+          "label": "Afficher le prix dans le bouton",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_arrow",
+          "label": "Afficher la flèche",
+          "default": true
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

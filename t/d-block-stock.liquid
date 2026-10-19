@@ -1,0 +1,27 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test stock",
+  "blocks": [
+    {
+      "type": "stock",
+      "name": "Alerte stock",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Only a few left in stock"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Couleur",
+          "default": "#c62828"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

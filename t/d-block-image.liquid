@@ -1,0 +1,29 @@
+<div></div>
+{% schema %}
+{
+  "name": "Test image",
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Largeur max",
+          "min": 100,
+          "max": 700,
+          "step": 10,
+          "unit": "px",
+          "default": 500
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
