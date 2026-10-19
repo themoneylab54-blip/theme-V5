@@ -1,0 +1,88 @@
+{%- comment -%} ALTAÏ — parcours en étapes (timeline). {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign banner = section.settings.banner_image
+  if banner == blank and product
+    assign banner = product.featured_media.preview_image | default: product.featured_image
+  endif
+-%}
+
+<section class="ap ap-journey">
+  <div class="ap-container">
+    <div class="ap-journey__grid">
+      <div class="ap-journey__head">
+        <div class="ap-journey__banner">
+          {%- if banner != blank -%}
+            {{- banner | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 45vw, 100vw', alt: '' -}}
+          {%- endif -%}
+          {%- if section.settings.banner_text != blank -%}
+            <span class="ap-journey__mark">{{ section.settings.banner_text | escape }}</span>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.heading != blank -%}
+          <h2 class="ap-h2">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="ap-lead">{{ section.settings.text }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <div class="ap-btn-wrap ap-hide-mob">
+            <a class="ap-btn ap-btn--ink" href="{{ section.settings.button_link | default: '#altai-buy' }}">{{ section.settings.button_label | escape }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div>
+        <div class="ap-timeline">
+          {%- for block in section.blocks -%}
+            <div class="ap-step" {{ block.shopify_attributes }}>
+              <div class="ap-step__label">{{ block.settings.label | escape }}</div>
+              <ul class="ap-step__list">
+                {%- for i in (1..4) -%}
+                  {%- assign item_key = 'item' | append: i -%}
+                  {%- if block.settings[item_key] != blank -%}
+                    <li>{%- render 'altai-icon', icon: 'check', size: 18, stroke: 2 -%}<span>{{ block.settings[item_key] | escape }}</span></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endfor -%}
+        </div>
+        {%- if section.settings.button_label != blank -%}
+          <div class="ap-btn-wrap ap-hide-desk">
+            <a class="ap-btn ap-btn--ink" href="{{ section.settings.button_link | default: '#altai-buy' }}">{{ section.settings.button_label | escape }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Parcours",
+  "settings": [
+    { "type": "image_picker", "id": "banner_image", "label": "Image de la bannière", "info": "Vide = photo principale du produit." },
+    { "type": "text", "id": "banner_text", "label": "Texte sur la bannière", "default": "ALTAÏ" },
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "default": "<em>Your Routine</em> with ALTAÏ" },
+    { "type": "inline_richtext", "id": "text", "label": "Texte" },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Start My Routine →" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#altai-buy" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Étape", "default": "Step" },
+        { "type": "text", "id": "item1", "label": "Point 1" },
+        { "type": "text", "id": "item2", "label": "Point 2" },
+        { "type": "text", "id": "item3", "label": "Point 3" },
+        { "type": "text", "id": "item4", "label": "Point 4" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Parcours", "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }] }]
+}
+{% endschema %}

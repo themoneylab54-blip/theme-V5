@@ -1,0 +1,50 @@
+{%- comment -%} ALTAÏ — visuels produit en éventail. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign img_1 = section.settings.image_1
+  assign img_2 = section.settings.image_2
+  assign img_3 = section.settings.image_3
+  if product
+    if img_1 == blank
+      assign img_1 = product.featured_media.preview_image | default: product.featured_image
+    endif
+    if img_2 == blank
+      assign img_2 = img_1
+    endif
+    if img_3 == blank
+      assign img_3 = img_1
+    endif
+  endif
+-%}
+
+<section class="ap ap-pbanner">
+  <div class="ap-container">
+    <div>
+      <div class="ap-pbanner__stage">
+        {%- for img in (1..3) -%}
+          {%- case img -%}
+            {%- when 1 -%}{%- assign current_img = img_1 -%}
+            {%- when 2 -%}{%- assign current_img = img_2 -%}
+            {%- else -%}{%- assign current_img = img_3 -%}
+          {%- endcase -%}
+          {%- if current_img != blank -%}
+            {{- current_img | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 280px, 46vw', alt: '' -}}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Bannière produit",
+  "settings": [
+    { "type": "image_picker", "id": "image_1", "label": "Visuel central", "info": "Vide = photo principale du produit." },
+    { "type": "image_picker", "id": "image_2", "label": "Visuel gauche" },
+    { "type": "image_picker", "id": "image_3", "label": "Visuel droit" }
+  ],
+  "presets": [{ "name": "ALTAÏ – Bannière produit" }]
+}
+{% endschema %}

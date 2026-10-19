@@ -1,0 +1,71 @@
+{%- comment -%} ALTAÏ — garantie (sceau + texte + visuel). {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign visual = section.settings.image
+  if visual == blank and product
+    assign visual = product.featured_media.preview_image | default: product.featured_image
+  endif
+-%}
+
+<section class="ap ap-guarantee">
+  <div class="ap-container">
+    <div class="ap-guarantee__grid">
+      <div class="ap-guarantee__content">
+        <div class="ap-seal">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <path fill="currentColor" d="M119.00 60.00 L118.22 61.52 L116.16 62.94 L113.60 64.22 L111.48 65.41 L110.56 66.66 L111.13 68.10 L112.86 69.80 L115.01 71.69 L116.63 73.59 L116.99 75.27 L115.84 76.54 L113.48 77.38 L110.68 77.95 L108.33 78.55 L107.12 79.52 L107.29 81.05 L108.53 83.15 L110.11 85.53 L111.18 87.79 L111.10 89.50 L109.65 90.43 L107.16 90.63 L104.31 90.45 L101.88 90.43 L100.46 91.05 L100.23 92.58 L100.88 94.92 L101.79 97.63 L102.24 100.09 L101.72 101.72 L100.09 102.24 L97.63 101.79 L94.92 100.88 L92.58 100.23 L91.05 100.46 L90.43 101.88 L90.45 104.31 L90.63 107.16 L90.43 109.65 L89.50 111.10 L87.79 111.18 L85.53 110.11 L83.15 108.53 L81.05 107.29 L79.52 107.12 L78.55 108.33 L77.95 110.68 L77.38 113.48 L76.54 115.84 L75.27 116.99 L73.59 116.63 L71.69 115.01 L69.80 112.86 L68.10 111.13 L66.66 110.56 L65.41 111.48 L64.22 113.60 L62.94 116.16 L61.52 118.22 L60.00 119.00 L58.48 118.22 L57.06 116.16 L55.78 113.60 L54.59 111.48 L53.34 110.56 L51.90 111.13 L50.20 112.86 L48.31 115.01 L46.41 116.63 L44.73 116.99 L43.46 115.84 L42.62 113.48 L42.05 110.68 L41.45 108.33 L40.48 107.12 L38.95 107.29 L36.85 108.53 L34.47 110.11 L32.21 111.18 L30.50 111.10 L29.57 109.65 L29.37 107.16 L29.55 104.31 L29.57 101.88 L28.95 100.46 L27.42 100.23 L25.08 100.88 L22.37 101.79 L19.91 102.24 L18.28 101.72 L17.76 100.09 L18.21 97.63 L19.12 94.92 L19.77 92.58 L19.54 91.05 L18.12 90.43 L15.69 90.45 L12.84 90.63 L10.35 90.43 L8.90 89.50 L8.82 87.79 L9.89 85.53 L11.47 83.15 L12.71 81.05 L12.88 79.52 L11.67 78.55 L9.32 77.95 L6.52 77.38 L4.16 76.54 L3.01 75.27 L3.37 73.59 L4.99 71.69 L7.14 69.80 L8.87 68.10 L9.44 66.66 L8.52 65.41 L6.40 64.22 L3.84 62.94 L1.78 61.52 L1.00 60.00 L1.78 58.48 L3.84 57.06 L6.40 55.78 L8.52 54.59 L9.44 53.34 L8.87 51.90 L7.14 50.20 L4.99 48.31 L3.37 46.41 L3.01 44.73 L4.16 43.46 L6.52 42.62 L9.32 42.05 L11.67 41.45 L12.88 40.48 L12.71 38.95 L11.47 36.85 L9.89 34.47 L8.82 32.21 L8.90 30.50 L10.35 29.57 L12.84 29.37 L15.69 29.55 L18.12 29.57 L19.54 28.95 L19.77 27.42 L19.12 25.08 L18.21 22.37 L17.76 19.91 L18.28 18.28 L19.91 17.76 L22.37 18.21 L25.08 19.12 L27.42 19.77 L28.95 19.54 L29.57 18.12 L29.55 15.69 L29.37 12.84 L29.57 10.35 L30.50 8.90 L32.21 8.82 L34.47 9.89 L36.85 11.47 L38.95 12.71 L40.48 12.88 L41.45 11.67 L42.05 9.32 L42.62 6.52 L43.46 4.16 L44.73 3.01 L46.41 3.37 L48.31 4.99 L50.20 7.14 L51.90 8.87 L53.34 9.44 L54.59 8.52 L55.78 6.40 L57.06 3.84 L58.48 1.78 L60.00 1.00 L61.52 1.78 L62.94 3.84 L64.22 6.40 L65.41 8.52 L66.66 9.44 L68.10 8.87 L69.80 7.14 L71.69 4.99 L73.59 3.37 L75.27 3.01 L76.54 4.16 L77.38 6.52 L77.95 9.32 L78.55 11.67 L79.52 12.88 L81.05 12.71 L83.15 11.47 L85.53 9.89 L87.79 8.82 L89.50 8.90 L90.43 10.35 L90.63 12.84 L90.45 15.69 L90.43 18.12 L91.05 19.54 L92.58 19.77 L94.92 19.12 L97.63 18.21 L100.09 17.76 L101.72 18.28 L102.24 19.91 L101.79 22.37 L100.88 25.08 L100.23 27.42 L100.46 28.95 L101.88 29.57 L104.31 29.55 L107.16 29.37 L109.65 29.57 L111.10 30.50 L111.18 32.21 L110.11 34.47 L108.53 36.85 L107.29 38.95 L107.12 40.48 L108.33 41.45 L110.68 42.05 L113.48 42.62 L115.84 43.46 L116.99 44.73 L116.63 46.41 L115.01 48.31 L112.86 50.20 L111.13 51.90 L110.56 53.34 L111.48 54.59 L113.60 55.78 L116.16 57.06 L118.22 58.48Z"/>
+          </svg>
+          <span class="ap-seal__txt">
+            <span class="ap-seal__num">{{ section.settings.days | escape }}</span>
+            <span class="ap-seal__unit">{{ section.settings.unit | escape }}</span>
+          </span>
+        </div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="ap-guarantee__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="ap-guarantee__title">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="ap-guarantee__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a class="ap-btn ap-btn--accent ap-btn--square" href="{{ section.settings.button_link | default: '#altai-buy' }}">{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+      </div>
+
+      <div class="ap-guarantee__media">
+        {%- if visual != blank -%}
+          {{- visual | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 40vw, 85vw', alt: '' -}}
+        {%- endif -%}
+        <svg class="ap-roundseal" viewBox="0 0 100 100" aria-hidden="true">
+          <defs><path id="ap-seal-arc-{{ section.id }}" d="M50 14a36 36 0 1 1 0 72a36 36 0 1 1 0-72"/></defs>
+          <circle cx="50" cy="50" r="48" fill="currentColor"/>
+          <circle cx="50" cy="50" r="42" fill="none" stroke="#fff" stroke-width="1.2"/>
+          <text font-size="9" font-weight="700" letter-spacing="1.5" fill="#fff"><textPath href="#ap-seal-arc-{{ section.id }}" startOffset="2%">{{ section.settings.seal_text | escape }}</textPath></text>
+          <text x="50" y="54" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">{{ section.settings.days | escape }}</text>
+          <text x="50" y="66" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#fff">{{ section.settings.unit | escape }}</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Garantie",
+  "settings": [
+    { "type": "text", "id": "days", "label": "Nombre de jours", "default": "90" },
+    { "type": "text", "id": "unit", "label": "Unité", "default": "DAYS" },
+    { "type": "text", "id": "seal_text", "label": "Texte du sceau rond", "default": "MONEY BACK • GUARANTEE •" },
+    { "type": "text", "id": "eyebrow", "label": "Surtitre", "default": "FEEL THE DIFFERENCE" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "90-Day Risk-Free Trial" },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Not completely satisfied? Contact us for a full refund.</p>" },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Try Risk-Free Today" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#altai-buy" },
+    { "type": "image_picker", "id": "image", "label": "Visuel", "info": "Vide = photo principale du produit." }
+  ],
+  "presets": [{ "name": "ALTAÏ – Garantie" }]
+}
+{% endschema %}

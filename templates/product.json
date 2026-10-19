@@ -9,760 +9,1093 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-product",
+    "altai_ticker_top": {
+      "type": "altai-ticker",
+      "settings": {
+        "speed": 40
+      },
       "blocks": {
-        "vendor": {
-          "type": "vendor",
-          "settings": {}
-        },
-        "title": {
-          "type": "title",
+        "tick_top_1": {
+          "type": "item",
           "settings": {
-            "heading_tag": "h2"
+            "icon": "flame",
+            "text": "Rediscover Your Drive"
           }
         },
-        "badges": {
-          "type": "badges",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
+        "tick_top_2": {
+          "type": "item",
           "settings": {
-            "show_taxes_notice": false
+            "icon": "user",
+            "text": "Feel Like Yourself Again"
           }
         },
-        "rating": {
+        "tick_top_3": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "text": "More Room for Closeness"
+          }
+        },
+        "tick_top_4": {
+          "type": "item",
+          "settings": {
+            "icon": "dropper",
+            "text": "No Capsules to Swallow"
+          }
+        },
+        "tick_top_5": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "text": "90-Day Money-Back Guarantee"
+          }
+        },
+        "tick_top_6": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "text": "Discreet Shipping"
+          }
+        }
+      },
+      "block_order": [
+        "tick_top_1",
+        "tick_top_2",
+        "tick_top_3",
+        "tick_top_4",
+        "tick_top_5",
+        "tick_top_6"
+      ]
+    },
+    "altai_main": {
+      "type": "altai-main-product",
+      "settings": {
+        "layout": "full",
+        "anchor": "altai-buy",
+        "feature_columns": 2,
+        "ugc_title": "What our customers are saying:",
+        "ugc_image_1": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp",
+        "ugc_image_2": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp",
+        "ugc_image_3": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+      },
+      "blocks": {
+        "buy_rating": {
           "type": "rating",
           "settings": {
-            "show_empty": false
-          }
-        },
-        "payment_terms": {
-          "type": "payment_terms",
-          "settings": {}
-        },
-        "separator": {
-          "type": "separator",
-          "settings": {}
-        },
-        "description": {
-          "type": "description",
-          "settings": {
-            "icon": "none",
-            "icon_width": 20,
-            "collapse_content": false
-          }
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "hide_sold_out_variants": false,
-            "stack_blocks": true,
-            "selector_style": "block",
-            "swatch_selector_style": "swatch",
-            "variant_image_options": "",
-            "size_chart_page": ""
-          }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_payment_button": true,
-            "show_gift_card_recipient": true,
-            "atc_button_background": "#f6cc50",
-            "atc_button_text_color": "#000000",
-            "payment_button_background": "",
-            "payment_button_text_color": ""
-          }
-        }
-      },
-      "block_order": [
-        "vendor",
-        "title",
-        "badges",
-        "price",
-        "rating",
-        "payment_terms",
-        "separator",
-        "description",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons"
-      ],
-      "disabled": true,
-      "settings": {
-        "full_width": true,
-        "show_fixed_add_to_cart": true,
-        "desktop_media_width": 55,
-        "desktop_media_layout": "carousel_thumbnails_left",
-        "mobile_media_size": "expanded",
-        "mobile_carousel_control": "floating_dots",
-        "enable_video_autoplay": false,
-        "enable_video_looping": true,
-        "enable_image_zoom": true,
-        "max_image_zoom_level": 3,
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "input_background": "rgba(0,0,0,0)",
-        "input_text_color": ""
-      }
-    },
-    "image_with_text_overlay_6mHMnA": {
-      "type": "image-with-text-overlay",
-      "name": "Image with text overlay",
-      "settings": {
-        "full_width": true,
-        "allow_transparent_header": false,
-        "enable_parallax": false,
-        "image_size": "auto",
-        "image": "shopify://shop_images/hero_desktop_1.webp",
-        "mobile_image": "shopify://shop_images/Hero_mobile_1_7e6cd550-b751-4d56-8997-e7b9e4b86821.webp",
-        "mobile_text_position": "place-self-center text-center",
-        "desktop_text_position": "sm:place-self-center sm:text-center",
-        "text_color": "#ffffff",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
-      }
-    },
-    "vu_dans_rjVDz9": {
-      "type": "vu-dans",
-      "blocks": {
-        "logo_Va4ibx": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/marie-claire-magazine-logo.webp",
-            "link": ""
-          }
-        },
-        "logo_tF6Q6X": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/allure-magazine-logo.webp",
-            "link": ""
-          }
-        },
-        "logo_yQqj6D": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/elle-magazine-logo.webp",
-            "link": ""
-          }
-        },
-        "logo_6yyyWk": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/beauty-hub-magazine-logo.webp",
-            "link": ""
-          }
-        },
-        "logo_LwgBJA": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/vogue-magazine-logo.webp",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "logo_Va4ibx",
-        "logo_tF6Q6X",
-        "logo_yQqj6D",
-        "logo_6yyyWk",
-        "logo_LwgBJA"
-      ],
-      "name": "Vu dans",
-      "settings": {
-        "full_width": true,
-        "subheading": "",
-        "title": "Vu dans",
-        "content": "",
-        "text_alignment": "center",
-        "scrolling_speed": 40,
-        "logo_width": 150,
-        "logo_gap": 40,
-        "pause_hover": false,
-        "scrolling_speed_mobile": 11,
-        "logo_width_mobile": 110,
-        "logo_gap_mobile": 36,
-        "spacing_block_start": 12,
-        "content_gap": 12,
-        "spacing_block_end": 12,
-        "grayscale": false,
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": ""
-      }
-    },
-    "slideshow_gUAwaA": {
-      "type": "slideshow",
-      "blocks": {
-        "image_hLCpAq": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/desktop.webp",
-            "mobile_image": "shopify://shop_images/mobile_40f1fbcf-10db-4d6c-bcc7-efbd46ccb444.webp",
-            "content_max_width": 780,
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_text_position": "sm:place-self-center sm:text-center",
-            "subheading": "",
-            "title": "",
-            "heading_tag": "h0",
-            "button_text": "",
-            "button_link": "",
-            "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0,
-            "background": "",
-            "background_gradient": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_hLCpAq"
-      ],
-      "name": "Slideshow",
-      "settings": {
-        "full_width": true,
-        "allow_transparent_header": false,
-        "show_initial_transition": false,
-        "image_size": "auto",
-        "controls_type": "none",
-        "transition_type": "fade_with_text",
-        "autoplay": false,
-        "cycle_speed": 6,
-        "background": "#ffffff",
-        "background_gradient": ""
-      }
-    },
-    "video_testimonials_CCEKGi": {
-      "type": "video-testimonials",
-      "blocks": {
-        "video_f8faQF": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://vimeo.com/1211697380?share=copy&fl=sv&fe=ci",
             "rating": 5,
-            "testimonial": "Au goût miel",
-            "attr_1": "",
-            "attr_2": "64 ans"
+            "text": "Rated 4.8 • 10,577+ Reviews",
+            "text_mobile": "10,577+ Reviews",
+            "avatar_1": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp",
+            "avatar_2": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp",
+            "avatar_3": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp",
+            "avatar_4": "shopify://shop_images/5_1_f84e2d41-a217-4c69-8199-a3af5393af9f.webp",
+            "avatar_5": "shopify://shop_images/c8eb3271-f4dc-489a-be23-64827606a793.webp"
           }
         },
-        "video_BLDEdW": {
-          "type": "video",
+        "buy_subtitle": {
+          "type": "subtitle",
           "settings": {
-            "video_url": "https://vimeo.com/1211695974?share=copy&fl=sv&fe=ci",
-            "rating": 5,
-            "testimonial": "4 plantes traditionnelles",
-            "attr_1": "",
-            "attr_2": "56 ans"
+            "text": "ALTAÏ Second Wind"
           }
         },
-        "video_d8TwfT": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://vimeo.com/1211696027?share=copy&fl=sv&fe=ci",
-            "rating": 5,
-            "testimonial": "Pensé pour l'après-allaitement",
-            "attr_1": "",
-            "attr_2": "43 ans"
-          }
-        }
-      },
-      "block_order": [
-        "video_f8faQF",
-        "video_BLDEdW",
-        "video_d8TwfT"
-      ],
-      "name": "Témoignages vidéo",
-      "settings": {
-        "full_width": true,
-        "badge": "50 000+ clientes conquises !",
-        "title": "Une routine simple, au goût miel",
-        "content": "",
-        "text_alignment": "center",
-        "card_ratio": "9 / 16",
-        "card_width_mobile": "62",
-        "center_cards_mobile": true,
-        "autoplay_muted": true,
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "badge_background": "",
-        "badge_text_color": "",
-        "stars_color": "#f5b800",
-        "caption_text_color": "#ffffff",
-        "caption_overlay_color": "#000000",
-        "caption_overlay_opacity": 85,
-        "card_radius": 16
-      }
-    },
-    "reviews_carousel_rjcz8R": {
-      "type": "reviews-carousel",
-      "blocks": {
-        "review_qNm6z7": {
-          "type": "review",
-          "settings": {
-            "image": "shopify://shop_images/testimonial_3.webp",
-            "author": "Une maman · Reddit r/grossesse",
-            "title": "Le poids est revenu, pas le ventre",
-            "verified": false,
-            "rating": 5,
-            "content": "<p>« 4 mois après, je suis revenue à mon poids d'avant (13kg perdus), mais le ventre est encore un peu là »</p>"
-          }
-        },
-        "review_FzxtfH": {
-          "type": "review",
-          "settings": {
-            "image": "shopify://shop_images/testimonial_1.webp",
-            "author": "Une maman · Forum Doctissimo",
-            "title": "Plus gros en fin de journée",
-            "verified": false,
-            "rating": 5,
-            "content": "<p>« Il fait toujours une bosse et, en fin de journée, il est encore plus gros. »</p>"
-          }
-        },
-        "review_TCa6QW": {
-          "type": "review",
-          "settings": {
-            "image": "shopify://shop_images/testimonial_4.webp",
-            "author": "Une maman · Forum Doctissimo",
-            "title": "« C'est pour quand ? »",
-            "verified": false,
-            "rating": 5,
-            "content": "<p>« Y en a même une un jour dans l'ascenseur qui m'a dit : \"c'est pour quand?\" alors que j'avais déjà accouché !!!! »</p>"
-          }
-        },
-        "review_N8XDAP": {
-          "type": "review",
-          "settings": {
-            "image": "shopify://shop_images/testimonial_2.webp",
-            "author": "Une maman · Reddit r/grossesse",
-            "title": "Le 36 dans un carton",
-            "verified": false,
-            "rating": 4,
-            "content": "<p>« Je regarde mon 36 de loin, il risque de rester en carton longtemps. »</p>"
-          }
-        }
-      },
-      "block_order": [
-        "review_qNm6z7",
-        "review_FzxtfH",
-        "review_TCa6QW",
-        "review_N8XDAP"
-      ],
-      "name": "Carrousel d'avis clients",
-      "settings": {
-        "full_width": true,
-        "subheading": "",
-        "title": "Vous n'êtes pas seule.",
-        "content": "",
-        "link_url": "",
-        "link_text": "",
-        "image_ratio": "1 / 1",
-        "card_width_mobile": "62",
-        "center_cards_mobile": true,
-        "verified_text": "Avis vérifié",
-        "verified_color": "#111111",
-        "stars_color": "#f5b800",
-        "background": "#000000",
-        "background_gradient": "",
-        "text_color": "#ffffff",
-        "heading_color": "",
-        "heading_gradient": "",
-        "review_card_background": "#ffffff",
-        "review_card_text_color": "#111111",
-        "badge_background": "#000000",
-        "badge_text_color": "#ffffff",
-        "tag_background": "#f6cc50",
-        "tag_text_color": "#000000",
-        "badge_after_background": "#66242c"
-      }
-    },
-    "rich_text_kptxUX": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_FbL6CF": {
-          "type": "heading",
-          "settings": {
-            "text": "Vous avez retrouvé votre poids. Pas encore votre jean.",
-            "heading_tag": "h2",
-            "text_color": "",
-            "gradient": ""
-          }
-        }
-      },
-      "block_order": [
-        "heading_FbL6CF"
-      ],
-      "name": "Rich text",
-      "settings": {
-        "full_width": true,
-        "content_width": "small",
-        "text_position": "center",
-        "background": "",
-        "background_gradient": "",
-        "text_color": ""
-      }
-    },
-    "slideshow_mCiCWM": {
-      "type": "slideshow",
-      "blocks": {
-        "image_TjKADK": {
-          "type": "image",
-          "settings": {
-            "content_max_width": 780,
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_text_position": "sm:place-self-center sm:text-center",
-            "subheading": "",
-            "title": "",
-            "heading_tag": "h0",
-            "button_text": "",
-            "button_link": "",
-            "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0,
-            "background": "",
-            "background_gradient": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_TjKADK"
-      ],
-      "name": "Slideshow",
-      "settings": {
-        "full_width": true,
-        "allow_transparent_header": true,
-        "show_initial_transition": false,
-        "image_size": "auto",
-        "controls_type": "dots",
-        "transition_type": "fade_with_text",
-        "autoplay": false,
-        "cycle_speed": 6,
-        "background": "#ffffff",
-        "background_gradient": ""
-      }
-    },
-    "featured_product_WGyjFc": {
-      "type": "featured-product",
-      "blocks": {
-        "rating_line_jbfGDP": {
-          "type": "rating_line",
-          "settings": {
-            "rating": 5,
-            "stars_color": "#f5b800",
-            "text": "4,8/5 — +1457 Avis vérifiés",
-            "link": "",
-            "style": "squares",
-            "prefix": "Noté",
-            "score": "4,8",
-            "score_label": "EXCELLENT",
-            "count_text": "+1 457 avis",
-            "square_color": "#00B67A"
-          }
-        },
-        "title_qpeM4C": {
+        "buy_title": {
           "type": "title",
           "settings": {
-            "heading_tag": "h3"
+            "heading": "Say Goodbye to Low Energy and Fading Drive"
           }
         },
-        "image_frjMpa": {
-          "type": "image",
+        "buy_text": {
+          "type": "text",
           "settings": {
-            "alignment": "start",
-            "max_width": 260
+            "text": "<p>A liquid dietary supplement for adult men, made with botanical extracts and minerals. Simple drops under the tongue, no capsules to swallow.</p>"
           }
         },
-        "icon_benefit_jcgr9Q": {
-          "type": "icon_benefit",
+        "buy_feature_1": {
+          "type": "feature",
           "settings": {
-            "icon": "none",
-            "text": "<p><strong>4 plantes</strong> : gaillet gratteron, trèfle rouge, stillingie, frêne piquant</p>",
-            "icon_background": "",
-            "icon_color": ""
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
+            "text": "<p>Rediscover your <strong>drive.</strong></p>"
           }
         },
-        "icon_benefit_hQkbxn": {
-          "type": "icon_benefit",
+        "buy_feature_2": {
+          "type": "feature",
           "settings": {
-            "icon": "picto-love",
-            "text": "<p><strong>Au goût miel</strong>, simple à glisser dans votre routine</p>",
-            "icon_background": "",
-            "icon_color": ""
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
+            "text": "<p>Feel like <strong>yourself </strong>again.</p>"
           }
         },
-        "icon_benefit_Chrk6D": {
-          "type": "icon_benefit",
+        "buy_feature_3": {
+          "type": "feature",
           "settings": {
-            "icon": "picto-love",
-            "text": "<p>Pensé pour <strong>l'après-allaitement</strong>, même longtemps après</p>",
-            "icon_background": "",
-            "icon_color": ""
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
+            "text": "<p>Make more room for <strong>closeness.</strong></p>"
           }
         },
-        "stock_alert_3pYUjY": {
-          "type": "stock_alert",
+        "buy_feature_4": {
+          "type": "feature",
           "settings": {
-            "text": "Plus que 5 en stock!",
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
+            "text": "<p>Simple drops. No capsules to swallow</p>"
+          }
+        },
+        "buy_stock": {
+          "type": "stock",
+          "settings": {
+            "text": "Only 6 Left In Stock: Ships in 24/48 Hours",
             "color": "#c62828"
           }
         },
-        "buy_buttons_zB9pB6": {
-          "type": "buy_buttons",
+        "buy_price": {
+          "type": "price",
           "settings": {
-            "show_payment_button": false,
-            "show_gift_card_recipient": true,
-            "atc_button_background": "#f6cc50",
-            "atc_button_text_color": "#000000",
-            "payment_button_background": "",
-            "payment_button_text_color": ""
+            "save_label": "FALL SALE - Save"
           }
         },
-        "image_jQQtQP": {
+        "buy_variants": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "buy_bundles": {
+          "type": "bundles",
+          "settings": {
+            "default_tier": "1",
+            "unit_text": "[price] per bottle",
+            "tier1_enabled": true,
+            "tier1_qty": 1,
+            "tier1_title": "Buy One",
+            "tier1_badge": "",
+            "tier1_discount": 0,
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_title": "Buy Two",
+            "tier2_badge": "Most Popular",
+            "tier2_discount": 0,
+            "tier3_enabled": true,
+            "tier3_qty": 3,
+            "tier3_title": "Buy Three",
+            "tier3_badge": "",
+            "tier3_discount": 0
+          }
+        },
+        "buy_delivery": {
+          "type": "delivery",
+          "settings": {
+            "days": 7,
+            "text": "Order today for delivery by",
+            "text_after": "",
+            "date_locale": "en-US"
+          }
+        },
+        "buy_buy": {
+          "type": "buy_button",
+          "settings": {
+            "label": "Add To Cart",
+            "show_price": true,
+            "show_arrow": true
+          }
+        },
+        "buy_info": {
+          "type": "info_bar",
+          "settings": {
+            "item1_icon": "shield",
+            "item1_text": "90-Day Money-Back Guarantee",
+            "item2_icon": "box",
+            "item2_text": "Discreet Shipping",
+            "item3_icon": "lock",
+            "item3_text": ""
+          }
+        },
+        "buy_acc_1": {
+          "type": "accordion",
+          "settings": {
+            "title": "Description",
+            "content": "<p>ALTAÏ Second Wind is a liquid dietary supplement for adult men. It combines botanical extracts and minerals in a dropper format—a simple option if you prefer not to swallow capsules.</p><p>The formula includes Tongkat Ali, Shilajit, Fadogia agrestis, Ashwagandha, magnesium, zinc, Ajuga turkestanica, boron citrate, and a botanical blend.</p><p>The liquid base contains organic glycerin, purified water, citric acid, and natural flavors. See the Supplement Facts section for the amounts and full ingredient list.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_2": {
+          "type": "accordion",
+          "settings": {
+            "title": "Why Take Altai?",
+            "content": "<p>1 Dropper full in the morning with breakfast or coffee. The ingredients build up in your system over days and weeks, so timing doesn't need to be precise. Just take it daily and let your body do the rest. You don't need to time it before sex the way you would with a prescription pill.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Benefits",
+            "content": "<p><strong>Can Help Testosterone:</strong> Which improves drive and performance naturally.</p><p><strong>Supports Performance:</strong> Helps in all areas of life (including bedroom)</p><p><strong>Sharpen Focus:</strong> Can reduce brain fog</p>",
+            "open": false
+          }
+        },
+        "buy_acc_4": {
+          "type": "accordion",
+          "settings": {
+            "title": "Recommended Use",
+            "content": "<p>ALTAÏ is taken under the tongue using the included dropper. Follow the directions on your bottle for the serving size and frequency. Do not exceed the recommended amount.</p><p>Each 60 mL bottle contains 30 servings of 2 mL. At one serving per day, that would be a 30-day supply. Always follow the usage directions on your bottle.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_5": {
+          "type": "accordion",
+          "settings": {
+            "title": "How Do I Know These Are Made With Premium Ingredients?",
+            "content": "<p>Every batch is third-party lab tested for purity and potency. Made in a GMP-certified facility in the USA. No artificial fillers, no proprietary blends hiding weak doses. Every ingredient is listed at its actual amount so you know exactly what you're putting in your body.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_6": {
+          "type": "accordion",
+          "settings": {
+            "title": "90-Day Money Back Guarantee",
+            "content": "<p>ALTAÏ comes with a 90-day money-back guarantee. Please review the guarantee terms for eligibility, any return requirements, and how to request a refund.</p><p>We offer fast, reliable shipping: most orders arrive within 5–7 business days, depending on your location.</p><p>Need help? Our support team is here for any questions about your order.</p>",
+            "open": false
+          }
+        },
+        "buy_img_1": {
           "type": "image",
           "settings": {
-            "alignment": "center",
-            "max_width": 430
+            "image": "shopify://shop_images/payment.webp",
+            "max_width": 500
           }
         },
-        "collapsible_text_jGVFpi": {
-          "type": "collapsible_text",
+        "buy_img_2": {
+          "type": "image",
           "settings": {
-            "icon": "none",
-            "icon_width": 20,
-            "title": "Comment prendre les gouttes Sovéline ?",
-            "content": "<p><strong>Comment prendre les gouttes Sovéline ?</strong></p><p>Suivez le mode d'emploi et la dose indiqués sur l'étiquette du flacon. Ne dépassez pas la dose journalière recommandée.</p><p>Les gouttes ont un <strong>goût miel</strong>.</p><p><strong>Précautions.</strong> Si vous allaitez, si vous êtes enceinte ou si vous suivez un traitement, demandez l'avis de votre médecin, de votre sage-femme ou de votre pharmacien avant la première prise. Un complément alimentaire ne remplace pas une alimentation variée et équilibrée, ni un mode de vie sain. Tenir hors de portée des jeunes enfants.</p>",
-            "page": ""
-          }
-        },
-        "collapsible_text_yKpzL4": {
-          "type": "collapsible_text",
-          "settings": {
-            "icon": "none",
-            "icon_width": 20,
-            "title": "Les 4 plantes, et ce que Sovéline ne fait pas",
-            "content": "<p><strong>Gaillet gratteron</strong> (<em>Galium aparine</em>)</p><p><strong>Trèfle rouge</strong> (<em>Trifolium pratense</em>)</p><p><strong>Stillingie</strong> (<em>Stillingia sylvatica</em>)</p><p><strong>Frêne piquant</strong> (<em>Zanthoxylum americanum</em>)</p><p>Quatre plantes traditionnelles, dans un flacon au goût miel. Composition complète et dosage : voir l'étiquette du flacon.</p><p>Sovéline accompagne votre routine quand votre ventre vous semble gonflé, surtout en fin de journée.</p><p><strong>Ce n'est pas un produit minceur.</strong> Il ne vise ni le gras, ni la peau distendue, ni l'écartement des abdominaux (diastasis). Pour cela, un kiné ou une sage-femme peut évaluer votre situation.</p><p>Sovéline ne remplace ni la rééducation, ni un avis médical. Il s'ajoute à votre routine.</p>",
-            "page": ""
-          }
-        },
-        "collapsible_text_LzPRXy": {
-          "type": "collapsible_text",
-          "settings": {
-            "icon": "none",
-            "icon_width": 20,
-            "title": "Livraison, suivi & garantie 30 jours",
-            "content": "<p>Chaque commande part avec un <strong>numéro de suivi</strong>. Vous suivez votre colis à tout moment.</p><p>Une question sur votre commande ? Écrivez-nous avec le formulaire de contact en bas de page.</p><p>Essayez Sovéline pendant 30 jours. Si ce n'est pas pour vous, vous êtes remboursée.</p><p><strong>Aucun abonnement caché.</strong> Vous payez ce que vous commandez, une seule fois.</p>",
-            "page": ""
+            "image": "shopify://shop_images/altai-trust-badges.webp",
+            "max_width": 500
           }
         }
       },
       "block_order": [
-        "rating_line_jbfGDP",
-        "title_qpeM4C",
-        "image_frjMpa",
-        "icon_benefit_jcgr9Q",
-        "icon_benefit_hQkbxn",
-        "icon_benefit_Chrk6D",
-        "stock_alert_3pYUjY",
-        "buy_buttons_zB9pB6",
-        "image_jQQtQP",
-        "collapsible_text_jGVFpi",
-        "collapsible_text_yKpzL4",
-        "collapsible_text_LzPRXy"
-      ],
-      "name": "Featured product",
-      "settings": {
-        "full_width": true,
-        "product": "selivia",
-        "desktop_media_width": 55,
-        "desktop_media_layout": "carousel_thumbnails_bottom",
-        "mobile_media_size": "contained",
-        "mobile_carousel_control": "thumbnails",
-        "enable_video_autoplay": false,
-        "enable_video_looping": false,
-        "enable_image_zoom": false,
-        "max_image_zoom_level": 3,
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "input_background": "rgba(0,0,0,0)",
-        "input_text_color": ""
-      }
+        "buy_rating",
+        "buy_subtitle",
+        "buy_title",
+        "buy_text",
+        "buy_feature_1",
+        "buy_feature_2",
+        "buy_feature_3",
+        "buy_feature_4",
+        "buy_stock",
+        "buy_price",
+        "buy_variants",
+        "buy_bundles",
+        "buy_delivery",
+        "buy_buy",
+        "buy_info",
+        "buy_acc_1",
+        "buy_acc_2",
+        "buy_acc_3",
+        "buy_acc_4",
+        "buy_acc_5",
+        "buy_acc_6",
+        "buy_img_1",
+        "buy_img_2"
+      ]
     },
-    "images_with_text_scrolling_cdfMBi": {
-      "type": "images-with-text-scrolling",
+    "altai_stats": {
+      "type": "altai-stats",
+      "settings": {
+        "heading": "8 Key Ingredients. <em>One Daily Dropper.</em>",
+        "text": "Botanical extracts and minerals in a simple dropper format, with no capsules to swallow.",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      },
       "blocks": {
-        "item_aDeB3L": {
-          "type": "item",
+        "stat_1": {
+          "type": "stat",
           "settings": {
-            "icon": "none",
-            "icon_width": 48,
-            "title": "Le poids est parti. Le ventre est resté.",
-            "content": "<p>Vous avez retrouvé votre poids, ou presque. Pourtant votre ventre reste mou et ressort après le déjeuner. Sur les forums, des centaines de mamans écrivent la même chose.</p>"
+            "value": "8",
+            "label": "Key ingredients per serving"
           }
         },
-        "item_Q6RReN": {
-          "type": "item",
+        "stat_2": {
+          "type": "stat",
           "settings": {
-            "icon": "none",
-            "icon_width": 48,
-            "title": "Il change au fil de la journée",
-            "content": "<p>Plus petit le matin, plus gros le soir ? Vous l'avez peut-être déjà remarqué. Prenez-le en photo de profil, matin et soir, pendant une semaine.</p>"
+            "value": "2 mL",
+            "label": "One dropper a day"
           }
         },
-        "item_TEwPGa": {
-          "type": "item",
+        "stat_3": {
+          "type": "stat",
           "settings": {
-            "icon": "none",
-            "icon_width": 48,
-            "title": "Une routine à vous, sans contrainte",
-            "content": "<p>Quatre plantes traditionnelles, au goût miel. Sans gaine qui serre. Sans séance à 60-130 €. Sans massage à refaire chaque jour.</p>"
+            "value": "30",
+            "label": "Servings per bottle"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "90-Day",
+            "label": "Money-back guarantee"
           }
         }
       },
       "block_order": [
-        "item_aDeB3L",
-        "item_Q6RReN",
-        "item_TEwPGa"
-      ],
-      "name": "Images and text scrolling",
-      "settings": {
-        "full_width": true,
-        "stack_on_mobile": false,
-        "show_counter": true,
-        "desktop_image_effect": "reveal",
-        "image_position": "end",
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": ""
-      }
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ]
     },
-    "us_vs_them_d7XtPC": {
-      "type": "us-vs-them",
+    "altai_compounds": {
+      "type": "altai-compounds",
+      "settings": {
+        "heading": "4 Key Ingredients <em>Doing Different Jobs</em>"
+      },
       "blocks": {
-        "table_row_GMGxN9": {
-          "type": "table_row",
+        "compound_1": {
+          "type": "card",
           "settings": {
-            "row_heading": "No capsules to swallow: easy drops under the tongue",
-            "first_column_icon": "check",
-            "second_column_icon": "cross",
-            "third_column_icon": "none",
-            "four_column_icon": "none"
+            "image": "shopify://shop_images/4_4_50279a26-24f6-40cf-876a-2f10e25f1d69.webp",
+            "title": "Tongkat Ali",
+            "text": "<p>Used for centuries in Southeast Asia to support drive, stamina and everyday vitality.</p>"
           }
         },
-        "table_row_dTJ4Bq": {
-          "type": "table_row",
+        "compound_2": {
+          "type": "card",
           "settings": {
-            "row_heading": "One dropper a day, no timing needed",
-            "first_column_icon": "check",
-            "second_column_icon": "cross",
-            "third_column_icon": "none",
-            "four_column_icon": "none"
+            "image": "shopify://shop_images/2_3a739168-2250-4995-91f0-197bf869c651.webp",
+            "title": "Shilajit",
+            "text": "<p>A mineral-rich Himalayan resin that supports natural energy, so you feel like yourself again.</p>"
           }
         },
-        "table_row_Uegq7M": {
-          "type": "table_row",
+        "compound_3": {
+          "type": "card",
           "settings": {
-            "row_heading": "8 key ingredients in one formula",
-            "first_column_icon": "check",
-            "second_column_icon": "cross",
-            "third_column_icon": "none",
-            "four_column_icon": "none"
+            "image": "shopify://shop_images/1_3_bebfdca7-80fe-47d8-a61c-fdc0d66b04d4.webp",
+            "title": "Fadogia agrestis",
+            "text": "<p>A West African shrub traditionally used to support male vigor and a stronger drive.</p>"
           }
         },
-        "table_row_rY7hJb": {
-          "type": "table_row",
+        "compound_4": {
+          "type": "card",
           "settings": {
-            "row_heading": "Full ingredient list, nothing hidden",
-            "first_column_icon": "check",
-            "second_column_icon": "cross",
-            "third_column_icon": "none",
-            "four_column_icon": "none"
-          }
-        },
-        "table_row_hMnym8": {
-          "type": "table_row",
-          "settings": {
-            "row_heading": "Third-party lab tested, made in the USA",
-            "first_column_icon": "check",
-            "second_column_icon": "cross",
-            "third_column_icon": "none",
-            "four_column_icon": "none"
-          }
-        },
-        "table_row_dYbxRV": {
-          "type": "table_row",
-          "settings": {
-            "row_heading": "90-day money-back guarantee",
-            "first_column_icon": "check",
-            "second_column_icon": "cross",
-            "third_column_icon": "none",
-            "four_column_icon": "none"
+            "image": "shopify://shop_images/3_b1f49c03-848d-4769-b7c9-b1e3412591b5.webp",
+            "title": "Ashwagandha",
+            "text": "<p>An adaptogen that helps your body handle daily stress, so you stay calm, focused and present.</p>"
           }
         }
       },
       "block_order": [
-        "table_row_GMGxN9",
-        "table_row_dTJ4Bq",
-        "table_row_Uegq7M",
-        "table_row_rY7hJb",
-        "table_row_hMnym8",
-        "table_row_dYbxRV"
-      ],
-      "name": "Nous vs eux",
+        "compound_1",
+        "compound_2",
+        "compound_3",
+        "compound_4"
+      ]
+    },
+    "altai_reviews_slider": {
+      "type": "altai-reviews-slider",
       "settings": {
-        "full_width": true,
-        "subheading": "",
-        "title": "<p>ALTAÏ vs <em>the others</em></p>",
-        "content": "<p>Capsules, gummies, powders: here’s how ALTAÏ compares.</p>",
-        "button_text": "",
-        "button_url": "",
-        "button_background": "",
-        "button_text_color": "",
-        "bullet_color": "#111111",
-        "first_heading": "ALTAÏ",
-        "second_heading": "Typical pills",
-        "third_heading": "",
-        "four_heading": "",
-        "table_radius": 20,
-        "table_border_color": "",
-        "table_active_background": "#f6cc50",
-        "table_active_text_color": "#000000",
-        "check_color": "#000000",
-        "cross_color": "",
-        "background": "#f6f6f6",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": ""
+        "show_stars": true,
+        "heading": "Real Stories, <em>Real Results</em>",
+        "text": "See what our customers are saying about ALTAÏ",
+        "show_photos": true,
+        "photo_speed": 60,
+        "verified_text": "Verified Buyer"
+      },
+      "blocks": {
+        "rev_slider_1": {
+          "type": "review",
+          "settings": {
+            "author": "Rob D.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«At 62, my doctor prescribed 100mg of Viagra, but it did nothing. I felt so powerless. Now I’m feeling freaking amazing, with more energy than I had! I can think more clearly, my mind is sharper, and my libido is back too.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp"
+          }
+        },
+        "rev_slider_2": {
+          "type": "review",
+          "settings": {
+            "author": "Michelle S.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«Felt like I was 25 again. That was the feeling I’d been missing. Before that, I just wasn’t that interested anymore. Before that I tried different things, but nothing changed My wife noticed before I said anything. Our spark is stronger than ever.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp"
+          }
+        },
+        "rev_slider_3": {
+          "type": "review",
+          "settings": {
+            "author": "Danny E.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«I was skeptical because Cialis just wasn’t working like it used to. I just wanted to stop worrying every time we got close. Feeling that solid again changed everything. I’m just thankful to be intimate with my wife again.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+          }
+        },
+        "rev_slider_4": {
+          "type": "review",
+          "settings": {
+            "author": "Ashley B.",
+            "rating": 4,
+            "title": "",
+            "content": "<p>«I was starting to feel like a friend instead of his wife. I wanted him to reach for me again. Since we found this product, it's nice to see his confidence back. He comes closer now, and I’m not the only one trying anymore. &nbsp;»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/5_1_f84e2d41-a217-4c69-8199-a3af5393af9f.webp"
+          }
+        },
+        "rev_slider_5": {
+          "type": "review",
+          "settings": {
+            "author": "Garry D.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>« I was struggling in the bedroom at just 44. Testosterone boosted my energy, but did nothing for my sex life. After just 3 weeks of using it, my drive is finally coming back!»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/c8eb3271-f4dc-489a-be23-64827606a793.webp"
+          }
+        },
+        "rev_slider_6": {
+          "type": "review",
+          "settings": {
+            "author": "Monnika P.",
+            "rating": 5,
+            "title": "",
+            "content": "<p><em>« </em>I just wanted to feel loved and desired by my husband. We kept having the same conversations, but nothing changed.<br/>Now he kisses me without being asked, and the affection is stronger than ever before<strong>.</strong><em>»</em></p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/4_4_f92fff0c-a4a8-4a18-9db9-16af33184d29.webp"
+          }
+        }
+      },
+      "block_order": [
+        "rev_slider_1",
+        "rev_slider_2",
+        "rev_slider_3",
+        "rev_slider_4",
+        "rev_slider_5",
+        "rev_slider_6"
+      ]
+    },
+    "altai_icon_grid": {
+      "type": "altai-icon-grid",
+      "settings": {
+        "heading": "Feel Like Yourself. <em>Every Day.</em>",
+        "text": "From your morning routine to your evenings together, here's what ALTAÏ is made for."
+      },
+      "blocks": {
+        "icon_1": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "custom_icon": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
+            "text": "<p>Rediscover your <strong>drive.</strong></p>"
+          }
+        },
+        "icon_2": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "custom_icon": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
+            "text": "<p>Feel like <strong>yourself </strong>again.</p>"
+          }
+        },
+        "icon_3": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "custom_icon": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
+            "text": "<p>Make more room for <strong>closeness.</strong></p>"
+          }
+        },
+        "icon_4": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "custom_icon": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
+            "text": "<p>Simple drops. No capsules to swallow</p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "icon_2",
+        "icon_3",
+        "icon_4"
+      ]
+    },
+    "altai_benefits": {
+      "type": "altai-benefit-cards",
+      "settings": {
+        "heading": "<em>Real Benefits.</em> Rooted in Tradition.",
+        "text": "Botanical extracts and minerals in one daily dropper, with centuries of traditional use behind them.",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "benefit_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
+            "title": "Drive",
+            "subtitle": "Rediscover your drive.",
+            "content": "<p>Used for centuries in Southeast Asia to support drive, stamina and everyday vitality.</p><p>A West African shrub traditionally used to support male vigor and a stronger drive.</p>"
+          }
+        },
+        "benefit_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
+            "title": "Energy",
+            "subtitle": "Feel like yourself again.",
+            "content": "<p>A mineral-rich Himalayan resin that supports natural energy, so you feel like yourself again.</p>"
+          }
+        },
+        "benefit_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
+            "title": "Closeness",
+            "subtitle": "Make more room for closeness.",
+            "content": "<p>An adaptogen that helps your body handle daily stress, so you stay calm, focused and present.</p>"
+          }
+        },
+        "benefit_4": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
+            "title": "Simplicity",
+            "subtitle": "No capsules to swallow.",
+            "content": "<p>One dropper (2 mL) under the tongue with your morning coffee or breakfast. No pills to swallow, no timing needed.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ]
+    },
+    "altai_ticker_mid": {
+      "type": "altai-ticker",
+      "settings": {
+        "speed": 40
+      },
+      "blocks": {
+        "tick_mid_1": {
+          "type": "item",
+          "settings": {
+            "icon": "flame",
+            "text": "Rediscover Your Drive"
+          }
+        },
+        "tick_mid_2": {
+          "type": "item",
+          "settings": {
+            "icon": "user",
+            "text": "Feel Like Yourself Again"
+          }
+        },
+        "tick_mid_3": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "text": "More Room for Closeness"
+          }
+        },
+        "tick_mid_4": {
+          "type": "item",
+          "settings": {
+            "icon": "dropper",
+            "text": "No Capsules to Swallow"
+          }
+        },
+        "tick_mid_5": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "text": "90-Day Money-Back Guarantee"
+          }
+        },
+        "tick_mid_6": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "text": "Discreet Shipping"
+          }
+        }
+      },
+      "block_order": [
+        "tick_mid_1",
+        "tick_mid_2",
+        "tick_mid_3",
+        "tick_mid_4",
+        "tick_mid_5",
+        "tick_mid_6"
+      ]
+    },
+    "altai_journey": {
+      "type": "altai-journey",
+      "settings": {
+        "banner_text": "ALTAÏ",
+        "heading": "<em>Your Routine</em> with ALTAÏ",
+        "text": "ALTAÏ is built for daily use, not quick fixes. Here's what your routine looks like once it's part of your morning.",
+        "button_label": "Start My Routine →",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "label": "Day 1: Your First Dropper",
+            "item1": "One dropper (2 mL) under the tongue",
+            "item2": "With your morning coffee or breakfast",
+            "item3": "No capsules to swallow",
+            "item4": ""
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "label": "Weeks 1–2: Build the Habit",
+            "item1": "Same time, every morning",
+            "item2": "No need to time it around your day",
+            "item3": "Keep the bottle where you will see it",
+            "item4": ""
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "label": "Day 30: Bottle One, Done",
+            "item1": "30 servings in every 60 mL bottle",
+            "item2": "Check in with how you feel",
+            "item3": "Keep going: the ingredients build up with daily use",
+            "item4": ""
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "label": "Day 90: Your Guarantee Window",
+            "item1": "Not right for you? Ask for a refund",
+            "item2": "90-day money-back guarantee, subject to its terms",
+            "item3": "Your decision, risk-free",
+            "item4": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ]
+    },
+    "altai_reasons": {
+      "type": "altai-reasons",
+      "settings": {
+        "pill": "5 Reasons Why",
+        "heading": "ALTAÏ Is Different From Everything You've Tried",
+        "text": "",
+        "reason_label": "Reason",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "reason_1": {
+          "type": "reason",
+          "settings": {
+            "title": "No Capsules to Swallow",
+            "text": "<p>ALTAÏ comes as drops taken under the tongue with the included dropper. A simple option if you would rather not swallow pills.</p>"
+          }
+        },
+        "reason_2": {
+          "type": "reason",
+          "settings": {
+            "title": "One Dropper a Day, No Timing",
+            "text": "<p>One dropper (2 mL) in the morning with breakfast or coffee. Just take it daily, there is nothing to time around your day.</p>"
+          }
+        },
+        "reason_3": {
+          "type": "reason",
+          "settings": {
+            "title": "8 Key Ingredients in One Formula",
+            "text": "<p>Tongkat Ali, Shilajit, Fadogia agrestis, Ashwagandha, magnesium, zinc, Ajuga turkestanica and boron, in one daily serving.</p>"
+          }
+        },
+        "reason_4": {
+          "type": "reason",
+          "settings": {
+            "title": "Full Ingredient List, Nothing Hidden",
+            "text": "<p>Every ingredient is listed on the label, so you know exactly what you're putting in your body.</p>"
+          }
+        },
+        "reason_5": {
+          "type": "reason",
+          "settings": {
+            "title": "90-Day Money-Back Guarantee",
+            "text": "<p>Try it for 90 days. If ALTAÏ isn't right for you, request a refund, subject to the guarantee terms.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "reason_1",
+        "reason_2",
+        "reason_3",
+        "reason_4",
+        "reason_5"
+      ]
+    },
+    "altai_comparison": {
+      "type": "altai-comparison",
+      "settings": {
+        "heading": "ALTAÏ vs. Other Brands",
+        "us_label": "ALTAÏ",
+        "them_label": "Other Brands",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "icon": "dropper",
+            "us_text": "Easy Drops, No Capsules",
+            "them_text": "Hard-to-Swallow Pills",
+            "bullet": "<strong>No Capsules to Swallow</strong> — easy drops under the tongue"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "icon": "sun",
+            "us_text": "One Dropper a Day",
+            "them_text": "Multiple Pills, Strict Timing",
+            "bullet": "<strong>One Dropper a Day</strong> — no timing needed"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "icon": "flask",
+            "us_text": "8 Key Ingredients",
+            "them_text": "Single-Ingredient Formulas",
+            "bullet": "<strong>8 Key Ingredients</strong> — in one formula"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "icon": "list",
+            "us_text": "Full Ingredient List",
+            "them_text": "Hidden Blends",
+            "bullet": "<strong>Full Ingredient List</strong> — nothing hidden"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "icon": "shield",
+            "us_text": "Third-Party Lab Tested",
+            "them_text": "No Test Proof",
+            "bullet": "<strong>Third-Party Lab Tested</strong> — made in the USA"
+          }
+        },
+        "row_6": {
+          "type": "row",
+          "settings": {
+            "icon": "award",
+            "us_text": "90-Day Guarantee",
+            "them_text": "Short or No Guarantee",
+            "bullet": "<strong>90-Day Money-Back Guarantee</strong> — try it risk-free"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5",
+        "row_6"
+      ]
+    },
+    "altai_guarantee": {
+      "type": "altai-guarantee",
+      "settings": {
+        "days": "90",
+        "unit": "DAYS",
+        "seal_text": "MONEY BACK • GUARANTEE •",
+        "eyebrow": "FEEL THE DIFFERENCE",
+        "heading": "90-Day Risk-Free Trial",
+        "text": "<p>If ALTAÏ isn't right for you, you're covered by our 90-day money-back guarantee. Contact us to request a refund, subject to the guarantee terms.</p>",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
       }
     },
-    "17848327462a3405ac": {
-      "type": "apps",
+    "altai_ugc": {
+      "type": "altai-ugc",
       "settings": {
-        "full_width": true,
-        "remove_vertical_spacing": false,
-        "remove_horizontal_spacing": false,
-        "background": "",
-        "background_gradient": "",
-        "text_color": ""
+        "heading": "Real People. <em>Real Results.</em>",
+        "text": "Hear it in their own words."
+      },
+      "blocks": {
+        "ugc_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp"
+          }
+        },
+        "ugc_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp"
+          }
+        },
+        "ugc_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+          }
+        },
+        "ugc_4": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/5_1_f84e2d41-a217-4c69-8199-a3af5393af9f.webp"
+          }
+        },
+        "ugc_5": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/c8eb3271-f4dc-489a-be23-64827606a793.webp"
+          }
+        },
+        "ugc_6": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/4_4_f92fff0c-a4a8-4a18-9db9-16af33184d29.webp"
+          }
+        }
+      },
+      "block_order": [
+        "ugc_1",
+        "ugc_2",
+        "ugc_3",
+        "ugc_4",
+        "ugc_5",
+        "ugc_6"
+      ]
+    },
+    "altai_product_banner": {
+      "type": "altai-product-banner",
+      "settings": {}
+    },
+    "altai_subheading": {
+      "type": "altai-subheading",
+      "settings": {
+        "heading": "<em>Stock up.</em> Never run out.",
+        "text": "ALTAÏ is made for daily use. Choose your pack and keep your routine going."
       }
+    },
+    "altai_main_bottom": {
+      "type": "altai-main-product",
+      "settings": {
+        "layout": "compact",
+        "anchor": "",
+        "feature_columns": 2,
+        "ugc_title": ""
+      },
+      "blocks": {
+        "buy2_stock": {
+          "type": "stock",
+          "settings": {
+            "text": "Only 6 Left In Stock: Ships in 24/48 Hours",
+            "color": "#c62828"
+          }
+        },
+        "buy2_price": {
+          "type": "price",
+          "settings": {
+            "save_label": "FALL SALE - Save"
+          }
+        },
+        "buy2_variants": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "buy2_bundles": {
+          "type": "bundles",
+          "settings": {
+            "default_tier": "1",
+            "unit_text": "[price] per bottle",
+            "tier1_enabled": true,
+            "tier1_qty": 1,
+            "tier1_title": "Buy One",
+            "tier1_badge": "",
+            "tier1_discount": 0,
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_title": "Buy Two",
+            "tier2_badge": "Most Popular",
+            "tier2_discount": 0,
+            "tier3_enabled": true,
+            "tier3_qty": 3,
+            "tier3_title": "Buy Three",
+            "tier3_badge": "",
+            "tier3_discount": 0
+          }
+        },
+        "buy2_delivery": {
+          "type": "delivery",
+          "settings": {
+            "days": 7,
+            "text": "Order today for delivery by",
+            "text_after": "",
+            "date_locale": "en-US"
+          }
+        },
+        "buy2_buy": {
+          "type": "buy_button",
+          "settings": {
+            "label": "Add To Cart",
+            "show_price": true,
+            "show_arrow": true
+          }
+        },
+        "buy2_info": {
+          "type": "info_bar",
+          "settings": {
+            "item1_icon": "shield",
+            "item1_text": "90-Day Money-Back Guarantee",
+            "item2_icon": "box",
+            "item2_text": "Discreet Shipping",
+            "item3_icon": "lock",
+            "item3_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "buy2_stock",
+        "buy2_price",
+        "buy2_variants",
+        "buy2_bundles",
+        "buy2_delivery",
+        "buy2_buy",
+        "buy2_info"
+      ]
+    },
+    "altai_reviews_list": {
+      "type": "altai-reviews-list",
+      "settings": {
+        "rating_text": "Rated 4.8 / 5",
+        "trust_text": "Trusted by 10,577+",
+        "heading": "They Felt the Difference. Now It's Your Turn.",
+        "visible_count": 4,
+        "more_label": "Read More Reviews",
+        "show_author": true,
+        "verified_text": "Verified Buyer"
+      },
+      "blocks": {
+        "rev_list_1": {
+          "type": "review",
+          "settings": {
+            "author": "Rob D.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«At 62, my doctor prescribed 100mg of Viagra, but it did nothing. I felt so powerless. Now I’m feeling freaking amazing, with more energy than I had! I can think more clearly, my mind is sharper, and my libido is back too.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp"
+          }
+        },
+        "rev_list_2": {
+          "type": "review",
+          "settings": {
+            "author": "Michelle S.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«Felt like I was 25 again. That was the feeling I’d been missing. Before that, I just wasn’t that interested anymore. Before that I tried different things, but nothing changed My wife noticed before I said anything. Our spark is stronger than ever.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp"
+          }
+        },
+        "rev_list_3": {
+          "type": "review",
+          "settings": {
+            "author": "Danny E.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«I was skeptical because Cialis just wasn’t working like it used to. I just wanted to stop worrying every time we got close. Feeling that solid again changed everything. I’m just thankful to be intimate with my wife again.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+          }
+        },
+        "rev_list_4": {
+          "type": "review",
+          "settings": {
+            "author": "Ashley B.",
+            "rating": 4,
+            "title": "",
+            "content": "<p>«I was starting to feel like a friend instead of his wife. I wanted him to reach for me again. Since we found this product, it's nice to see his confidence back. He comes closer now, and I’m not the only one trying anymore. &nbsp;»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/5_1_f84e2d41-a217-4c69-8199-a3af5393af9f.webp"
+          }
+        },
+        "rev_list_5": {
+          "type": "review",
+          "settings": {
+            "author": "Garry D.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>« I was struggling in the bedroom at just 44. Testosterone boosted my energy, but did nothing for my sex life. After just 3 weeks of using it, my drive is finally coming back!»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/c8eb3271-f4dc-489a-be23-64827606a793.webp"
+          }
+        },
+        "rev_list_6": {
+          "type": "review",
+          "settings": {
+            "author": "Monnika P.",
+            "rating": 5,
+            "title": "",
+            "content": "<p><em>« </em>I just wanted to feel loved and desired by my husband. We kept having the same conversations, but nothing changed.<br/>Now he kisses me without being asked, and the affection is stronger than ever before<strong>.</strong><em>»</em></p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/4_4_f92fff0c-a4a8-4a18-9db9-16af33184d29.webp"
+          }
+        }
+      },
+      "block_order": [
+        "rev_list_1",
+        "rev_list_2",
+        "rev_list_3",
+        "rev_list_4",
+        "rev_list_5",
+        "rev_list_6"
+      ]
     },
     "faq_iHzKiM": {
       "type": "faq",
@@ -888,43 +1221,26 @@
         "accordion_background": "",
         "accordion_text_color": ""
       }
-    },
-    "contact_kp7GeL": {
-      "type": "contact",
-      "name": "Contact form",
-      "settings": {
-        "full_width": true,
-        "subheading": "",
-        "title": "Une question avant de commander ?",
-        "content": "<p>Écrivez-nous avec le formulaire ci-dessous. Nous vous répondons par e-mail.</p>",
-        "text_position": "start",
-        "contact_form_size": "large",
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "contact_background": "",
-        "contact_text_color": "",
-        "button_background": "",
-        "button_text_color": ""
-      }
     }
   },
   "order": [
-    "main",
-    "image_with_text_overlay_6mHMnA",
-    "vu_dans_rjVDz9",
-    "slideshow_gUAwaA",
-    "video_testimonials_CCEKGi",
-    "reviews_carousel_rjcz8R",
-    "rich_text_kptxUX",
-    "slideshow_mCiCWM",
-    "featured_product_WGyjFc",
-    "images_with_text_scrolling_cdfMBi",
-    "us_vs_them_d7XtPC",
-    "17848327462a3405ac",
-    "faq_iHzKiM",
-    "contact_kp7GeL"
+    "altai_ticker_top",
+    "altai_main",
+    "altai_stats",
+    "altai_compounds",
+    "altai_reviews_slider",
+    "altai_icon_grid",
+    "altai_benefits",
+    "altai_ticker_mid",
+    "altai_journey",
+    "altai_reasons",
+    "altai_comparison",
+    "altai_guarantee",
+    "altai_ugc",
+    "altai_product_banner",
+    "altai_subheading",
+    "altai_main_bottom",
+    "altai_reviews_list",
+    "faq_iHzKiM"
   ]
 }

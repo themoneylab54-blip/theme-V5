@@ -1,0 +1,86 @@
+{%- comment -%} ALTAÏ — « X raisons » en cartes avec image. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'altai-pdp.js' | asset_url }}" type="module"></script>
+
+<section class="ap ap-reasons">
+  <div class="ap-container">
+    <div class="ap-center">
+      {%- if section.settings.pill != blank -%}
+        <span class="ap-pill-title">{{ section.settings.pill | escape }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ap-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="ap-lead">{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+
+    <altai-carousel class="ap-carousel">
+      <div class="ap-carousel__track" data-track>
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign reason_image = block.settings.image
+            if reason_image == blank and product
+              assign media_index = forloop.index0
+              assign reason_image = product.images[media_index] | default: product.featured_image
+            endif
+          -%}
+          <div class="ap-carousel__item" {{ block.shopify_attributes }}>
+            <article class="ap-reason">
+              {%- if reason_image != blank -%}
+                {{- reason_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'ap-reason__img', sizes: '(min-width: 990px) 33vw, 90vw', alt: '' -}}
+              {%- else -%}
+                <div class="ap-reason__img"></div>
+              {%- endif -%}
+              <div class="ap-reason__body">
+                <span class="ap-reason__pill">{{ section.settings.reason_label | escape }} {{ forloop.index }}</span>
+                <h3 class="ap-reason__title">{{ block.settings.title | escape }}</h3>
+                <div class="ap-reason__text">{{ block.settings.text }}</div>
+              </div>
+            </article>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="ap-nav">
+        <div class="ap-dots" data-dots></div>
+        <div class="ap-nav__arrows">
+          <button type="button" class="ap-arrow ap-arrow--small" data-prev aria-label="{{ 'general.accessibility.previous' | t }}">{% render 'altai-icon', icon: 'chevron-left' %}</button>
+          <button type="button" class="ap-arrow ap-arrow--small" data-next aria-label="{{ 'general.accessibility.next' | t }}">{% render 'altai-icon', icon: 'chevron-right' %}</button>
+        </div>
+      </div>
+    </altai-carousel>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="ap-btn-wrap ap-btn-wrap--narrow">
+        <a class="ap-btn ap-btn--ink" href="{{ section.settings.button_link | default: '#altai-buy' }}">{{ section.settings.button_label | escape }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Raisons",
+  "settings": [
+    { "type": "text", "id": "pill", "label": "Badge de titre", "default": "5 Reasons Why" },
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "default": "ALTAÏ Is Different From Everything You've Tried" },
+    { "type": "inline_richtext", "id": "text", "label": "Texte" },
+    { "type": "text", "id": "reason_label", "label": "Libellé des cartes", "default": "Reason" },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Try Risk-Free Today" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#altai-buy" }
+  ],
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Raison",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Vide = photo du produit." },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Reason" },
+        { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Explain the reason.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Raisons", "blocks": [{ "type": "reason" }, { "type": "reason" }, { "type": "reason" }] }]
+}
+{% endschema %}

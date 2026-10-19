@@ -1,0 +1,68 @@
+{%- comment -%} ALTAÏ — bénéfices en cartes dépliables avec image. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="ap ap-benefits">
+  <div class="ap-container">
+    <div class="ap-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ap-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="ap-lead">{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="ap-benefits__list">
+      {%- for block in section.blocks -%}
+        <details class="ap-bcard" {{ block.shopify_attributes }}>
+          <summary>
+            {%- if block.settings.image != blank -%}
+              {{- block.settings.image | image_url: width: 260 | image_tag: loading: 'lazy', class: 'ap-bcard__img', alt: '' -}}
+            {%- else -%}
+              <span class="ap-bcard__img"></span>
+            {%- endif -%}
+            <span class="ap-bcard__txt">
+              <span class="ap-bcard__title" style="display:block">{{ block.settings.title | escape }}</span>
+              {%- if block.settings.subtitle != blank -%}
+                <span class="ap-bcard__sub" style="display:block">{{ block.settings.subtitle | escape }}</span>
+              {%- endif -%}
+            </span>
+            <span class="ap-bcard__plus" aria-hidden="true">{%- render 'altai-icon', icon: 'plus', size: 16 -%}</span>
+          </summary>
+          <div class="ap-bcard__content">{{ block.settings.content }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="ap-btn-wrap ap-hide-desk" style="margin-top: 48px;">
+        <a class="ap-btn ap-btn--ink ap-btn--square" href="{{ section.settings.button_link | default: '#altai-buy' }}">{{ section.settings.button_label | escape }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Bénéfices",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "info": "La partie en italique s'affiche en couleur.", "default": "<em>Real Benefits.</em> Backed by Tradition." },
+    { "type": "inline_richtext", "id": "text", "label": "Texte" },
+    { "type": "text", "id": "button_label", "label": "Bouton (mobile)", "default": "Try Risk-Free Today" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#altai-buy" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Bénéfice",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Benefit" },
+        { "type": "text", "id": "subtitle", "label": "Sous-titre" },
+        { "type": "richtext", "id": "content", "label": "Texte déplié", "default": "<p>Details</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Bénéfices", "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }, { "type": "card" }] }]
+}
+{% endschema %}

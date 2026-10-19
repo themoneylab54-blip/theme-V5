@@ -1,0 +1,10 @@
+{%- comment -%}
+  ALTAÏ — 5 étoiles. Usage : {% render 'altai-stars', rating: 5, size: 16 %}
+{%- endcomment -%}
+{%- assign stars_value = rating | default: 5 | plus: 0 -%}
+{%- assign stars_full = stars_value | round -%}
+<span class="ap-stars" role="img" aria-label="{{ stars_value }} / 5"{% if size %} style="--star-size: {{ size }}px"{% endif %}>
+  {%- for i in (1..5) -%}
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"{% if i > stars_full %} class="is-empty"{% endif %}><path d="M12 2.4l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6L2.5 9.3l6.6-.8L12 2.4z"/></svg>
+  {%- endfor -%}
+</span>

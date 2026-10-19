@@ -1,0 +1,44 @@
+{%- comment -%}
+  ALTAÏ — carte d'avis. Paramètres : block, verified_text, show_author (bool), tags_inline (bool)
+{%- endcomment -%}
+{%- assign review_image = block.settings.image -%}
+<article class="ap-review">
+  <div class="ap-review__rating">
+    <span>{{ block.settings.rating | append: '.0' }}</span>
+    {%- render 'altai-stars', rating: block.settings.rating, size: 16 -%}
+  </div>
+  {%- if block.settings.title != blank -%}
+    <h3 class="ap-review__title">{{ block.settings.title | escape }}</h3>
+  {%- endif -%}
+  <div class="ap-review__text">{{ block.settings.content }}</div>
+
+  {%- if tags_inline -%}
+    {%- if block.settings.tag1 != blank or block.settings.tag2 != blank -%}
+      <div class="ap-tags ap-tags--inline">
+        {%- if block.settings.tag1 != blank -%}<span class="ap-tag">{{ block.settings.tag1 | escape }}</span>{%- endif -%}
+        {%- if block.settings.tag2 != blank -%}<span class="ap-tag">{{ block.settings.tag2 | escape }}</span>{%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- if show_author -%}
+    <div class="ap-review__foot">
+      <span class="ap-review__author">
+        {%- if review_image != blank -%}{{ review_image | image_url: width: 60 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+        {{ block.settings.author | escape }}
+      </span>
+      {%- if block.settings.verified and verified_text != blank -%}
+        <span class="ap-review__verified">{%- render 'altai-icon', icon: 'check-circle', size: 14 -%}{{ verified_text | escape }}</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- unless tags_inline -%}
+    {%- if block.settings.tag1 != blank or block.settings.tag2 != blank -%}
+      <div class="ap-tags">
+        {%- if block.settings.tag1 != blank -%}<span class="ap-tag">{{ block.settings.tag1 | escape }}</span>{%- endif -%}
+        {%- if block.settings.tag2 != blank -%}<span class="ap-tag">{{ block.settings.tag2 | escape }}</span>{%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endunless -%}
+</article>

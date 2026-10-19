@@ -1,0 +1,63 @@
+{%- comment -%} ALTAÏ — bande défilante d'icônes et de bénéfices. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="ap ap-ticker" style="--speed: {{ section.settings.speed }}s;">
+    <div class="ap-ticker__track">
+      {%- for group in (1..2) -%}
+        <div class="ap-ticker__group"{% if group == 2 %} aria-hidden="true"{% endif %}>
+          {%- for repeat in (1..3) -%}
+            {%- for block in section.blocks -%}
+              <span class="ap-ticker__item" {% if group == 1 and repeat == 1 %}{{ block.shopify_attributes }}{% endif %}>
+                {%- if block.settings.custom_icon != blank -%}
+                  {{- block.settings.custom_icon | image_url: width: 48 | image_tag: loading: 'lazy', alt: '' -}}
+                {%- else -%}
+                  {%- render 'altai-icon', icon: block.settings.icon, size: 16 -%}
+                {%- endif -%}
+                {{ block.settings.text | escape }}
+              </span>
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ALTAÏ – Bande d'icônes",
+  "settings": [
+    { "type": "range", "id": "speed", "label": "Durée d'un tour", "min": 15, "max": 90, "step": 5, "unit": "s", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Élément",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            { "value": "flame", "label": "Flamme" },
+            { "value": "user", "label": "Silhouette" },
+            { "value": "heart", "label": "Cœur" },
+            { "value": "dropper", "label": "Pipette" },
+            { "value": "bolt", "label": "Éclair" },
+            { "value": "shield", "label": "Bouclier" },
+            { "value": "leaf", "label": "Feuille" },
+            { "value": "brain", "label": "Cerveau" },
+            { "value": "box", "label": "Colis" },
+            { "value": "check-circle", "label": "Coche" }
+          ],
+          "default": "check-circle"
+        },
+        { "type": "image_picker", "id": "custom_icon", "label": "Icône personnalisée" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Benefit" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Bande d'icônes", "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }] }]
+}
+{% endschema %}

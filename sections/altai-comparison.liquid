@@ -1,0 +1,116 @@
+{%- comment -%} ALTAÏ — comparatif « nous vs les autres » sur fond sombre. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign us_image = section.settings.us_image
+  if us_image == blank and product
+    assign us_image = product.featured_media.preview_image | default: product.featured_image
+  endif
+-%}
+
+<section class="ap ap--dark ap-compare">
+  <div class="ap-container">
+    <div class="ap-compare__grid">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ap-h2 ap-hide-desk">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <div class="ap-ctable">
+        <div class="ap-ctable__head">
+          {%- if us_image != blank -%}
+            {{- us_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' -}}
+          {%- endif -%}
+          <span class="ap-ctable__mark">{{ section.settings.us_label | escape }}</span>
+        </div>
+        <div class="ap-ctable__head">
+          {%- if section.settings.them_image != blank -%}
+            {{- section.settings.them_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' -}}
+          {%- else -%}
+            <svg class="ap-ctable__generic" viewBox="0 0 80 100" fill="none" aria-hidden="true">
+              <rect x="30" y="4" width="20" height="12" rx="2" fill="currentColor" opacity=".7"/>
+              <rect x="14" y="16" width="52" height="80" rx="8" fill="currentColor"/>
+              <rect x="20" y="38" width="40" height="30" rx="2" fill="#fff" opacity=".9"/>
+            </svg>
+          {%- endif -%}
+          <span class="ap-ctable__other">{{ section.settings.them_label | escape }}</span>
+        </div>
+
+        <div class="ap-ctable__col ap-ctable__col--us">
+          {%- for block in section.blocks -%}
+            <div class="ap-ccell" {{ block.shopify_attributes }}>
+              {%- render 'altai-icon', icon: block.settings.icon, size: 30, stroke: 1.5 -%}
+              <span>{{ block.settings.us_text | escape }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+        <div class="ap-ctable__col ap-ctable__col--them">
+          {%- for block in section.blocks -%}
+            <div class="ap-ccell">
+              {%- render 'altai-icon', icon: 'x-circle', size: 22 -%}
+              <span>{{ block.settings.them_text | escape }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div>
+        {%- if section.settings.heading != blank -%}
+          <h2 class="ap-h2 ap-hide-mob">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        <ul class="ap-compare__bullets">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.bullet != blank -%}
+              <li>{%- render 'altai-icon', icon: 'check-circle', size: 20 -%}<span>{{ block.settings.bullet }}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        {%- if section.settings.button_label != blank -%}
+          <a class="ap-btn ap-btn--yellow" href="{{ section.settings.button_link | default: '#altai-buy' }}">{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Comparatif",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "default": "ALTAÏ vs. Other Brands" },
+    { "type": "image_picker", "id": "us_image", "label": "Visuel ALTAÏ", "info": "Vide = photo principale du produit." },
+    { "type": "text", "id": "us_label", "label": "Nom de la marque", "default": "ALTAÏ" },
+    { "type": "image_picker", "id": "them_image", "label": "Visuel des autres marques", "info": "Vide = flacon générique." },
+    { "type": "text", "id": "them_label", "label": "Libellé des autres marques", "default": "Other Brands" },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Try Risk-Free Today" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#altai-buy" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Ligne",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            { "value": "dropper", "label": "Pipette" },
+            { "value": "sun", "label": "Soleil" },
+            { "value": "flask", "label": "Fiole" },
+            { "value": "list", "label": "Liste" },
+            { "value": "shield", "label": "Bouclier" },
+            { "value": "award", "label": "Médaille" },
+            { "value": "leaf", "label": "Feuille" },
+            { "value": "globe", "label": "Globe" }
+          ],
+          "default": "shield"
+        },
+        { "type": "text", "id": "us_text", "label": "ALTAÏ", "default": "Our advantage" },
+        { "type": "text", "id": "them_text", "label": "Autres marques", "default": "Their weakness" },
+        { "type": "inline_richtext", "id": "bullet", "label": "Puce (ordinateur)", "info": "Mettez le début en gras." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Comparatif", "blocks": [{ "type": "row" }, { "type": "row" }, { "type": "row" }] }]
+}
+{% endschema %}

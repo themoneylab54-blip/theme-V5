@@ -1,0 +1,56 @@
+{%- comment -%} ALTAÏ — ingrédients en cartes (carrousel sur mobile, grille sur ordinateur). {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'altai-pdp.js' | asset_url }}" type="module"></script>
+
+<section class="ap ap-compounds">
+  <div class="ap-container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ap-h2 ap-center">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <altai-carousel class="ap-carousel">
+      <div class="ap-carousel__track" data-track>
+        {%- for block in section.blocks -%}
+          <div class="ap-carousel__item" {{ block.shopify_attributes }}>
+            <article class="ap-compound">
+              {%- if block.settings.image != blank -%}
+                {{- block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', class: 'ap-compound__img', sizes: '(min-width: 990px) 270px, 75vw' -}}
+              {%- else -%}
+                <div class="ap-compound__img"></div>
+              {%- endif -%}
+              <h3 class="ap-compound__title">{{ block.settings.title | escape }}</h3>
+              <div class="ap-compound__text">{{ block.settings.text }}</div>
+            </article>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="ap-nav">
+        <div class="ap-nav__arrows">
+          <button type="button" class="ap-arrow" data-prev aria-label="{{ 'general.accessibility.previous' | t }}">{% render 'altai-icon', icon: 'chevron-left' %}</button>
+          <button type="button" class="ap-arrow" data-next aria-label="{{ 'general.accessibility.next' | t }}">{% render 'altai-icon', icon: 'chevron-right' %}</button>
+        </div>
+      </div>
+    </altai-carousel>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Ingrédients",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "info": "Mettez la fin en italique pour l'afficher en couleur.", "default": "Key Ingredients <em>Doing Different Jobs</em>" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Ingrédient",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Nom", "default": "Ingredient" },
+        { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Describe the ingredient.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Ingrédients", "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }, { "type": "card" }] }]
+}
+{% endschema %}

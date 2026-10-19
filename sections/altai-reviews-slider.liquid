@@ -1,0 +1,84 @@
+{%- comment -%} ALTAÏ — avis clients : bande de photos + carrousel de cartes. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'altai-pdp.js' | asset_url }}" type="module"></script>
+
+<section class="ap ap-tslider">
+  <div class="ap-container ap-center">
+    {%- if section.settings.show_stars -%}
+      <div class="ap-tslider__stars">{%- render 'altai-stars', rating: 5, size: 26 -%}</div>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ap-h2">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <p class="ap-lead">{{ section.settings.text }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_photos -%}
+    {%- capture photos -%}
+      {%- for block in section.blocks -%}
+        {%- if block.settings.image != blank -%}
+          {{- block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' -}}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if photos != blank -%}
+      <div class="ap-photostrip" aria-hidden="true">
+        <div class="ap-photostrip__track" style="--speed: {{ section.settings.photo_speed }}s;">
+          {%- for i in (1..8) -%}{{ photos }}{%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  <div class="ap-container">
+    <altai-carousel class="ap-carousel">
+      <div class="ap-carousel__track" data-track>
+        {%- for block in section.blocks -%}
+          <div class="ap-carousel__item" {{ block.shopify_attributes }}>
+            {%- render 'altai-review-card', block: block, verified_text: section.settings.verified_text, show_author: true, tags_inline: false -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="ap-nav">
+        <div class="ap-dots" data-dots></div>
+        <div class="ap-nav__arrows">
+          <button type="button" class="ap-arrow ap-arrow--small" data-prev aria-label="{{ 'general.accessibility.previous' | t }}">{% render 'altai-icon', icon: 'chevron-left' %}</button>
+          <button type="button" class="ap-arrow ap-arrow--small" data-next aria-label="{{ 'general.accessibility.next' | t }}">{% render 'altai-icon', icon: 'chevron-right' %}</button>
+        </div>
+      </div>
+    </altai-carousel>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Avis (carrousel)",
+  "settings": [
+    { "type": "checkbox", "id": "show_stars", "label": "Afficher les étoiles", "default": true },
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "default": "Real Stories, <em>Real Results</em>" },
+    { "type": "inline_richtext", "id": "text", "label": "Texte" },
+    { "type": "checkbox", "id": "show_photos", "label": "Bande de photos clients", "default": true },
+    { "type": "range", "id": "photo_speed", "label": "Vitesse de la bande", "min": 20, "max": 120, "step": 5, "unit": "s", "default": 60 },
+    { "type": "text", "id": "verified_text", "label": "Mention vérifié", "default": "Verified Buyer" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Avis",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo du client" },
+        { "type": "text", "id": "author", "label": "Nom", "default": "Customer" },
+        { "type": "range", "id": "rating", "label": "Note", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "title", "label": "Titre" },
+        { "type": "richtext", "id": "content", "label": "Avis", "default": "<p>Review</p>" },
+        { "type": "checkbox", "id": "verified", "label": "Acheteur vérifié", "default": true },
+        { "type": "text", "id": "tag1", "label": "Étiquette 1" },
+        { "type": "text", "id": "tag2", "label": "Étiquette 2" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Avis (carrousel)", "blocks": [{ "type": "review" }, { "type": "review" }, { "type": "review" }] }]
+}
+{% endschema %}

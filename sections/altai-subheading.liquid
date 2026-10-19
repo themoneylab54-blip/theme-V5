@@ -1,0 +1,24 @@
+{%- comment -%} ALTAÏ — titre de relance au-dessus du second bloc d'achat. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="ap ap-subhead">
+  <div class="ap-container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ap-h2">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <p class="ap-lead">{{ section.settings.text }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Titre de relance",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "info": "La partie en italique s'affiche en couleur.", "default": "<em>Stock up.</em> Save more." },
+    { "type": "inline_richtext", "id": "text", "label": "Texte" }
+  ],
+  "presets": [{ "name": "ALTAÏ – Titre de relance" }]
+}
+{% endschema %}
