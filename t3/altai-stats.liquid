@@ -1,0 +1,63 @@
+{%- comment -%} ALTAÏ — chiffres clés sur fond sombre. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="ap ap--dark ap-stats">
+  {%- if section.settings.background_image != blank -%}
+    {{- section.settings.background_image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'ap-stats__bg', sizes: '100vw', alt: '' -}}
+  {%- endif -%}
+  <div class="ap-container">
+    <div class="ap-stats__head">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ap-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="ap-lead">{{ section.settings.text }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <div class="ap-btn-wrap ap-hide-mob">
+          <a class="ap-btn ap-btn--yellow" href="{{ section.settings.button_link | default: '#altai-buy' }}">{{ section.settings.button_label | escape }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="ap-stats__list">
+      {%- for block in section.blocks -%}
+        <div class="ap-stat" {{ block.shopify_attributes }}>
+          <div class="ap-stat__value">{{ block.settings.value | escape }}</div>
+          <div class="ap-stat__label">{{ block.settings.label | escape }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="ap-hide-desk">
+        <a class="ap-btn ap-btn--yellow" href="{{ section.settings.button_link | default: '#altai-buy' }}">{{ section.settings.button_label | escape }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Chiffres clés",
+  "settings": [
+    { "type": "image_picker", "id": "background_image", "label": "Image de fond" },
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "info": "Mettez un mot en italique pour l'afficher en jaune.", "default": "Key numbers" },
+    { "type": "inline_richtext", "id": "text", "label": "Texte" },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Try Risk-Free Today" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#altai-buy" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Chiffre",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "value", "label": "Chiffre", "default": "100%" },
+        { "type": "text", "id": "label", "label": "Légende", "default": "Label" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Chiffres clés", "blocks": [{ "type": "stat" }, { "type": "stat" }, { "type": "stat" }, { "type": "stat" }] }]
+}
+{% endschema %}

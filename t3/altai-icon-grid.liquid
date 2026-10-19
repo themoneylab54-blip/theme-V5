@@ -1,0 +1,87 @@
+{%- comment -%} ALTAÏ — grille d'icônes sur fond sombre + visuel produit avec cercles. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign visual = section.settings.image
+  if visual == blank and product
+    assign visual = product.featured_media.preview_image | default: product.featured_image
+  endif
+-%}
+
+<section class="ap ap--dark ap-feel">
+  <div class="ap-container">
+    <div class="ap-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ap-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="ap-lead">{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="ap-feel__grid">
+      <div class="ap-feel__icons">
+        {%- for block in section.blocks -%}
+          <div class="ap-feel__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.custom_icon != blank -%}
+              {{- block.settings.custom_icon | image_url: width: 120 | image_tag: loading: 'lazy', class: 'ap-feel__icon', alt: '' -}}
+            {%- else -%}
+              <span class="ap-feel__icon">{%- render 'altai-icon', icon: block.settings.icon, size: 44, stroke: 1.5 -%}</span>
+            {%- endif -%}
+            <div>{{ block.settings.text }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="ap-feel__product">
+        <svg class="ap-rings" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+          <circle cx="200" cy="200" r="198" stroke="currentColor" stroke-dasharray="4 6"/>
+          <circle cx="200" cy="200" r="150" stroke="currentColor" stroke-dasharray="4 6"/>
+          <circle cx="200" cy="200" r="102" stroke="currentColor" stroke-dasharray="4 6"/>
+        </svg>
+        {%- if visual != blank -%}
+          {{- visual | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 40vw, 80vw' -}}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Grille d'icônes",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "default": "Feel Better. Every Day." },
+    { "type": "inline_richtext", "id": "text", "label": "Texte" },
+    { "type": "image_picker", "id": "image", "label": "Visuel produit", "info": "Vide = photo principale du produit." }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Icône",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            { "value": "flame", "label": "Flamme" },
+            { "value": "user", "label": "Silhouette" },
+            { "value": "heart", "label": "Cœur" },
+            { "value": "dropper", "label": "Pipette" },
+            { "value": "bolt", "label": "Éclair" },
+            { "value": "shield", "label": "Bouclier" },
+            { "value": "brain", "label": "Cerveau" },
+            { "value": "sun", "label": "Soleil" }
+          ],
+          "default": "bolt"
+        },
+        { "type": "image_picker", "id": "custom_icon", "label": "Icône personnalisée" },
+        { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Benefit</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Grille d'icônes", "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }, { "type": "item" }] }]
+}
+{% endschema %}

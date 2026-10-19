@@ -1,0 +1,61 @@
+{%- comment -%} ALTAÏ — vidéos ou photos de clients en format portrait. {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'altai-pdp.js' | asset_url }}" type="module"></script>
+
+<section class="ap ap-ugc">
+  <div class="ap-container">
+    <div class="ap-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ap-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="ap-lead">{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+
+    <altai-carousel class="ap-carousel">
+      <div class="ap-carousel__track" data-track>
+        {%- for block in section.blocks -%}
+          <div class="ap-carousel__item" {{ block.shopify_attributes }}>
+            <div class="ap-ugc__card">
+              {%- if block.settings.video != blank -%}
+                {{- block.settings.video | video_tag: playsinline: true, preload: 'none', loop: true, image_size: '600x' -}}
+                <button type="button" class="ap-ugc__play" data-play aria-label="Play">{%- render 'altai-icon', icon: 'play', size: 20 -%}</button>
+              {%- elsif block.settings.image != blank -%}
+                {{- block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 16vw, 33vw', alt: '' -}}
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="ap-nav">
+        <div class="ap-dots" data-dots></div>
+        <div class="ap-nav__arrows">
+          <button type="button" class="ap-arrow ap-arrow--small" data-prev aria-label="{{ 'general.accessibility.previous' | t }}">{% render 'altai-icon', icon: 'chevron-left' %}</button>
+          <button type="button" class="ap-arrow ap-arrow--small" data-next aria-label="{{ 'general.accessibility.next' | t }}">{% render 'altai-icon', icon: 'chevron-right' %}</button>
+        </div>
+      </div>
+    </altai-carousel>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Clients en vidéo",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "default": "Real People. <em>Real Results.</em>" },
+    { "type": "inline_richtext", "id": "text", "label": "Texte", "default": "Hear it in their own words." }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Vidéo ou photo",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Vidéo" },
+        { "type": "image_picker", "id": "image", "label": "Photo (si pas de vidéo)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Clients en vidéo", "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }] }]
+}
+{% endschema %}

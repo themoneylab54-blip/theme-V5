@@ -1,0 +1,60 @@
+{%- comment -%} ALTAÏ — liste d'avis avec « Read More Reviews ». {%- endcomment -%}
+{{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'altai-pdp.js' | asset_url }}" type="module"></script>
+
+<section class="ap ap-rlist" data-more-scope>
+  <div class="ap-container">
+    <div class="ap-rlist__top">
+      {%- render 'altai-stars', rating: 5, size: 17 -%}
+      {%- if section.settings.rating_text != blank -%}<strong>{{ section.settings.rating_text | escape }}</strong>{%- endif -%}
+      {%- if section.settings.trust_text != blank -%}<span class="ap-rlist__sep">|</span><span>{{ section.settings.trust_text | escape }}</span>{%- endif -%}
+    </div>
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ap-h2 ap-center">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="ap-rlist__items">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}{% if forloop.index > section.settings.visible_count %} data-extra hidden{% endif %}>
+          {%- render 'altai-review-card', block: block, verified_text: section.settings.verified_text, show_author: section.settings.show_author, tags_inline: true -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.blocks.size > section.settings.visible_count and section.settings.more_label != blank -%}
+      <button type="button" class="ap-rlist__more" data-more>{{ section.settings.more_label | escape }}</button>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ALTAÏ – Liste d'avis",
+  "settings": [
+    { "type": "text", "id": "rating_text", "label": "Note", "default": "Rated 4.8 / 5" },
+    { "type": "text", "id": "trust_text", "label": "Texte de confiance" },
+    { "type": "inline_richtext", "id": "heading", "label": "Titre", "default": "They Felt the Difference. Now It's Your Turn." },
+    { "type": "range", "id": "visible_count", "label": "Avis visibles avant « Read More »", "min": 1, "max": 10, "step": 1, "default": 4 },
+    { "type": "text", "id": "more_label", "label": "Bouton « plus d'avis »", "default": "Read More Reviews" },
+    { "type": "checkbox", "id": "show_author", "label": "Afficher le nom et la photo", "default": true },
+    { "type": "text", "id": "verified_text", "label": "Mention vérifié", "default": "Verified Buyer" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Avis",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo du client" },
+        { "type": "text", "id": "author", "label": "Nom", "default": "Customer" },
+        { "type": "range", "id": "rating", "label": "Note", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "title", "label": "Titre" },
+        { "type": "richtext", "id": "content", "label": "Avis", "default": "<p>Review</p>" },
+        { "type": "checkbox", "id": "verified", "label": "Acheteur vérifié", "default": true },
+        { "type": "text", "id": "tag1", "label": "Étiquette 1" },
+        { "type": "text", "id": "tag2", "label": "Étiquette 2" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ALTAÏ – Liste d'avis", "blocks": [{ "type": "review" }, { "type": "review" }] }]
+}
+{% endschema %}
