@@ -563,6 +563,12 @@
             "content": "<p>We offer fast, reliable shipping—most orders arrive within 5–7 business days, depending on your location.</p><p>All purchases are backed by our 30-day satisfaction guarantee.</p><p>Need help? Our support team is here for any questions about your order.</p>",
             "page": ""
           }
+        },
+        "liquid_altaiTrust": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<style>.altai-trust{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .75rem;margin:0;padding:.75rem .875rem;list-style:none;border:1px solid rgb(var(--text-color, var(--text-primary)) / .12);border-radius:8px;background:rgb(var(--text-color, var(--text-primary)) / .03);font-size:.8125rem;line-height:1.3;font-weight:600}.altai-trust li{display:flex;align-items:center;gap:.45rem}.altai-trust svg{flex:none;width:18px;height:18px}</style><ul class=\"altai-trust\"><li><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"10\" fill=\"#15803D\"/><path d=\"M5.8 10.4l2.7 2.7 5.7-5.9\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>90-day money-back guarantee</li><li><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"10\" fill=\"#15803D\"/><path d=\"M5.8 10.4l2.7 2.7 5.7-5.9\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>1 dropper a day, 30 days per bottle</li><li><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"10\" fill=\"#15803D\"/><path d=\"M5.8 10.4l2.7 2.7 5.7-5.9\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Discreet, plain packaging</li><li><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"10\" fill=\"#15803D\"/><path d=\"M5.8 10.4l2.7 2.7 5.7-5.9\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>100% secure checkout</li></ul>"
+          }
         }
       },
       "block_order": [
@@ -574,6 +580,7 @@
         "icon_benefit_EbUweh",
         "image_q7nDKR",
         "stock_alert_3pYUjY",
+        "liquid_altaiTrust",
         "buy_buttons_zB9pB6",
         "image_ctPymU",
         "image_jQQtQP",
@@ -911,27 +918,6 @@
         "accordion_background": "",
         "accordion_text_color": ""
       }
-    },
-    "contact_kp7GeL": {
-      "type": "contact",
-      "name": "Contact form",
-      "settings": {
-        "full_width": true,
-        "subheading": "",
-        "title": "Have a question before placing your order?",
-        "content": "<p>Please contact us using the form below. We will reply by email.</p>",
-        "text_position": "start",
-        "contact_form_size": "large",
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "contact_background": "",
-        "contact_text_color": "",
-        "button_background": "",
-        "button_text_color": ""
-      }
     }
   },
   "order": [
@@ -947,7 +933,6 @@
     "us_vs_them_d7XtPC",
     "17848327462a3405ac",
     "17902852833e501694",
-    "faq_iHzKiM",
-    "contact_kp7GeL"
+    "faq_iHzKiM"
   ]
 }
