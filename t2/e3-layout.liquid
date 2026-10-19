@@ -1,0 +1,24 @@
+<div></div>
+{% schema %}
+{
+  "name": "T3",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Mise en page",
+      "options": [
+        {
+          "value": "full",
+          "label": "Complète (galerie + infos)"
+        },
+        {
+          "value": "compact",
+          "label": "Compacte (bas de page, sans galerie)"
+        }
+      ],
+      "default": "full"
+    }
+  ]
+}
+{% endschema %}
