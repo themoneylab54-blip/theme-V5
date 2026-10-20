@@ -59,7 +59,7 @@
       },
       "15557474716127144420": {
         "type": "shopify://apps/kaching-bundles/blocks/app-embed-block/6c637362-a106-4a32-94ac-94dcfd68cdb8",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       },
       "17198465164502963513": {
