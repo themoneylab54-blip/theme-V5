@@ -19,28 +19,28 @@
           "type": "item",
           "settings": {
             "icon": "flame",
-            "text": "Rediscover Your Drive"
+            "text": "Bring Back Your Desire*"
           }
         },
         "tick_top_2": {
           "type": "item",
           "settings": {
             "icon": "user",
-            "text": "Feel Like Yourself Again"
+            "text": "Stamina for Your Nights*"
           }
         },
         "tick_top_3": {
           "type": "item",
           "settings": {
             "icon": "heart",
-            "text": "More Room for Closeness"
+            "text": "Confidence in the Bedroom"
           }
         },
         "tick_top_4": {
           "type": "item",
           "settings": {
             "icon": "dropper",
-            "text": "No Capsules to Swallow"
+            "text": "No Pill to Time Before Sex"
           }
         },
         "tick_top_5": {
@@ -101,13 +101,13 @@
         "buy_title": {
           "type": "title",
           "settings": {
-            "heading": "Say Goodbye to Low Energy and Fading Drive"
+            "heading": "Bring the Fire Back to Your Bedroom"
           }
         },
         "buy_text": {
           "type": "text",
           "settings": {
-            "text": "<p>A liquid dietary supplement for adult men, made with botanical extracts and minerals. Simple drops under the tongue, no capsules to swallow.</p>"
+            "text": "<p>Daily drops under the tongue with Tongkat Ali, Shilajit, Fadogia agrestis and Ashwagandha, formulated to support healthy libido, stamina and testosterone levels*. For the man who wants to want it again, and to show up like he means it.</p>"
           }
         },
         "buy_feature_1": {
@@ -115,7 +115,7 @@
           "settings": {
             "icon": "check-circle",
             "custom_icon": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
-            "text": "<p>Rediscover your <strong>drive.</strong></p>"
+            "text": "<p>Supports <strong>libido & desire*</strong></p>"
           }
         },
         "buy_feature_2": {
@@ -123,7 +123,7 @@
           "settings": {
             "icon": "check-circle",
             "custom_icon": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
-            "text": "<p>Feel like <strong>yourself </strong>again.</p>"
+            "text": "<p>Supports healthy <strong>testosterone*</strong></p>"
           }
         },
         "buy_feature_3": {
@@ -131,7 +131,7 @@
           "settings": {
             "icon": "check-circle",
             "custom_icon": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
-            "text": "<p>Make more room for <strong>closeness.</strong></p>"
+            "text": "<p>Supports <strong>stamina</strong> for closer nights*</p>"
           }
         },
         "buy_feature_4": {
@@ -139,7 +139,7 @@
           "settings": {
             "icon": "check-circle",
             "custom_icon": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
-            "text": "<p>Simple drops. No capsules to swallow</p>"
+            "text": "<p>Simple drops. <strong>No pill to time.</strong></p>"
           }
         },
         "buy_price": {
@@ -213,8 +213,8 @@
         "buy_acc_2": {
           "type": "accordion",
           "settings": {
-            "title": "Why Take Altai?",
-            "content": "<p>1 Dropper full in the morning with breakfast or coffee. The ingredients build up in your system over days and weeks, so timing doesn't need to be precise. Just take it daily and let your body do the rest. You don't need to time it before sex the way you would with a prescription pill.</p>",
+            "title": "Why Take ALTAÏ?",
+            "content": "<p>Low desire, low energy and stress don’t stay at the office. They follow you into the bedroom. ALTAÏ is a daily formula built to support what matters there: healthy libido, stamina, testosterone levels and a calmer mind*.</p><p>It’s not a pill you time an hour before sex. One dropper every morning, and the ingredients work with your body over days and weeks*. Nothing to plan, nothing to hide, nothing to explain.</p>",
             "open": false
           }
         },
@@ -222,7 +222,7 @@
           "type": "accordion",
           "settings": {
             "title": "Benefits",
-            "content": "<p><strong>Can Help Testosterone:</strong> Which improves drive and performance naturally.</p><p><strong>Supports Performance:</strong> Helps in all areas of life (including bedroom)</p><p><strong>Sharpen Focus:</strong> Can reduce brain fog</p>",
+            "content": "<p><strong>Desire & libido:</strong> Tongkat Ali and Fadogia agrestis, traditionally used for male vigor, to support a healthy libido*.</p><p><strong>Healthy testosterone:</strong> Tongkat Ali, Shilajit, Ashwagandha and zinc to support healthy testosterone levels*.</p><p><strong>Stamina & energy:</strong> Shilajit and magnesium to support natural energy, so the day doesn’t take everything you’ve got*.</p><p><strong>Less stress, more presence:</strong> Ashwagandha helps your body manage everyday stress, one of the biggest mood-killers in the bedroom*.</p>",
             "open": false
           }
         },
@@ -274,6 +274,12 @@
             "subtext": "Only 6 Left In Stock: Ships in 24/48 Hours",
             "color": "#d33f3f"
           }
+        },
+        "buy_note": {
+          "type": "note",
+          "settings": {
+            "text": "<p>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary.</p>"
+          }
         }
       },
       "block_order": [
@@ -292,6 +298,7 @@
         "buy_delivery",
         "buy_buy",
         "buy_info",
+        "buy_note",
         "buy_acc_1",
         "buy_acc_2",
         "buy_acc_3",
@@ -306,7 +313,7 @@
       "type": "altai-stats",
       "settings": {
         "heading": "8 Key Ingredients. <em>One Daily Dropper.</em>",
-        "text": "Botanical extracts and minerals in a simple dropper format, with no capsules to swallow.",
+        "text": "Formulated to support libido, stamina and healthy testosterone levels*, in one simple dropper a day.",
         "button_label": "Try Risk-Free Today",
         "button_link": "#altai-buy"
       },
@@ -358,7 +365,7 @@
           "settings": {
             "image": "shopify://shop_images/4_4_50279a26-24f6-40cf-876a-2f10e25f1d69.webp",
             "title": "Tongkat Ali",
-            "text": "<p>Used for centuries in Southeast Asia to support drive, stamina and everyday vitality.</p>"
+            "text": "<p>Used for centuries in Southeast Asia for male vigor, and studied in modern research for libido and healthy testosterone levels*.</p>"
           }
         },
         "compound_2": {
@@ -366,7 +373,7 @@
           "settings": {
             "image": "shopify://shop_images/2_3a739168-2250-4995-91f0-197bf869c651.webp",
             "title": "Shilajit",
-            "text": "<p>A mineral-rich Himalayan resin that supports natural energy, so you feel like yourself again.</p>"
+            "text": "<p>A mineral-rich Himalayan resin studied for healthy testosterone levels and natural energy*.</p>"
           }
         },
         "compound_3": {
@@ -374,7 +381,7 @@
           "settings": {
             "image": "shopify://shop_images/1_3_bebfdca7-80fe-47d8-a61c-fdc0d66b04d4.webp",
             "title": "Fadogia agrestis",
-            "text": "<p>A West African shrub traditionally used to support male vigor and a stronger drive.</p>"
+            "text": "<p>A West African shrub traditionally used to support male vigor and desire*.</p>"
           }
         },
         "compound_4": {
@@ -382,7 +389,7 @@
           "settings": {
             "image": "shopify://shop_images/3_b1f49c03-848d-4769-b7c9-b1e3412591b5.webp",
             "title": "Ashwagandha",
-            "text": "<p>An adaptogen that helps your body handle daily stress, so you stay calm, focused and present.</p>"
+            "text": "<p>An adaptogen that helps your body handle everyday stress*, so you stay calm, confident and present.</p>"
           }
         }
       },
@@ -495,8 +502,8 @@
     "altai_icon_grid": {
       "type": "altai-icon-grid",
       "settings": {
-        "heading": "Feel Like Yourself. <em>Every Day.</em>",
-        "text": "From your morning routine to your evenings together, here's what ALTAÏ is made for."
+        "heading": "Feel Like Yourself. <em>Every Night.</em>",
+        "text": "From your first coffee to lights out, here’s what ALTAÏ is made for."
       },
       "blocks": {
         "icon_1": {
@@ -504,7 +511,7 @@
           "settings": {
             "icon": "bolt",
             "custom_icon": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
-            "text": "<p>Rediscover your <strong>drive.</strong></p>"
+            "text": "<p>Supports <strong>libido & desire*</strong></p>"
           }
         },
         "icon_2": {
@@ -512,7 +519,7 @@
           "settings": {
             "icon": "bolt",
             "custom_icon": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
-            "text": "<p>Feel like <strong>yourself </strong>again.</p>"
+            "text": "<p>Supports healthy <strong>testosterone*</strong></p>"
           }
         },
         "icon_3": {
@@ -520,7 +527,7 @@
           "settings": {
             "icon": "bolt",
             "custom_icon": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
-            "text": "<p>Make more room for <strong>closeness.</strong></p>"
+            "text": "<p>Supports <strong>stamina</strong> for closer nights*</p>"
           }
         },
         "icon_4": {
@@ -528,7 +535,7 @@
           "settings": {
             "icon": "bolt",
             "custom_icon": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
-            "text": "<p>Simple drops. No capsules to swallow</p>"
+            "text": "<p>Simple drops. <strong>No pill to time.</strong></p>"
           }
         }
       },
@@ -542,8 +549,8 @@
     "altai_benefits": {
       "type": "altai-benefit-cards",
       "settings": {
-        "heading": "<em>Real Benefits.</em> Rooted in Tradition.",
-        "text": "Botanical extracts and minerals in one daily dropper, with centuries of traditional use behind them.",
+        "heading": "<em>Your Sex Life,</em> Back on Your Side.",
+        "text": "Four things that change how you show up in the bedroom, supported every day by one dropper*.",
         "button_label": "Try Risk-Free Today",
         "button_link": "#altai-buy"
       },
@@ -552,27 +559,27 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
-            "title": "Drive",
-            "subtitle": "Rediscover your drive.",
-            "content": "<p>Used for centuries in Southeast Asia to support drive, stamina and everyday vitality.</p><p>A West African shrub traditionally used to support male vigor and a stronger drive.</p>"
+            "title": "Desire",
+            "subtitle": "Want it again.",
+            "content": "<p>Tongkat Ali and Fadogia agrestis, used for centuries for male vigor, to support a healthy libido*.</p>"
           }
         },
         "benefit_2": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
-            "title": "Energy",
-            "subtitle": "Feel like yourself again.",
-            "content": "<p>A mineral-rich Himalayan resin that supports natural energy, so you feel like yourself again.</p>"
+            "title": "Stamina",
+            "subtitle": "Still have it at night.",
+            "content": "<p>Shilajit and magnesium support natural energy, so the day doesn’t take everything you’ve got*.</p>"
           }
         },
         "benefit_3": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
-            "title": "Closeness",
-            "subtitle": "Make more room for closeness.",
-            "content": "<p>An adaptogen that helps your body handle daily stress, so you stay calm, focused and present.</p>"
+            "title": "Confidence",
+            "subtitle": "Stop overthinking it.",
+            "content": "<p>Ashwagandha helps your body manage everyday stress, so you stay calm, present and in the moment*.</p>"
           }
         },
         "benefit_4": {
@@ -580,8 +587,8 @@
           "settings": {
             "image": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
             "title": "Simplicity",
-            "subtitle": "No capsules to swallow.",
-            "content": "<p>One dropper (2 mL) under the tongue with your morning coffee or breakfast. No pills to swallow, no timing needed.</p>"
+            "subtitle": "No pill to time before sex.",
+            "content": "<p>One dropper under the tongue every morning. Nothing to plan, nothing to hide, nothing to explain.</p>"
           }
         }
       },
@@ -602,28 +609,28 @@
           "type": "item",
           "settings": {
             "icon": "flame",
-            "text": "Rediscover Your Drive"
+            "text": "Bring Back Your Desire*"
           }
         },
         "tick_mid_2": {
           "type": "item",
           "settings": {
             "icon": "user",
-            "text": "Feel Like Yourself Again"
+            "text": "Stamina for Your Nights*"
           }
         },
         "tick_mid_3": {
           "type": "item",
           "settings": {
             "icon": "heart",
-            "text": "More Room for Closeness"
+            "text": "Confidence in the Bedroom"
           }
         },
         "tick_mid_4": {
           "type": "item",
           "settings": {
             "icon": "dropper",
-            "text": "No Capsules to Swallow"
+            "text": "No Pill to Time Before Sex"
           }
         },
         "tick_mid_5": {
@@ -654,8 +661,8 @@
       "type": "altai-journey",
       "settings": {
         "banner_text": "ALTAÏ",
-        "heading": "<em>Your Routine</em> with ALTAÏ",
-        "text": "ALTAÏ is built for daily use, not quick fixes. Here's what your routine looks like once it's part of your morning.",
+        "heading": "<em>What Changes</em> With ALTAÏ",
+        "text": "ALTAÏ isn’t a quick fix you take before sex. It’s a daily routine built to support your drive over time*. Individual results may vary.",
         "button_label": "Start My Routine →",
         "button_link": "#altai-buy"
       },
@@ -663,10 +670,10 @@
         "step_1": {
           "type": "step",
           "settings": {
-            "label": "Day 1: Your First Dropper",
+            "label": "Day 1: Start Your Routine",
             "item1": "One dropper (2 mL) under the tongue",
             "item2": "With your morning coffee or breakfast",
-            "item3": "No capsules to swallow",
+            "item3": "Nothing to time before sex",
             "item4": ""
           }
         },
@@ -675,7 +682,7 @@
           "settings": {
             "label": "Weeks 1–2: Build the Habit",
             "item1": "Same time, every morning",
-            "item2": "No need to time it around your day",
+            "item2": "The ingredients build up with daily use*",
             "item3": "Keep the bottle where you will see it",
             "item4": ""
           }
@@ -683,10 +690,10 @@
         "step_3": {
           "type": "step",
           "settings": {
-            "label": "Day 30: Bottle One, Done",
-            "item1": "30 servings in every 60 mL bottle",
-            "item2": "Check in with how you feel",
-            "item3": "Keep going: the ingredients build up with daily use",
+            "label": "Day 30: Check In With Yourself",
+            "item1": "How is your energy at the end of the day?",
+            "item2": "How is your interest, your confidence?",
+            "item3": "Keep going: consistency is the point",
             "item4": ""
           }
         },
@@ -712,7 +719,7 @@
       "type": "altai-reasons",
       "settings": {
         "pill": "5 Reasons Why",
-        "heading": "ALTAÏ Is Different From Everything You've Tried",
+        "heading": "ALTAÏ Is Different From the Pills You’ve Tried",
         "text": "",
         "reason_label": "Reason",
         "button_label": "Try Risk-Free Today",
@@ -722,15 +729,15 @@
         "reason_1": {
           "type": "reason",
           "settings": {
-            "title": "No Capsules to Swallow",
-            "text": "<p>ALTAÏ comes as drops taken under the tongue with the included dropper. A simple option if you would rather not swallow pills.</p>"
+            "title": "Built for Desire, Not Just Energy",
+            "text": "<p>Most “male” formulas stop at energy. ALTAÏ combines ingredients traditionally used for male vigor with ingredients studied for libido and healthy testosterone levels*.</p>"
           }
         },
         "reason_2": {
           "type": "reason",
           "settings": {
-            "title": "One Dropper a Day, No Timing",
-            "text": "<p>One dropper (2 mL) in the morning with breakfast or coffee. Just take it daily, there is nothing to time around your day.</p>"
+            "title": "No Pill to Time Before Sex",
+            "text": "<p>One dropper every morning. No planning your night around a pill, no awkward trip to the bathroom.</p>"
           }
         },
         "reason_3": {
@@ -743,8 +750,8 @@
         "reason_4": {
           "type": "reason",
           "settings": {
-            "title": "Full Ingredient List, Nothing Hidden",
-            "text": "<p>Every ingredient is listed on the label, so you know exactly what you're putting in your body.</p>"
+            "title": "Full Ingredient List, Lab Tested",
+            "text": "<p>Every ingredient is listed at its real amount, and every batch is third-party lab tested for purity and potency.</p>"
           }
         },
         "reason_5": {
@@ -787,8 +794,8 @@
           "settings": {
             "icon": "sun",
             "us_text": "One Dropper a Day",
-            "them_text": "Multiple Pills, Strict Timing",
-            "bullet": "<strong>One Dropper a Day</strong> — no timing needed"
+            "them_text": "Pills Timed Before Sex",
+            "bullet": "<strong>No Pill to Time</strong> — one dropper every morning"
           }
         },
         "row_3": {
@@ -844,7 +851,7 @@
         "unit": "DAYS",
         "seal_text": "MONEY BACK • GUARANTEE •",
         "eyebrow": "FEEL THE DIFFERENCE",
-        "heading": "90-Day Risk-Free Trial",
+        "heading": "90 Days to Feel the Difference",
         "text": "<p>If ALTAÏ isn't right for you, you're covered by our 90-day money-back guarantee. Contact us to request a refund, subject to the guarantee terms.</p>",
         "button_label": "Try Risk-Free Today",
         "button_link": "#altai-buy"
@@ -993,6 +1000,12 @@
             "subtext": "Only 6 Left In Stock: Ships in 24/48 Hours",
             "color": "#d33f3f"
           }
+        },
+        "buy2_note": {
+          "type": "note",
+          "settings": {
+            "text": "<p>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary.</p>"
+          }
         }
       },
       "block_order": [
@@ -1002,7 +1015,8 @@
         "buy2_bundles",
         "buy2_delivery",
         "buy2_buy",
-        "buy2_info"
+        "buy2_info",
+        "buy2_note"
       ]
     },
     "altai_reviews_list": {

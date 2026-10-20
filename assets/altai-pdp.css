@@ -184,6 +184,8 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 }
 .ap-desc { font-size: 15px; line-height: 20px; }
 .ap-desc p + p { margin-top: 8px; }
+.ap-note { margin: -8px 0 16px; font-size: 11px; line-height: 15px; color: #6B6B6B; text-align: center; }
+.ap-note p + p { margin-top: 4px; }
 @media screen and (min-width: 990px) {
   .ap-title { font-size: 28px; }
   .ap-desc { font-size: 16px; line-height: 22px; }
