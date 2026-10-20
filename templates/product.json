@@ -76,7 +76,13 @@
         "ugc_title": "What our customers are saying:",
         "ugc_image_1": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp",
         "ugc_image_2": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp",
-        "ugc_image_3": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+        "ugc_image_3": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp",
+        "illus_title": "ALTAÏ in everyday life",
+        "illus_caption": "AI-generated models • Lifestyle illustrations",
+        "illus_image_1": "shopify://shop_images/altai-squoosh-20261019-07-modele-blanc-54.webp",
+        "illus_image_2": "shopify://shop_images/altai-squoosh-20261019-08-modele-noir-60.webp",
+        "illus_image_3": "shopify://shop_images/altai-squoosh-20261019-09-modele-blanc-65.webp",
+        "illus_image_4": "shopify://shop_images/altai-squoosh-20261019-10-modele-noir-52.webp"
       },
       "blocks": {
         "buy_rating": {

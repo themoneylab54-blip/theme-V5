@@ -41,6 +41,30 @@
   assign init_save = init_compare | minus: init_price
 -%}
 
+{%- capture illus_html -%}
+  {%- unless compact -%}
+    {%- if section.settings.illus_image_1 != blank or section.settings.illus_image_2 != blank or section.settings.illus_image_3 != blank or section.settings.illus_image_4 != blank -%}
+      <div class="ap-illus">
+        {%- if section.settings.illus_title != blank -%}
+          <h2 class="ap-illus__title">{{ section.settings.illus_title | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.illus_caption != blank -%}
+          <p class="ap-illus__caption">{{ section.settings.illus_caption | escape }}</p>
+        {%- endif -%}
+        <div class="ap-illus__grid">
+          {%- for i in (1..4) -%}
+            {%- assign illus_key = 'illus_image_' | append: i -%}
+            {%- assign illus_image = section.settings[illus_key] -%}
+            {%- if illus_image != blank -%}
+              {{- illus_image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 12vw, 46vw', widths: '300,450,600' -}}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endunless -%}
+{%- endcapture -%}
+
 <section class="ap ap-main{% if compact %} ap-main--compact{% endif %}">
   <div class="ap-container">
     <div class="ap-main__grid">
@@ -85,6 +109,10 @@
               </altai-carousel>
             {%- endif -%}
           </altai-gallery>
+
+          {%- if illus_html != blank -%}
+            <div class="ap-hide-mob">{{ illus_html }}</div>
+          {%- endif -%}
 
           {%- if section.settings.ugc_image_1 != blank or section.settings.ugc_image_2 != blank or section.settings.ugc_image_3 != blank -%}
             <div class="ap-gallery-ugc ap-hide-mob">
@@ -384,6 +412,9 @@
         {%- if in_features -%}
           </div>
         {%- endif -%}
+        {%- if illus_html != blank -%}
+          <div class="ap-hide-desk">{{ illus_html }}</div>
+        {%- endif -%}
       </altai-buybox>
     </div>
   </div>
@@ -436,7 +467,18 @@
     },
     { "type": "image_picker", "id": "ugc_image_1", "label": "Photo 1" },
     { "type": "image_picker", "id": "ugc_image_2", "label": "Photo 2" },
-    { "type": "image_picker", "id": "ugc_image_3", "label": "Photo 3" }
+    { "type": "image_picker", "id": "ugc_image_3", "label": "Photo 3" },
+    {
+      "type": "header",
+      "content": "Illustrations lifestyle (modèles IA)",
+      "info": "Visuels d'illustration, affichés à part des avis clients. Ne pas les présenter comme des clients."
+    },
+    { "type": "text", "id": "illus_title", "label": "Titre", "default": "ALTAÏ in everyday life" },
+    { "type": "text", "id": "illus_caption", "label": "Légende", "default": "AI-generated models • Lifestyle illustrations" },
+    { "type": "image_picker", "id": "illus_image_1", "label": "Illustration 1" },
+    { "type": "image_picker", "id": "illus_image_2", "label": "Illustration 2" },
+    { "type": "image_picker", "id": "illus_image_3", "label": "Illustration 3" },
+    { "type": "image_picker", "id": "illus_image_4", "label": "Illustration 4" }
   ],
   "blocks": [
     { "type": "@app" },

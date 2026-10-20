@@ -3,14 +3,28 @@
    Toutes les classes sont préfixées « ap- » pour ne rien toucher au thème.
    ========================================================================== */
 
+/* Titres : Barlow Condensed (SIL Open Font License), servie depuis les assets du thème */
+@font-face {
+  font-family: 'Altai Condensed';
+  src: url('altai-heading-800.woff2') format('woff2');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Altai Condensed';
+  src: url('altai-heading-800-italic.woff2') format('woff2');
+  font-weight: 800; font-style: italic; font-display: swap;
+}
+
 .ap {
-  --ap-ink: #111111;
+  --ap-ink: #080D16;
   --ap-black: #000000;
   --ap-white: #ffffff;
   --ap-yellow: #F6CC50;
   --ap-yellow-soft: #FFF8E1;
   --ap-yellow-line: #E2B53E;
-  --ap-burgundy: #66242C;
+  --ap-navy: #080D16;
+  --ap-cobalt: #064CFF;
+  --ap-cobalt-light: #5B8CFF;
   --ap-gray: #F6F6F6;
   --ap-gray-light: #FAFAFA;
   --ap-muted: #6B7280;
@@ -20,9 +34,9 @@
   --ap-green: #15803D;
   --ap-star: #F5B800;
   --ap-red: #C62828;
-  --ap-accent: var(--ap-burgundy);
-  --ap-heading-font: var(--heading-font-family, inherit);
-  --ap-heading-weight: var(--heading-font-weight, 700);
+  --ap-accent: var(--ap-cobalt);
+  --ap-heading-font: 'Altai Condensed', 'Arial Narrow', var(--heading-font-family, sans-serif);
+  --ap-heading-weight: 800;
   --ap-text-font: var(--text-font-family, inherit);
   position: relative;
   font-family: var(--ap-text-font);
@@ -34,7 +48,7 @@
 .ap :where(p) { margin: 0; }
 .ap :where(a:not(.ap-btn)) { color: inherit; }
 .ap :where(h1, h2, h3) { margin: 0; }
-.ap--dark { --ap-accent: var(--ap-yellow); color: var(--ap-white); }
+.ap--dark { --ap-accent: var(--ap-cobalt-light); color: var(--ap-white); }
 
 .ap-container { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 20px; }
 .ap-center { text-align: center; }
@@ -50,16 +64,16 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
   margin: 0;
   font-family: var(--ap-heading-font);
   font-weight: var(--ap-heading-weight);
-  font-size: 26px;
-  line-height: 32px;
-  letter-spacing: -0.01em;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: 0;
   text-transform: none;
   color: inherit;
 }
-.ap-h2 em { font-style: normal; color: var(--ap-accent); }
+.ap-h2 em { font-style: italic; color: var(--ap-accent); }
 .ap-lead { margin: 10px auto 0; font-size: 16px; line-height: 20px; max-width: 760px; }
 @media screen and (min-width: 990px) {
-  .ap-h2 { font-size: 31px; line-height: 38px; }
+  .ap-h2 { font-size: 44px; line-height: 1.05; }
   .ap-lead { font-size: 17px; line-height: 24px; }
 }
 
@@ -75,7 +89,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0, 0, 0, .16); }
 .ap-btn--yellow { background: var(--ap-yellow); color: var(--ap-black); }
 .ap-btn--ink { background: var(--ap-ink); color: var(--ap-white); }
-.ap-btn--accent { background: var(--ap-burgundy); color: var(--ap-white); }
+.ap-btn--accent { background: var(--ap-cobalt); color: var(--ap-white); }
 .ap-btn--square { border-radius: 5px; min-height: 45px; font-size: 16px; }
 .ap-btn-wrap { margin-top: 32px; }
 @media screen and (min-width: 990px) {
@@ -147,12 +161,12 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 }
 
 /* Galerie */
-.ap-gallery__main { position: relative; border-radius: 8px; overflow: hidden; background: var(--ap-gray); }
-.ap-gallery__main .ap-carousel__track { gap: 0; padding: 0; }
+.ap-gallery__main { position: relative; }
+.ap-gallery__main .ap-carousel__track { gap: 0; padding: 0; border-radius: 8px; background: var(--ap-gray); }
 .ap-gallery__main .ap-carousel__item { flex-basis: 100%; }
 .ap-gallery__main img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-.ap-gallery__dots { position: absolute; left: 0; right: 0; bottom: 12px; }
-.ap-gallery__dots .ap-dot { background: rgba(255, 255, 255, .7); box-shadow: 0 0 0 1px rgba(0, 0, 0, .08); }
+.ap-gallery__dots { min-height: 8px; margin-top: 12px; }
+.ap-gallery__dots .ap-dot { background: #C9CED6; }
 .ap-gallery__dots .ap-dot.is-active { background: var(--ap-ink); }
 .ap-gallery__thumbs { position: relative; margin-top: 8px; }
 .ap-gallery__thumbs .ap-carousel__track { --gap: 6px; }
@@ -180,14 +194,14 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-subtitle { font-size: 15px; line-height: 27px; }
 .ap-title {
   margin: 0 0 10px; font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight);
-  font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; text-transform: none;
+  font-size: 30px; line-height: 1.05; letter-spacing: 0; text-transform: none;
 }
 .ap-desc { font-size: 15px; line-height: 20px; }
 .ap-desc p + p { margin-top: 8px; }
 .ap-note { margin: -8px 0 16px; font-size: 11px; line-height: 15px; color: #6B6B6B; text-align: center; }
 .ap-note p + p { margin-top: 4px; }
 @media screen and (min-width: 990px) {
-  .ap-title { font-size: 28px; }
+  .ap-title { font-size: 40px; }
   .ap-desc { font-size: 16px; line-height: 22px; }
 }
 
@@ -216,11 +230,11 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 @keyframes ap-sold-fill { from { width: 0; } }
 
 /* Barre de compte à rebours (au-dessus de l'en-tête) */
-.ap-countdown { display: block; background: var(--cd-bg, #66242C); color: var(--cd-text, #ffffff); }
+.ap-countdown { display: block; background: var(--cd-bg, #080D16); color: var(--cd-text, #ffffff); border-bottom: 3px solid var(--ap-cobalt); }
 .ap-countdown[hidden] { display: none; }
 .ap-countdown__inner { display: flex; align-items: center; justify-content: center; gap: 22px; min-height: 50px; padding: 5px 16px; text-decoration: none; color: inherit; }
 .ap-countdown__copy { display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.15; }
-.ap-countdown__title { font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 20px; letter-spacing: .02em; }
+.ap-countdown__title { font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 24px; letter-spacing: .02em; }
 .ap-countdown__sub { margin-top: 2px; font-size: 11px; opacity: .85; }
 .ap-countdown__timer { display: flex; align-items: flex-start; gap: 4px; }
 .ap-cd { display: flex; flex-direction: column; align-items: center; min-width: 28px; }
@@ -230,7 +244,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-cd__sep { font-size: 19px; font-weight: 700; line-height: 1.15; }
 @media screen and (min-width: 990px) {
   .ap-countdown__inner { gap: 34px; }
-  .ap-countdown__title { font-size: 22px; }
+  .ap-countdown__title { font-size: 26px; }
   .ap-countdown__sub { font-size: 12px; }
   .ap-cd__num { font-size: 23px; }
 }
@@ -241,7 +255,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 }
 .ap-price__current { font-size: 18px; line-height: 24px; font-weight: 700; color: var(--ap-accent); }
 .ap-price__compare { font-size: 18px; line-height: 24px; text-decoration: line-through; color: var(--ap-ink); }
-.ap-price__save { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 15px; border-radius: 5px; background: var(--ap-burgundy); color: var(--ap-white); font-size: 14px; font-weight: 700; line-height: 1.2; }
+.ap-price__save { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 15px; border-radius: 5px; background: var(--ap-cobalt); color: var(--ap-white); font-size: 14px; font-weight: 700; line-height: 1.2; }
 .ap-price__save[hidden], .ap-price__compare[hidden] { display: none; }
 @media screen and (min-width: 990px) { .ap-price__current, .ap-price__compare { font-size: 20px; } }
 
@@ -332,7 +346,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-stats__list { display: grid; }
 .ap-stat { padding: 22px 0; }
 .ap-stat + .ap-stat { border-top: 1px solid rgba(255, 255, 255, .3); }
-.ap-stat__value { font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 40px; line-height: 1.1; color: var(--ap-yellow); }
+.ap-stat__value { font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 40px; line-height: 1.1; color: var(--ap-accent); }
 .ap-stat__label { margin-top: 4px; font-size: 16px; line-height: 1.3; font-weight: 600; }
 @media screen and (min-width: 990px) {
   .ap-stats { padding: 85px 0 80px; }
@@ -401,7 +415,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-feel { padding-top: 39px; background: radial-gradient(120% 80% at 70% 70%, #2a2a2a 0%, var(--ap-ink) 60%); overflow: hidden; }
 .ap-feel__grid { display: grid; gap: 8px; }
 .ap-feel__icons { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 18px; margin-top: 32px; }
-.ap-feel__item { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 18px; line-height: 1.3; }
+.ap-feel__item { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; font-family: var(--ap-text-font); font-weight: 500; font-size: 17px; line-height: 1.3; }
 .ap-feel__item p { margin: 0; }
 .ap-feel__item strong { font-weight: inherit; }
 .ap-feel__icon { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; color: var(--ap-yellow); }
@@ -476,7 +490,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
    Raisons (cartes)
    ========================================================================== */
 .ap-reasons { padding: 40px 0 28px; background: var(--ap-gray); }
-.ap-pill-title { display: inline-block; padding: 6px 24px; border-radius: 10px; background: var(--ap-burgundy); color: var(--ap-white); font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 23px; line-height: 1.3; }
+.ap-pill-title { display: inline-block; padding: 6px 24px; border-radius: 10px; background: var(--ap-cobalt); color: var(--ap-white); font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 26px; line-height: 1.2; }
 .ap-reasons .ap-h2 { margin-top: 14px; }
 .ap-reasons .ap-lead { font-size: 15px; }
 .ap-reasons .ap-carousel { margin-top: 28px; }
@@ -484,7 +498,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-reason { height: 100%; padding: 10px; border: 1px solid var(--ap-line); border-radius: 6px; background: var(--ap-white); }
 .ap-reason__img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 3px; background: var(--ap-gray); }
 .ap-reason__body { padding: 28px 14px 22px; }
-.ap-reason__pill { display: inline-block; padding: 4px 12px; border-radius: 4px; background: var(--ap-burgundy); color: var(--ap-white); font-size: 14px; line-height: 18px; }
+.ap-reason__pill { display: inline-block; padding: 4px 12px; border-radius: 4px; background: var(--ap-navy); color: var(--ap-white); font-size: 14px; line-height: 18px; }
 .ap-reason__title { margin: 16px 0 14px; font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 24px; line-height: 1.25; }
 .ap-reason__text { font-size: 16px; line-height: 21px; }
 @media screen and (min-width: 990px) {
@@ -535,18 +549,18 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-guarantee { padding-top: 40px; background: var(--ap-gray); overflow: hidden; }
 .ap-guarantee__grid { display: grid; gap: 24px; }
 .ap-guarantee__content { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.ap-seal { position: relative; display: grid; place-items: center; width: 122px; height: 122px; color: var(--ap-burgundy); }
+.ap-seal { position: relative; display: grid; place-items: center; width: 122px; height: 122px; color: var(--ap-cobalt); }
 .ap-seal svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .ap-seal__txt { position: relative; color: var(--ap-white); line-height: 1; text-align: center; }
 .ap-seal__num { display: block; font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 40px; }
 .ap-seal__unit { display: block; margin-top: 4px; font-size: 14px; letter-spacing: .06em; }
 .ap-guarantee__eyebrow { margin-top: 18px; color: var(--ap-accent); font-size: 14px; letter-spacing: .02em; text-transform: uppercase; }
-.ap-guarantee__title { margin: 12px 0 14px; font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 23px; line-height: 30px; }
+.ap-guarantee__title { margin: 12px 0 14px; font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 30px; line-height: 1.05; }
 .ap-guarantee__text { max-width: 494px; font-size: 14px; line-height: 18px; }
 .ap-guarantee .ap-btn { width: 278px; margin-top: 24px; }
 .ap-guarantee__media { position: relative; display: flex; justify-content: center; align-items: flex-end; }
 .ap-guarantee__media img { width: 85%; max-width: 420px; max-height: 360px; object-fit: contain; object-position: bottom; }
-.ap-roundseal { position: absolute; top: 4%; left: 8%; width: 92px; height: 92px; color: var(--ap-burgundy); }
+.ap-roundseal { position: absolute; top: 40%; left: 2%; width: 92px; height: 92px; color: var(--ap-cobalt); }
 @media screen and (min-width: 990px) {
   .ap-guarantee { padding-top: 28px; }
   .ap-guarantee__grid { grid-template-columns: 1fr 1fr; align-items: center; }
@@ -612,3 +626,15 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-rlist .ap-review__foot { max-width: 600px; }
 .ap-rlist__more { display: block; margin: 28px auto 0; padding: 0; border: 0; background: none; color: var(--ap-ink); font-size: 15px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .ap-rlist__more[hidden] { display: none; }
+
+/* ==========================================================================
+   Illustrations lifestyle (modèles IA), séparées des avis clients
+   ========================================================================== */
+.ap-illus { margin-top: 32px; }
+.ap-illus__title { margin: 0; text-align: center; font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 26px; line-height: 1.1; }
+.ap-illus__caption { margin: 4px 0 14px !important; text-align: center; font-size: 12px; line-height: 16px; color: var(--ap-muted-dark); }
+.ap-illus__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ap-illus__grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; background: var(--ap-gray); }
+@media screen and (min-width: 990px) {
+  .ap-illus__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
