@@ -612,3 +612,11 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-rlist .ap-review__foot { max-width: 600px; }
 .ap-rlist__more { display: block; margin: 28px auto 0; padding: 0; border: 0; background: none; color: var(--ap-ink); font-size: 15px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .ap-rlist__more[hidden] { display: none; }
+
+/* Produit vedette : options de mise en page réglables dans l'éditeur */
+.ap-main--fit-contain .ap-gallery__main img, .ap-main--fit-contain .ap-thumb img { object-fit: contain; }
+@media screen and (min-width: 990px) {
+  .ap-main--media-right .ap-main__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+  .ap-main--media-right .ap-main__media { order: 2; }
+  .ap-main--static-media .ap-main__media { position: static; }
+}

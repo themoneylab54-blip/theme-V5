@@ -1,10 +1,23 @@
 {%- comment -%}
-  ALTAÏ — bloc d'achat de la page produit (mise en page inspirée de Resilia).
+  ALTAÏ — produit vedette (mise en page inspirée de Resilia).
   Galerie + infos produit + packs + bouton d'ajout au panier relié au tiroir panier du thème.
+  Utilisable sur toutes les pages : produit choisi dans les réglages, ou produit de la page.
   La mise en page « compacte » (sans galerie) sert à répéter le bloc d'achat en bas de page.
 {%- endcomment -%}
 {{ 'altai-pdp.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'altai-pdp.js' | asset_url }}" type="module"></script>
+
+{%- liquid
+  if section.settings.product != blank
+    assign product = section.settings.product
+  endif
+-%}
+
+{%- if product == blank -%}
+  {%- if request.design_mode -%}
+    <section class="ap ap-main"><div class="ap-container"><p class="ap-desc ap-center">Choisissez un produit dans les réglages de la section « ALTAÏ – Produit vedette ».</p></div></section>
+  {%- endif -%}
+{%- else -%}
 
 {%- liquid
   assign compact = false
@@ -41,7 +54,7 @@
   assign init_save = init_compare | minus: init_price
 -%}
 
-<section class="ap ap-main{% if compact %} ap-main--compact{% endif %}">
+<section class="ap ap-main{% if compact %} ap-main--compact{% endif %}{% if section.settings.media_position == 'right' %} ap-main--media-right{% endif %}{% unless section.settings.sticky_media %} ap-main--static-media{% endunless %}{% if section.settings.image_fit == 'contain' %} ap-main--fit-contain{% endif %}"{% if section.settings.background != blank and section.settings.background != 'rgba(0,0,0,0)' %} style="background: {{ section.settings.background }};"{% endif %}>
   <div class="ap-container">
     <div class="ap-main__grid">
       {%- unless compact -%}
@@ -62,12 +75,12 @@
                   <div class="ap-carousel__item">{{ 'product-1' | placeholder_svg_tag }}</div>
                 {%- endfor -%}
               </div>
-              {%- if media_list.size > 1 -%}
+              {%- if media_list.size > 1 and section.settings.show_dots -%}
                 <div class="ap-gallery__dots"><div class="ap-dots" data-dots></div></div>
               {%- endif -%}
             </altai-carousel>
 
-            {%- if media_list.size > 1 -%}
+            {%- if media_list.size > 1 and section.settings.show_thumbnails -%}
               <altai-carousel class="ap-carousel ap-gallery__thumbs ap-hide-mob">
                 <div class="ap-carousel__track" data-track>
                   {%- for media in media_list -%}
@@ -388,15 +401,22 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
-  "name": "ALTAÏ – Bloc d'achat",
+  "name": "ALTAÏ – Produit vedette",
   "class": "shopify-section--altai-main-product",
-  "enabled_on": {
-    "templates": ["product"]
+  "disabled_on": {
+    "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit",
+      "info": "Vide = produit de la page (sur une page produit)."
+    },
     {
       "type": "select",
       "id": "layout",
@@ -406,6 +426,50 @@
         { "value": "compact", "label": "Compacte (bas de page, sans galerie)" }
       ],
       "default": "full"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Galerie (ordinateur)",
+      "options": [
+        { "value": "left", "label": "À gauche" },
+        { "value": "right", "label": "À droite" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_media",
+      "label": "Galerie fixe pendant le défilement (ordinateur)",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Cadrage des images de la galerie",
+      "options": [
+        { "value": "cover", "label": "Remplir le carré" },
+        { "value": "contain", "label": "Image entière" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_thumbnails",
+      "label": "Miniatures (ordinateur)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Points de pagination (mobile)",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Couleur de fond",
+      "info": "Vide = fond par défaut."
     },
     {
       "type": "text",
@@ -723,7 +787,7 @@
   ],
   "presets": [
     {
-      "name": "ALTAÏ – Bloc d'achat",
+      "name": "ALTAÏ – Produit vedette",
       "blocks": [
         { "type": "rating" },
         { "type": "subtitle" },
