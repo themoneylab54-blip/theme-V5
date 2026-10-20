@@ -640,3 +640,52 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
     contain-intrinsic-size: auto 760px;
   }
 }
+
+/* ==========================================================================
+   Visuels détourés (fond transparent) : bouteille plus grande, entière,
+   sans carré de fond
+   ========================================================================== */
+/* Galerie : fond blanc, image entière, points de pagination sous l'image (ils ne masquent plus le bas du flacon) */
+.ap-gallery__main { overflow: visible; background: none; border-radius: 0; }
+.ap-gallery__main .ap-carousel__track, .ap-thumb { border-radius: 8px; background: var(--ap-white); }
+.ap-gallery__main img, .ap-thumb img { object-fit: contain; }
+.ap-gallery__dots { position: static; min-height: 24px; margin-top: 4px; }
+.ap-gallery__dots .ap-dot::before { background: #C9CED6; box-shadow: none; }
+
+/* Packs : 1, 2 ou 3 flacons dans une zone plus grande */
+.ap-offer__media { width: 88px; height: 88px; justify-content: center; }
+.ap-offer__media img { width: 100%; height: 100%; object-fit: contain; }
+.ap-offer__media img + img { margin-left: -64px; }
+
+/* Scène sombre aux cercles */
+.ap-feel__product { min-height: 400px; }
+.ap-feel__product img { width: auto; height: 380px; max-width: 92%; max-height: none; object-fit: contain; object-position: bottom; }
+
+/* Comparatif : ALTAÏ et flacon générique à la même hauteur */
+.ap-ctable__head { min-height: 240px; }
+.ap-ctable__head img { width: auto; height: 180px; max-width: 100%; max-height: none; object-fit: contain; }
+
+/* Garantie */
+.ap-guarantee__media img { width: auto; height: 380px; max-width: 92%; max-height: none; object-fit: contain; object-position: bottom; }
+
+/* Bannière produit (rappel final) : flacons entiers, sans coupe du bas */
+.ap-pbanner { overflow: hidden; padding-bottom: 32px; }
+.ap-pbanner__stage { height: 300px; overflow: visible; }
+.ap-pbanner__stage img { bottom: 0; width: auto; height: 100%; max-width: none; aspect-ratio: 1 / 1; }
+.ap-pbanner__stage img:nth-child(2), .ap-pbanner__stage img:nth-child(3) { bottom: 0; height: 76%; }
+.ap-pbanner__stage img:nth-child(2) { left: -4%; bottom: 4%; }
+.ap-pbanner__stage img:nth-child(3) { right: -4%; bottom: 4%; }
+
+/* « 5 Reasons Why » : visuels horizontaux 8:5, affichés entiers (mobile et ordinateur) ; bandeau du parcours : image entière */
+.ap-reason__img { aspect-ratio: 8 / 5; object-fit: contain; background: transparent; }
+.ap-journey__banner img { object-fit: contain; }
+
+@media screen and (min-width: 990px) {
+  .ap-offer__media { width: 96px; height: 96px; }
+  .ap-feel__product { min-height: 540px; }
+  .ap-feel__product img { height: 520px; }
+  .ap-ctable__head { min-height: 300px; }
+  .ap-ctable__head img { height: 230px; }
+  .ap-guarantee__media img { height: 480px; }
+  .ap-pbanner__stage { height: 400px; max-width: 760px; }
+}
