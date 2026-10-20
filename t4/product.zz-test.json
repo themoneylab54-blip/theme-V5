@@ -1,0 +1,1133 @@
+{
+  "sections": {
+    "altai_ticker_top": {
+      "type": "altai-ticker",
+      "settings": {
+        "speed": 40
+      },
+      "blocks": {
+        "tick_top_1": {
+          "type": "item",
+          "settings": {
+            "icon": "flame",
+            "text": "Bring Back Your Desire*"
+          }
+        },
+        "tick_top_2": {
+          "type": "item",
+          "settings": {
+            "icon": "user",
+            "text": "Stamina for Your Nights*"
+          }
+        },
+        "tick_top_3": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "text": "Confidence in the Bedroom"
+          }
+        },
+        "tick_top_4": {
+          "type": "item",
+          "settings": {
+            "icon": "dropper",
+            "text": "No Pill to Time Before Sex"
+          }
+        },
+        "tick_top_5": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "text": "90-Day Money-Back Guarantee"
+          }
+        },
+        "tick_top_6": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "text": "Discreet Shipping"
+          }
+        }
+      },
+      "block_order": [
+        "tick_top_1",
+        "tick_top_2",
+        "tick_top_3",
+        "tick_top_4",
+        "tick_top_5",
+        "tick_top_6"
+      ]
+    },
+    "altai_main": {
+      "type": "altai-main-product",
+      "settings": {
+        "layout": "full",
+        "anchor": "altai-buy",
+        "feature_columns": "2",
+        "ugc_title": "What our customers are saying:",
+        "ugc_image_1": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp",
+        "ugc_image_2": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp",
+        "ugc_image_3": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+      },
+      "blocks": {
+        "buy_rating": {
+          "type": "rating",
+          "settings": {
+            "rating": 5,
+            "text": "Rated 4.8 • 10,577+ Reviews",
+            "text_mobile": "10,577+ Reviews",
+            "avatar_1": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp",
+            "avatar_2": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp",
+            "avatar_3": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp",
+            "avatar_4": "shopify://shop_images/5_1_f84e2d41-a217-4c69-8199-a3af5393af9f.webp",
+            "avatar_5": "shopify://shop_images/c8eb3271-f4dc-489a-be23-64827606a793.webp"
+          }
+        },
+        "buy_subtitle": {
+          "type": "subtitle",
+          "settings": {
+            "text": "ALTAÏ Second Wind"
+          }
+        },
+        "buy_title": {
+          "type": "title",
+          "settings": {
+            "heading": "Bring the Fire Back to Your Bedroom"
+          }
+        },
+        "buy_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Daily drops under the tongue with Tongkat Ali, Shilajit, Fadogia agrestis and Ashwagandha, formulated to support healthy libido, stamina and testosterone levels*. For the man who wants to want it again, and to show up like he means it.</p>"
+          }
+        },
+        "buy_feature_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
+            "text": "<p>Supports <strong>libido & desire*</strong></p>"
+          }
+        },
+        "buy_feature_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
+            "text": "<p>Supports healthy <strong>testosterone*</strong></p>"
+          }
+        },
+        "buy_feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
+            "text": "<p>Supports <strong>stamina</strong> for closer nights*</p>"
+          }
+        },
+        "buy_feature_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "check-circle",
+            "custom_icon": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
+            "text": "<p>Simple drops. <strong>No pill to time.</strong></p>"
+          }
+        },
+        "buy_price": {
+          "type": "price",
+          "settings": {
+            "save_label": "FALL SALE - Save"
+          }
+        },
+        "buy_variants": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "buy_bundles": {
+          "type": "bundles",
+          "settings": {
+            "default_tier": "1",
+            "unit_text": "[price] per bottle",
+            "tier1_enabled": true,
+            "tier1_qty": 1,
+            "tier1_title": "Buy One",
+            "tier1_badge": "",
+            "tier1_discount": 0,
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_title": "Buy Two",
+            "tier2_badge": "Most Popular",
+            "tier2_discount": 0,
+            "tier3_enabled": true,
+            "tier3_qty": 3,
+            "tier3_title": "Buy Three",
+            "tier3_badge": "",
+            "tier3_discount": 0
+          }
+        },
+        "buy_delivery": {
+          "type": "delivery",
+          "settings": {
+            "days": 7,
+            "text": "Order today for delivery by",
+            "text_after": "",
+            "date_locale": "en-US"
+          }
+        },
+        "buy_buy": {
+          "type": "buy_button",
+          "settings": {
+            "label": "Add To Cart",
+            "show_price": true,
+            "show_arrow": true
+          }
+        },
+        "buy_info": {
+          "type": "info_bar",
+          "settings": {
+            "item1_icon": "shield",
+            "item1_text": "90-Day Money-Back Guarantee",
+            "item2_icon": "box",
+            "item2_text": "Discreet Shipping",
+            "item3_icon": "lock",
+            "item3_text": ""
+          }
+        },
+        "buy_acc_1": {
+          "type": "accordion",
+          "settings": {
+            "title": "Description",
+            "content": "<p>ALTAÏ Second Wind is a liquid dietary supplement for adult men. It combines botanical extracts and minerals in a dropper format—a simple option if you prefer not to swallow capsules.</p><p>The formula includes Tongkat Ali, Shilajit, Fadogia agrestis, Ashwagandha, magnesium, zinc, Ajuga turkestanica, boron citrate, and a botanical blend.</p><p>The liquid base contains organic glycerin, purified water, citric acid, and natural flavors. See the Supplement Facts section for the amounts and full ingredient list.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_2": {
+          "type": "accordion",
+          "settings": {
+            "title": "Why Take ALTAÏ?",
+            "content": "<p>Low desire, low energy and stress don’t stay at the office. They follow you into the bedroom. ALTAÏ is a daily formula built to support what matters there: healthy libido, stamina, testosterone levels and a calmer mind*.</p><p>It’s not a pill you time an hour before sex. One dropper every morning, and the ingredients work with your body over days and weeks*. Nothing to plan, nothing to hide, nothing to explain.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Benefits",
+            "content": "<p><strong>Desire & libido:</strong> Tongkat Ali and Fadogia agrestis, traditionally used for male vigor, to support a healthy libido*.</p><p><strong>Healthy testosterone:</strong> Tongkat Ali, Shilajit, Ashwagandha and zinc to support healthy testosterone levels*.</p><p><strong>Stamina & energy:</strong> Shilajit and magnesium to support natural energy, so the day doesn’t take everything you’ve got*.</p><p><strong>Less stress, more presence:</strong> Ashwagandha helps your body manage everyday stress, one of the biggest mood-killers in the bedroom*.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_4": {
+          "type": "accordion",
+          "settings": {
+            "title": "Recommended Use",
+            "content": "<p>ALTAÏ is taken under the tongue using the included dropper. Follow the directions on your bottle for the serving size and frequency. Do not exceed the recommended amount.</p><p>Each 60 mL bottle contains 30 servings of 2 mL. At one serving per day, that would be a 30-day supply. Always follow the usage directions on your bottle.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_5": {
+          "type": "accordion",
+          "settings": {
+            "title": "How Do I Know These Are Made With Premium Ingredients?",
+            "content": "<p>Every batch is third-party lab tested for purity and potency. Made in a GMP-certified facility in the USA. No artificial fillers, no proprietary blends hiding weak doses. Every ingredient is listed at its actual amount so you know exactly what you're putting in your body.</p>",
+            "open": false
+          }
+        },
+        "buy_acc_6": {
+          "type": "accordion",
+          "settings": {
+            "title": "90-Day Money Back Guarantee",
+            "content": "<p>ALTAÏ comes with a 90-day money-back guarantee. Please review the guarantee terms for eligibility, any return requirements, and how to request a refund.</p><p>We offer fast, reliable shipping: most orders arrive within 5–7 business days, depending on your location.</p><p>Need help? Our support team is here for any questions about your order.</p>",
+            "open": false
+          }
+        },
+        "buy_img_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/payment.webp",
+            "max_width": 500
+          }
+        },
+        "buy_img_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/altai-trust-badges.webp",
+            "max_width": 500
+          }
+        },
+        "buy_sold": {
+          "type": "sold_bar",
+          "settings": {
+            "mode": "manual",
+            "percent": 93,
+            "batch_size": 500,
+            "text": "[percent]% Sold",
+            "subtext": "Only 6 Left In Stock: Ships in 24/48 Hours",
+            "color": "#d33f3f"
+          }
+        },
+        "buy_note": {
+          "type": "note",
+          "settings": {
+            "text": "<p>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "buy_rating",
+        "buy_subtitle",
+        "buy_title",
+        "buy_text",
+        "buy_feature_1",
+        "buy_feature_2",
+        "buy_feature_3",
+        "buy_feature_4",
+        "buy_sold",
+        "buy_price",
+        "buy_variants",
+        "buy_bundles",
+        "buy_delivery",
+        "buy_buy",
+        "buy_info",
+        "buy_note",
+        "buy_acc_1",
+        "buy_acc_2",
+        "buy_acc_3",
+        "buy_acc_4",
+        "buy_acc_5",
+        "buy_acc_6",
+        "buy_img_1",
+        "buy_img_2"
+      ]
+    },
+    "altai_stats": {
+      "type": "altai-stats",
+      "settings": {
+        "heading": "8 Key Ingredients. <em>One Daily Dropper.</em>",
+        "text": "Formulated to support libido, stamina and healthy testosterone levels*, in one simple dropper a day.",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "8",
+            "label": "Key ingredients per serving"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "2 mL",
+            "label": "One dropper a day"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "30",
+            "label": "Servings per bottle"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "90-Day",
+            "label": "Money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ]
+    },
+    "altai_compounds": {
+      "type": "altai-compounds",
+      "settings": {
+        "heading": "4 Key Ingredients <em>Doing Different Jobs</em>"
+      },
+      "blocks": {
+        "compound_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/4_4_50279a26-24f6-40cf-876a-2f10e25f1d69.webp",
+            "title": "Tongkat Ali",
+            "text": "<p>Used for centuries in Southeast Asia for male vigor, and studied in modern research for libido and healthy testosterone levels*.</p>"
+          }
+        },
+        "compound_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/2_3a739168-2250-4995-91f0-197bf869c651.webp",
+            "title": "Shilajit",
+            "text": "<p>A mineral-rich Himalayan resin studied for healthy testosterone levels and natural energy*.</p>"
+          }
+        },
+        "compound_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/1_3_bebfdca7-80fe-47d8-a61c-fdc0d66b04d4.webp",
+            "title": "Fadogia agrestis",
+            "text": "<p>A West African shrub traditionally used to support male vigor and desire*.</p>"
+          }
+        },
+        "compound_4": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3_b1f49c03-848d-4769-b7c9-b1e3412591b5.webp",
+            "title": "Ashwagandha",
+            "text": "<p>An adaptogen that helps your body handle everyday stress*, so you stay calm, confident and present.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "compound_1",
+        "compound_2",
+        "compound_3",
+        "compound_4"
+      ]
+    },
+    "altai_reviews_slider": {
+      "type": "altai-reviews-slider",
+      "settings": {
+        "show_stars": true,
+        "heading": "Real Stories, <em>Real Results</em>",
+        "text": "See what our customers are saying about ALTAÏ",
+        "show_photos": true,
+        "photo_speed": 60,
+        "verified_text": "Verified Buyer"
+      },
+      "blocks": {
+        "rev_slider_1": {
+          "type": "review",
+          "settings": {
+            "author": "Rob D.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«At 62, my doctor prescribed 100mg of Viagra, but it did nothing. I felt so powerless. Now I’m feeling freaking amazing, with more energy than I had! I can think more clearly, my mind is sharper, and my libido is back too.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp"
+          }
+        },
+        "rev_slider_2": {
+          "type": "review",
+          "settings": {
+            "author": "Michelle S.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«Felt like I was 25 again. That was the feeling I’d been missing. Before that, I just wasn’t that interested anymore. Before that I tried different things, but nothing changed My wife noticed before I said anything. Our spark is stronger than ever.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp"
+          }
+        },
+        "rev_slider_3": {
+          "type": "review",
+          "settings": {
+            "author": "Danny E.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«I was skeptical because Cialis just wasn’t working like it used to. I just wanted to stop worrying every time we got close. Feeling that solid again changed everything. I’m just thankful to be intimate with my wife again.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+          }
+        },
+        "rev_slider_4": {
+          "type": "review",
+          "settings": {
+            "author": "Ashley B.",
+            "rating": 4,
+            "title": "",
+            "content": "<p>«I was starting to feel like a friend instead of his wife. I wanted him to reach for me again. Since we found this product, it's nice to see his confidence back. He comes closer now, and I’m not the only one trying anymore. &nbsp;»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/5_1_f84e2d41-a217-4c69-8199-a3af5393af9f.webp"
+          }
+        },
+        "rev_slider_5": {
+          "type": "review",
+          "settings": {
+            "author": "Garry D.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>« I was struggling in the bedroom at just 44. Testosterone boosted my energy, but did nothing for my sex life. After just 3 weeks of using it, my drive is finally coming back!»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/c8eb3271-f4dc-489a-be23-64827606a793.webp"
+          }
+        },
+        "rev_slider_6": {
+          "type": "review",
+          "settings": {
+            "author": "Monnika P.",
+            "rating": 5,
+            "title": "",
+            "content": "<p><em>« </em>I just wanted to feel loved and desired by my husband. We kept having the same conversations, but nothing changed.<br/>Now he kisses me without being asked, and the affection is stronger than ever before<strong>.</strong><em>»</em></p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/4_4_f92fff0c-a4a8-4a18-9db9-16af33184d29.webp"
+          }
+        }
+      },
+      "block_order": [
+        "rev_slider_1",
+        "rev_slider_2",
+        "rev_slider_3",
+        "rev_slider_4",
+        "rev_slider_5",
+        "rev_slider_6"
+      ]
+    },
+    "altai_icon_grid": {
+      "type": "altai-icon-grid",
+      "settings": {
+        "heading": "Feel Like Yourself. <em>Every Night.</em>",
+        "text": "From your first coffee to lights out, here’s what ALTAÏ is made for."
+      },
+      "blocks": {
+        "icon_1": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "custom_icon": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
+            "text": "<p>Supports <strong>libido & desire*</strong></p>"
+          }
+        },
+        "icon_2": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "custom_icon": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
+            "text": "<p>Supports healthy <strong>testosterone*</strong></p>"
+          }
+        },
+        "icon_3": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "custom_icon": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
+            "text": "<p>Supports <strong>stamina</strong> for closer nights*</p>"
+          }
+        },
+        "icon_4": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "custom_icon": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
+            "text": "<p>Simple drops. <strong>No pill to time.</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "icon_2",
+        "icon_3",
+        "icon_4"
+      ]
+    },
+    "altai_benefits": {
+      "type": "altai-benefit-cards",
+      "settings": {
+        "heading": "<em>Your Sex Life,</em> Back on Your Side.",
+        "text": "Four things that change how you show up in the bedroom, supported every day by one dropper*.",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "benefit_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/01-drive-flamme-fond-noir.webp",
+            "title": "Desire",
+            "subtitle": "Want it again.",
+            "content": "<p>Tongkat Ali and Fadogia agrestis, used for centuries for male vigor, to support a healthy libido*.</p>"
+          }
+        },
+        "benefit_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/02-yourself-silhouette-fond-noir.webp",
+            "title": "Stamina",
+            "subtitle": "Still have it at night.",
+            "content": "<p>Shilajit and magnesium support natural energy, so the day doesn’t take everything you’ve got*.</p>"
+          }
+        },
+        "benefit_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/03-closeness-coeurs-fond-noir.webp",
+            "title": "Confidence",
+            "subtitle": "Stop overthinking it.",
+            "content": "<p>Ashwagandha helps your body manage everyday stress, so you stay calm, present and in the moment*.</p>"
+          }
+        },
+        "benefit_4": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/04-drops-pipette-fond-noir.webp",
+            "title": "Simplicity",
+            "subtitle": "No pill to time before sex.",
+            "content": "<p>One dropper under the tongue every morning. Nothing to plan, nothing to hide, nothing to explain.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ]
+    },
+    "altai_ticker_mid": {
+      "type": "altai-ticker",
+      "settings": {
+        "speed": 40
+      },
+      "blocks": {
+        "tick_mid_1": {
+          "type": "item",
+          "settings": {
+            "icon": "flame",
+            "text": "Bring Back Your Desire*"
+          }
+        },
+        "tick_mid_2": {
+          "type": "item",
+          "settings": {
+            "icon": "user",
+            "text": "Stamina for Your Nights*"
+          }
+        },
+        "tick_mid_3": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "text": "Confidence in the Bedroom"
+          }
+        },
+        "tick_mid_4": {
+          "type": "item",
+          "settings": {
+            "icon": "dropper",
+            "text": "No Pill to Time Before Sex"
+          }
+        },
+        "tick_mid_5": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "text": "90-Day Money-Back Guarantee"
+          }
+        },
+        "tick_mid_6": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "text": "Discreet Shipping"
+          }
+        }
+      },
+      "block_order": [
+        "tick_mid_1",
+        "tick_mid_2",
+        "tick_mid_3",
+        "tick_mid_4",
+        "tick_mid_5",
+        "tick_mid_6"
+      ]
+    },
+    "altai_journey": {
+      "type": "altai-journey",
+      "settings": {
+        "banner_text": "ALTAÏ",
+        "heading": "<em>What Changes</em> With ALTAÏ",
+        "text": "ALTAÏ isn’t a quick fix you take before sex. It’s a daily routine built to support your drive over time*. Individual results may vary.",
+        "button_label": "Start My Routine →",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "label": "Day 1: Start Your Routine",
+            "item1": "One dropper (2 mL) under the tongue",
+            "item2": "With your morning coffee or breakfast",
+            "item3": "Nothing to time before sex",
+            "item4": ""
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "label": "Weeks 1–2: Build the Habit",
+            "item1": "Same time, every morning",
+            "item2": "The ingredients build up with daily use*",
+            "item3": "Keep the bottle where you will see it",
+            "item4": ""
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "label": "Day 30: Check In With Yourself",
+            "item1": "How is your energy at the end of the day?",
+            "item2": "How is your interest, your confidence?",
+            "item3": "Keep going: consistency is the point",
+            "item4": ""
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "label": "Day 90: Your Guarantee Window",
+            "item1": "Not right for you? Ask for a refund",
+            "item2": "90-day money-back guarantee, subject to its terms",
+            "item3": "Your decision, risk-free",
+            "item4": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ]
+    },
+    "altai_reasons": {
+      "type": "altai-reasons",
+      "settings": {
+        "pill": "5 Reasons Why",
+        "heading": "ALTAÏ Is Different From the Pills You’ve Tried",
+        "text": "",
+        "reason_label": "Reason",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "reason_1": {
+          "type": "reason",
+          "settings": {
+            "title": "Built for Desire, Not Just Energy",
+            "text": "<p>Most “male” formulas stop at energy. ALTAÏ combines ingredients traditionally used for male vigor with ingredients studied for libido and healthy testosterone levels*.</p>"
+          }
+        },
+        "reason_2": {
+          "type": "reason",
+          "settings": {
+            "title": "No Pill to Time Before Sex",
+            "text": "<p>One dropper every morning. No planning your night around a pill, no awkward trip to the bathroom.</p>"
+          }
+        },
+        "reason_3": {
+          "type": "reason",
+          "settings": {
+            "title": "8 Key Ingredients in One Formula",
+            "text": "<p>Tongkat Ali, Shilajit, Fadogia agrestis, Ashwagandha, magnesium, zinc, Ajuga turkestanica and boron, in one daily serving.</p>"
+          }
+        },
+        "reason_4": {
+          "type": "reason",
+          "settings": {
+            "title": "Full Ingredient List, Lab Tested",
+            "text": "<p>Every ingredient is listed at its real amount, and every batch is third-party lab tested for purity and potency.</p>"
+          }
+        },
+        "reason_5": {
+          "type": "reason",
+          "settings": {
+            "title": "90-Day Money-Back Guarantee",
+            "text": "<p>Try it for 90 days. If ALTAÏ isn't right for you, request a refund, subject to the guarantee terms.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "reason_1",
+        "reason_2",
+        "reason_3",
+        "reason_4",
+        "reason_5"
+      ]
+    },
+    "altai_comparison": {
+      "type": "altai-comparison",
+      "settings": {
+        "heading": "ALTAÏ vs. Other Brands",
+        "us_label": "ALTAÏ",
+        "them_label": "Other Brands",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      },
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "icon": "dropper",
+            "us_text": "Easy Drops, No Capsules",
+            "them_text": "Hard-to-Swallow Pills",
+            "bullet": "<strong>No Capsules to Swallow</strong> — easy drops under the tongue"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "icon": "sun",
+            "us_text": "One Dropper a Day",
+            "them_text": "Pills Timed Before Sex",
+            "bullet": "<strong>No Pill to Time</strong> — one dropper every morning"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "icon": "flask",
+            "us_text": "8 Key Ingredients",
+            "them_text": "Single-Ingredient Formulas",
+            "bullet": "<strong>8 Key Ingredients</strong> — in one formula"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "icon": "list",
+            "us_text": "Full Ingredient List",
+            "them_text": "Hidden Blends",
+            "bullet": "<strong>Full Ingredient List</strong> — nothing hidden"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "icon": "shield",
+            "us_text": "Third-Party Lab Tested",
+            "them_text": "No Test Proof",
+            "bullet": "<strong>Third-Party Lab Tested</strong> — made in the USA"
+          }
+        },
+        "row_6": {
+          "type": "row",
+          "settings": {
+            "icon": "award",
+            "us_text": "90-Day Guarantee",
+            "them_text": "Short or No Guarantee",
+            "bullet": "<strong>90-Day Money-Back Guarantee</strong> — try it risk-free"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5",
+        "row_6"
+      ]
+    },
+    "altai_guarantee": {
+      "type": "altai-guarantee",
+      "settings": {
+        "days": "90",
+        "unit": "DAYS",
+        "seal_text": "MONEY BACK • GUARANTEE •",
+        "eyebrow": "FEEL THE DIFFERENCE",
+        "heading": "90 Days to Feel the Difference",
+        "text": "<p>If ALTAÏ isn't right for you, you're covered by our 90-day money-back guarantee. Contact us to request a refund, subject to the guarantee terms.</p>",
+        "button_label": "Try Risk-Free Today",
+        "button_link": "#altai-buy"
+      }
+    },
+    "altai_ugc": {
+      "type": "altai-ugc",
+      "settings": {
+        "heading": "Real People. <em>Real Results.</em>",
+        "text": "Hear it in their own words."
+      },
+      "blocks": {
+        "ugc_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp"
+          }
+        },
+        "ugc_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp"
+          }
+        },
+        "ugc_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+          }
+        },
+        "ugc_4": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/5_1_f84e2d41-a217-4c69-8199-a3af5393af9f.webp"
+          }
+        },
+        "ugc_5": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/c8eb3271-f4dc-489a-be23-64827606a793.webp"
+          }
+        },
+        "ugc_6": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/4_4_f92fff0c-a4a8-4a18-9db9-16af33184d29.webp"
+          }
+        }
+      },
+      "block_order": [
+        "ugc_1",
+        "ugc_2",
+        "ugc_3",
+        "ugc_4",
+        "ugc_5",
+        "ugc_6"
+      ]
+    },
+    "altai_product_banner": {
+      "type": "altai-product-banner",
+      "settings": {}
+    },
+    "altai_subheading": {
+      "type": "altai-subheading",
+      "settings": {
+        "heading": "<em>Stock up.</em> Never run out.",
+        "text": "ALTAÏ is made for daily use. Choose your pack and keep your routine going."
+      }
+    },
+    "altai_main_bottom": {
+      "type": "altai-main-product",
+      "settings": {
+        "layout": "compact",
+        "anchor": "",
+        "feature_columns": "2",
+        "ugc_title": ""
+      },
+      "blocks": {
+        "buy2_price": {
+          "type": "price",
+          "settings": {
+            "save_label": "FALL SALE - Save"
+          }
+        },
+        "buy2_variants": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "buy2_bundles": {
+          "type": "bundles",
+          "settings": {
+            "default_tier": "1",
+            "unit_text": "[price] per bottle",
+            "tier1_enabled": true,
+            "tier1_qty": 1,
+            "tier1_title": "Buy One",
+            "tier1_badge": "",
+            "tier1_discount": 0,
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_title": "Buy Two",
+            "tier2_badge": "Most Popular",
+            "tier2_discount": 0,
+            "tier3_enabled": true,
+            "tier3_qty": 3,
+            "tier3_title": "Buy Three",
+            "tier3_badge": "",
+            "tier3_discount": 0
+          }
+        },
+        "buy2_delivery": {
+          "type": "delivery",
+          "settings": {
+            "days": 7,
+            "text": "Order today for delivery by",
+            "text_after": "",
+            "date_locale": "en-US"
+          }
+        },
+        "buy2_buy": {
+          "type": "buy_button",
+          "settings": {
+            "label": "Add To Cart",
+            "show_price": true,
+            "show_arrow": true
+          }
+        },
+        "buy2_info": {
+          "type": "info_bar",
+          "settings": {
+            "item1_icon": "shield",
+            "item1_text": "90-Day Money-Back Guarantee",
+            "item2_icon": "box",
+            "item2_text": "Discreet Shipping",
+            "item3_icon": "lock",
+            "item3_text": ""
+          }
+        },
+        "buy2_sold": {
+          "type": "sold_bar",
+          "settings": {
+            "mode": "manual",
+            "percent": 93,
+            "batch_size": 500,
+            "text": "[percent]% Sold",
+            "subtext": "Only 6 Left In Stock: Ships in 24/48 Hours",
+            "color": "#d33f3f"
+          }
+        },
+        "buy2_note": {
+          "type": "note",
+          "settings": {
+            "text": "<p>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "buy2_sold",
+        "buy2_price",
+        "buy2_variants",
+        "buy2_bundles",
+        "buy2_delivery",
+        "buy2_buy",
+        "buy2_info",
+        "buy2_note"
+      ]
+    },
+    "altai_reviews_list": {
+      "type": "altai-reviews-list",
+      "settings": {
+        "rating_text": "Rated 4.8 / 5",
+        "trust_text": "Trusted by 10,577+",
+        "heading": "They Felt the Difference. Now It's Your Turn.",
+        "visible_count": 4,
+        "more_label": "Read More Reviews",
+        "show_author": true,
+        "verified_text": "Verified Buyer"
+      },
+      "blocks": {
+        "rev_list_1": {
+          "type": "review",
+          "settings": {
+            "author": "Rob D.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«At 62, my doctor prescribed 100mg of Viagra, but it did nothing. I felt so powerless. Now I’m feeling freaking amazing, with more energy than I had! I can think more clearly, my mind is sharper, and my libido is back too.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/1_3_55e8a9be-d5b4-4510-8757-4e6128e49d4a.webp"
+          }
+        },
+        "rev_list_2": {
+          "type": "review",
+          "settings": {
+            "author": "Michelle S.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«Felt like I was 25 again. That was the feeling I’d been missing. Before that, I just wasn’t that interested anymore. Before that I tried different things, but nothing changed My wife noticed before I said anything. Our spark is stronger than ever.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/3_b8edf7a2-577b-44f2-8b8d-86b30f4af48f.webp"
+          }
+        },
+        "rev_list_3": {
+          "type": "review",
+          "settings": {
+            "author": "Danny E.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>«I was skeptical because Cialis just wasn’t working like it used to. I just wanted to stop worrying every time we got close. Feeling that solid again changed everything. I’m just thankful to be intimate with my wife again.»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/2_bee5ba1b-bbee-41ef-9f84-cc3660a78971.webp"
+          }
+        },
+        "rev_list_4": {
+          "type": "review",
+          "settings": {
+            "author": "Ashley B.",
+            "rating": 4,
+            "title": "",
+            "content": "<p>«I was starting to feel like a friend instead of his wife. I wanted him to reach for me again. Since we found this product, it's nice to see his confidence back. He comes closer now, and I’m not the only one trying anymore. &nbsp;»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/5_1_f84e2d41-a217-4c69-8199-a3af5393af9f.webp"
+          }
+        },
+        "rev_list_5": {
+          "type": "review",
+          "settings": {
+            "author": "Garry D.",
+            "rating": 5,
+            "title": "",
+            "content": "<p>« I was struggling in the bedroom at just 44. Testosterone boosted my energy, but did nothing for my sex life. After just 3 weeks of using it, my drive is finally coming back!»</p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/c8eb3271-f4dc-489a-be23-64827606a793.webp"
+          }
+        },
+        "rev_list_6": {
+          "type": "review",
+          "settings": {
+            "author": "Monnika P.",
+            "rating": 5,
+            "title": "",
+            "content": "<p><em>« </em>I just wanted to feel loved and desired by my husband. We kept having the same conversations, but nothing changed.<br/>Now he kisses me without being asked, and the affection is stronger than ever before<strong>.</strong><em>»</em></p>",
+            "verified": true,
+            "tag1": "",
+            "tag2": "",
+            "image": "shopify://shop_images/4_4_f92fff0c-a4a8-4a18-9db9-16af33184d29.webp"
+          }
+        }
+      },
+      "block_order": [
+        "rev_list_1",
+        "rev_list_2",
+        "rev_list_3",
+        "rev_list_4",
+        "rev_list_5",
+        "rev_list_6"
+      ]
+    }
+  },
+  "order": [
+    "altai_ticker_top",
+    "altai_main",
+    "altai_stats",
+    "altai_compounds",
+    "altai_reviews_slider",
+    "altai_icon_grid",
+    "altai_benefits",
+    "altai_ticker_mid",
+    "altai_journey",
+    "altai_reasons",
+    "altai_comparison",
+    "altai_guarantee",
+    "altai_ugc",
+    "altai_product_banner",
+    "altai_subheading",
+    "altai_main_bottom",
+    "altai_reviews_list"
+  ]
+}
