@@ -32,8 +32,9 @@ class AltaiCarousel extends HTMLElement {
       cancelAnimationFrame(this._raf);
       this._raf = requestAnimationFrame(() => this.update());
     }, { passive: true });
+    // Le premier rappel du ResizeObserver construit le carrousel une fois affiché :
+    // pas de calcul de mise en page forcé au chargement.
     new ResizeObserver(() => this.build()).observe(this.track);
-    this.build();
   }
 
   get step() {
@@ -90,8 +91,26 @@ class AltaiGallery extends HTMLElement {
     this.main = this.querySelector('[data-gallery-main]');
     this.thumbs = [...this.querySelectorAll('[data-thumb]')];
     if (!this.main) return;
-    this.main.addEventListener('altai:slide', (e) => this.setActive(e.detail.index));
+    this.main.addEventListener('altai:slide', (e) => {
+      if (e.detail.index > 0) this.loadSlides();
+      this.setActive(e.detail.index);
+    });
     this.thumbs.forEach((thumb, i) => thumb.addEventListener('click', () => this.main.go(i)));
+    const wake = () => this.loadSlides();
+    ['pointerdown', 'pointerenter', 'touchstart', 'focusin', 'wheel'].forEach((type) => this.addEventListener(type, wake, { once: true, passive: true }));
+    this.main.querySelector('[data-track]')?.addEventListener('scroll', wake, { once: true, passive: true });
+  }
+
+  // Les images 2 et suivantes n'ont pas de src au chargement (data-src / data-srcset).
+  loadSlides() {
+    if (this._slidesLoaded) return;
+    this._slidesLoaded = true;
+    this.querySelectorAll('img[data-src]').forEach((img) => {
+      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+      img.src = img.dataset.src;
+      img.removeAttribute('data-srcset');
+      img.removeAttribute('data-src');
+    });
   }
 
   setActive(i) {

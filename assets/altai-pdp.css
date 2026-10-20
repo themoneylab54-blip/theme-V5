@@ -157,6 +157,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-gallery__main .ap-carousel__track { gap: 0; padding: 0; }
 .ap-gallery__main .ap-carousel__item { flex-basis: 100%; }
 .ap-gallery__main img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.ap-gallery__main img[data-src] { color: transparent; } /* image pas encore chargée : pas de texte alternatif affiché */
 .ap-gallery__dots { position: absolute; left: 0; right: 0; bottom: 4px; }
 .ap-gallery__dots .ap-dot::before { background: rgba(255, 255, 255, .7); box-shadow: 0 0 0 1px rgba(0, 0, 0, .08); }
 .ap-gallery__dots .ap-dot.is-active::before { background: var(--ap-ink); }
@@ -383,6 +384,7 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-review__title { margin: 20px 0 8px; font-family: var(--ap-heading-font); font-weight: var(--ap-heading-weight); font-size: 18px; line-height: 1.3; }
 .ap-review__text { font-size: 16px; line-height: 23px; }
 .ap-review__text p + p { margin-top: 8px; }
+.ap-review__text em { font-style: normal; } /* guillemets : évite de charger la police italique */
 .ap-review__rating + .ap-review__text { margin-top: 18px; }
 .ap-review__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 24px; }
 .ap-review__author { display: inline-flex; align-items: center; gap: 8px; color: #6B6B6B; font-size: 14px; text-transform: uppercase; letter-spacing: .02em; }

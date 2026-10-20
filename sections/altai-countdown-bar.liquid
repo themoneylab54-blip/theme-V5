@@ -20,20 +20,52 @@
     <style>[id$="__announcement-bar"] { display: none !important; }</style>
   {%- endif -%}
 
-  <altai-countdown class="ap ap-countdown" hidden data-date="{{ section.settings.end_date | escape }}" data-time="{{ section.settings.end_time | default: '23:59' | escape }}" data-offset="{{ section.settings.timezone }}" data-hide-when-over="{{ section.settings.hide_when_over }}" style="--cd-bg: {{ section.settings.background }}; --cd-text: {{ section.settings.text_color }};">
+  {%- comment -%}
+    Le temps restant est calculé au rendu pour afficher la barre tout de suite
+    (sinon elle apparaît après le JavaScript et décale la page). Le script prend
+    ensuite le relais. Si la date ne peut pas être lue, la barre reste masquée
+    jusqu'au script, comme avant.
+  {%- endcomment -%}
+  {%- liquid
+    assign cd_time = section.settings.end_time | default: '23:59'
+    assign cd_iso = section.settings.end_date | append: 'T' | append: cd_time | append: ':00' | append: section.settings.timezone
+    assign cd_end = cd_iso | date: '%s' | plus: 0
+    assign cd_now = 'now' | date: '%s' | plus: 0
+    assign cd_left = cd_end | minus: cd_now
+    assign cd_ready = false
+    if cd_end > 1000000000
+      if cd_left > 0 or section.settings.hide_when_over == false
+        assign cd_ready = true
+      endif
+    endif
+    if cd_left < 0
+      assign cd_left = 0
+    endif
+    assign cd_days = cd_left | divided_by: 86400
+    assign cd_rest = cd_left | modulo: 86400
+    assign cd_hours = cd_rest | divided_by: 3600 | prepend: '0' | slice: -2, 2
+    assign cd_minutes = cd_rest | modulo: 3600 | divided_by: 60 | prepend: '0' | slice: -2, 2
+    assign cd_seconds = cd_rest | modulo: 60 | prepend: '0' | slice: -2, 2
+    if cd_days < 10
+      assign cd_days_label = cd_days | prepend: '0'
+    else
+      assign cd_days_label = cd_days
+    endif
+  -%}
+  <altai-countdown class="ap ap-countdown"{% unless cd_ready %} hidden{% endunless %} data-date="{{ section.settings.end_date | escape }}" data-time="{{ section.settings.end_time | default: '23:59' | escape }}" data-offset="{{ section.settings.timezone }}" data-hide-when-over="{{ section.settings.hide_when_over }}" style="--cd-bg: {{ section.settings.background }}; --cd-text: {{ section.settings.text_color }};">
     {%- if section.settings.link != blank -%}<a class="ap-countdown__inner" href="{{ section.settings.link }}">{%- else -%}<div class="ap-countdown__inner">{%- endif -%}
       <div class="ap-countdown__copy">
         {%- if section.settings.heading != blank -%}<span class="ap-countdown__title">{{ section.settings.heading | escape }}</span>{%- endif -%}
         {%- if section.settings.subheading != blank -%}<span class="ap-countdown__sub">{{ section.settings.subheading | escape }}</span>{%- endif -%}
       </div>
       <div class="ap-countdown__timer" role="timer">
-        <span class="ap-cd" data-cd-days hidden><span class="ap-cd__num" data-cd="days">00</span><span class="ap-cd__label">{{ section.settings.label_days | escape }}</span></span>
-        <span class="ap-cd__sep" data-cd-days hidden>:</span>
-        <span class="ap-cd"><span class="ap-cd__num" data-cd="hours">00</span><span class="ap-cd__label">{{ section.settings.label_hours | escape }}</span></span>
+        <span class="ap-cd" data-cd-days{% if cd_days == 0 %} hidden{% endif %}><span class="ap-cd__num" data-cd="days">{{ cd_days_label }}</span><span class="ap-cd__label">{{ section.settings.label_days | escape }}</span></span>
+        <span class="ap-cd__sep" data-cd-days{% if cd_days == 0 %} hidden{% endif %}>:</span>
+        <span class="ap-cd"><span class="ap-cd__num" data-cd="hours">{{ cd_hours }}</span><span class="ap-cd__label">{{ section.settings.label_hours | escape }}</span></span>
         <span class="ap-cd__sep">:</span>
-        <span class="ap-cd"><span class="ap-cd__num" data-cd="minutes">00</span><span class="ap-cd__label">{{ section.settings.label_minutes | escape }}</span></span>
+        <span class="ap-cd"><span class="ap-cd__num" data-cd="minutes">{{ cd_minutes }}</span><span class="ap-cd__label">{{ section.settings.label_minutes | escape }}</span></span>
         <span class="ap-cd__sep">:</span>
-        <span class="ap-cd"><span class="ap-cd__num" data-cd="seconds">00</span><span class="ap-cd__label">{{ section.settings.label_seconds | escape }}</span></span>
+        <span class="ap-cd"><span class="ap-cd__num" data-cd="seconds">{{ cd_seconds }}</span><span class="ap-cd__label">{{ section.settings.label_seconds | escape }}</span></span>
       </div>
     {%- if section.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
   </altai-countdown>
