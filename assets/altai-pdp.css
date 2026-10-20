@@ -13,7 +13,7 @@
   --ap-burgundy: #66242C;
   --ap-gray: #F6F6F6;
   --ap-gray-light: #FAFAFA;
-  --ap-muted: #6B7280;
+  --ap-muted: #5F6672;
   --ap-muted-dark: #4B5563;
   --ap-line: rgba(0, 0, 0, .3);
   --ap-line-soft: #E4E4E4;
@@ -111,10 +111,16 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-arrow--small svg { width: 14px; height: 14px; }
 .ap-arrow--white { background: var(--ap-white); border-color: var(--ap-white); color: var(--ap-ink); }
 .ap-arrow[disabled] { opacity: .4; cursor: default; }
-.ap-dots { display: flex; justify-content: center; gap: 6px; }
-.ap-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 8px; background: #D1D5DB; cursor: pointer; transition: width .2s ease, background .2s ease; }
-.ap-dot.is-active { width: 24px; background: var(--ap-accent); }
-.ap--dark .ap-dot { background: rgba(255, 255, 255, .35); }
+.ap-dots { display: flex; justify-content: center; }
+/* Zone tactile de 24 × 24 px (accessibilité) ; le point visible est dessiné par ::before. */
+.ap-dot { position: relative; flex: none; width: 24px; height: 24px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.ap-dot::before {
+  content: ""; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; border-radius: 8px;
+  background: #D1D5DB; transform: translate(-50%, -50%); transition: width .2s ease, background .2s ease;
+}
+.ap-dot.is-active::before { width: 24px; background: var(--ap-accent); }
+.ap--dark .ap-dot::before { background: rgba(255, 255, 255, .35); }
+.ap-nav .ap-dots:not(:empty) { margin-block: -8px; } /* garde l'encombrement d'origine (8 px) */
 
 /* ==========================================================================
    Bande défilante d'icônes
@@ -151,9 +157,9 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
 .ap-gallery__main .ap-carousel__track { gap: 0; padding: 0; }
 .ap-gallery__main .ap-carousel__item { flex-basis: 100%; }
 .ap-gallery__main img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-.ap-gallery__dots { position: absolute; left: 0; right: 0; bottom: 12px; }
-.ap-gallery__dots .ap-dot { background: rgba(255, 255, 255, .7); box-shadow: 0 0 0 1px rgba(0, 0, 0, .08); }
-.ap-gallery__dots .ap-dot.is-active { background: var(--ap-ink); }
+.ap-gallery__dots { position: absolute; left: 0; right: 0; bottom: 4px; }
+.ap-gallery__dots .ap-dot::before { background: rgba(255, 255, 255, .7); box-shadow: 0 0 0 1px rgba(0, 0, 0, .08); }
+.ap-gallery__dots .ap-dot.is-active::before { background: var(--ap-ink); }
 .ap-gallery__thumbs { position: relative; margin-top: 8px; }
 .ap-gallery__thumbs .ap-carousel__track { --gap: 6px; }
 .ap-gallery__thumbs .ap-carousel__item { flex-basis: calc((100% - 24px) / 5); }
@@ -619,4 +625,16 @@ altai-carousel, altai-gallery, altai-buybox { display: block; }
   .ap-main--media-right .ap-main__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
   .ap-main--media-right .ap-main__media { order: 2; }
   .ap-main--static-media .ap-main__media { position: static; }
+}
+
+/* ==========================================================================
+   Performance : les sections placées après le bloc d'achat ne sont calculées
+   qu'à l'approche du défilement (aucun changement visuel).
+   La bannière produit est exclue : ses flacons débordent volontairement.
+   ========================================================================== */
+@supports (content-visibility: auto) {
+  .shopify-section:has(> .ap-main:not(.ap-main--compact)) ~ .shopify-section:not(:has(.ap-pbanner)) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 760px;
+  }
 }
